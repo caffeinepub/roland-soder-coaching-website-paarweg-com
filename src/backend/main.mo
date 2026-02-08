@@ -1,24 +1,46 @@
 import AccessControl "authorization/access-control";
 import Map "mo:core/Map";
-import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
 import Text "mo:core/Text";
+import Principal "mo:core/Principal";
+import MixinStorage "blob-storage/Mixin";
 
-// No migration needed, no state type changes
+// Include blob storage mixin
 actor {
-  // Authentication setup
-  let accessControlState = AccessControl.initState();
+  include MixinStorage();
 
-  // User profile type
   type UserProfile = {
     name : Text;
     email : Text;
   };
 
-  // User profiles storage
   let userProfiles = Map.empty<Principal, UserProfile>();
 
-  // Authentication functions
+  type PageContent = {
+    title : Text;
+    content : Text;
+  };
+
+  let pageContents = Map.empty<Text, PageContent>();
+
+  type Pricing = {
+    id : Nat;
+    title : Text;
+    price : Text;
+    description : Text;
+  };
+
+  let pricingEntries = Map.empty<Nat, Pricing>();
+
+  var nextPricingId = 0;
+
+  type CsrInfo = {
+    explanation : Text;
+    status : Text;
+  };
+
+  let accessControlState = AccessControl.initState();
+
   public shared ({ caller }) func initializeAccessControl() : async () {
     AccessControl.initialize(accessControlState, caller);
   };
@@ -43,7 +65,7 @@ actor {
   };
 
   public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
-    if (not (AccessControl.isAdmin(accessControlState, caller) or caller == user)) {
+    if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
       Runtime.trap("Unauthorized: Only admins or the specific user can access this profile");
     };
     userProfiles.get(user);
@@ -56,15 +78,6 @@ actor {
     userProfiles.add(caller, profile);
   };
 
-  // Page content type
-  type PageContent = {
-    title : Text;
-    content : Text;
-  };
-
-  // Page content storage
-  let pageContents = Map.empty<Text, PageContent>();
-
   public query func getPageContent(page : Text) : async ?PageContent {
     pageContents.get(page);
   };
@@ -76,26 +89,8 @@ actor {
     pageContents.toArray();
   };
 
-  // Pricing type and storage
-  type Pricing = {
-    id : Nat;
-    title : Text;
-    price : Text;
-    description : Text;
-  };
-
-  let pricingEntries = Map.empty<Nat, Pricing>();
-
-  var nextPricingId = 0;
-
   public query func getAllPricingEntries() : async [Pricing] {
     pricingEntries.values().toArray();
-  };
-
-  // CSR information type (dummy for compatibility verification)
-  type CsrInfo = {
-    explanation : Text;
-    status : Text;
   };
 
   public query func getCsrInfo() : async CsrInfo {
@@ -105,4 +100,3 @@ actor {
     };
   };
 };
-

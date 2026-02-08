@@ -1,134 +1,46 @@
 {
   "kind": "build_request",
-  "title": "Add Zurich-focused online couples counseling landing page at /paarberatung-zuerich (not in main navigation)",
+  "title": "Replace a sentence on the Zurich couples landing page",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Create a new landing page route at `/paarberatung-zuerich` that renders a dedicated landing page for `paarweg.com/paarberatung-zuerich` (German copy), targeting couples from Zurich seeking online couples counseling/coaching, and ensure this page is reachable by direct URL.",
+      "text": "On the Zurich couples landing page, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.” in the “Wenn die Beziehung feststeckt” section (file: frontend/src/pages/ZurichCouplesLandingPage.tsx).",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Url: paarweg.com/paarberatung-zuerich",
-          "Erstelle eine ruhige, vertrauensvolle und klare Landingpage für paarweg.com."
+          "Auf der Landingpage muss der text: „Und es gibt Wege weiter.“ durch „Und es gibt Wege die weiterführen.“ ersetzt werden."
         ]
       },
       "acceptanceCriteria": [
-        "Navigating to `/paarberatung-zuerich` renders the new landing page.",
-        "The page uses the existing global `Layout` (header/footer) and existing UI components (Button/Card/etc.) to match the current site styling."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Implement the landing page content and section structure with a calm, respectful, reflective tone (no hype), matching the existing `paarweg.com` style; explicitly mention Zurich clearly even though the service is online. Use the provided headline and subheadline verbatim.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Headline: „Paarberatung Zürich – online neue Wege für eure Beziehung finden“",
-          "Subheadline: Online-Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich",
-          "Ton & Stil: – ruhig – wertschätzend – reflektiert – keine reißerischen Versprechen – nahbar, aber professionell",
-          "Fokus auf Beziehung, Kommunikation, neue Wege, gemeinsame Entwicklung"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Hero section contains the exact headline: “Paarberatung Zürich – online neue Wege für eure Beziehung finden”.",
-        "Hero section contains the exact subheadline: “Online-Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich”.",
-        "Page includes distinct sections for: (1) typical couple challenges (e.g., stuck conversations, distance, conflicts), (2) how online counseling works at PaarWeg, (3) PaarWeg attitude/approach (appreciative, solution-oriented, on equal footing), (4) CTA invitation to an initial, non-binding first contact.",
-        "Copy avoids exaggerated promises and is consistent with the calm professional tone used on existing pages."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Add a clear primary Call-to-Action on the landing page that invites visitors to request an initial non-binding first contact, using existing contact/booking options already used on the site (e.g., link to `/kontakt` and/or the existing Calendly URL).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Call-to-Action: Einladung zu einem unverbindlichen Erstkontakt",
-          "Ziel: Besucher sollen sich verstanden fühlen und eine Kontaktanfrage stellen."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Landing page includes a prominent CTA button above the fold and at least one CTA repetition near the bottom.",
-        "At least one CTA takes the user to an existing conversion path (e.g., `/kontakt` and/or `https://calendly.com/paarweg-info`) without introducing new third-party integrations."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Ensure the landing page is not linked from the main header navigation or mobile menu (no new entry added to the `navigation` list in `frontend/src/components/Layout.tsx`).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Die seite soll nicht im Menu verlinkt sein, sondern nur als LAndingpage dienen."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Header desktop navigation and mobile navigation show no link to `/paarberatung-zuerich`.",
-        "The page remains accessible via direct URL entry."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add SEO metadata for `/paarberatung-zuerich` consistent with existing pages: set `document.title`, meta description, canonical URL (`https://www.paarweg.com/paarberatung-zuerich`), and Open Graph tags that reflect the Zurich-focused online service.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Zürich soll klar genannt werden, obwohl das Angebot online ist",
-          "Url: paarweg.com/paarberatung-zuerich"
-        ]
-      },
-      "acceptanceCriteria": [
-        "`document.title` is set on mount and includes “Paarberatung Zürich” and “PaarWeg”.",
-        "A meta description exists and references Zurich + online couples counseling/coaching + discreet/confidential/professional positioning.",
-        "Canonical link tag points to `https://www.paarweg.com/paarberatung-zuerich`.",
-        "Open Graph tags (`og:title`, `og:description`, `og:url`) exist and match the page topic."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Update `frontend/public/sitemap.xml` to include `https://www.paarweg.com/paarberatung-zuerich` as an indexable URL entry (while still keeping it unlinked from the menu).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Url: paarweg.com/paarberatung-zuerich",
-          "Die seite soll nicht im Menu verlinkt sein, sondern nur als LAndingpage dienen."
-        ]
-      },
-      "acceptanceCriteria": [
-        "`frontend/public/sitemap.xml` contains a `<url>` entry with `<loc>https://www.paarweg.com/paarberatung-zuerich</loc>`.",
-        "Existing sitemap entries remain valid XML and unchanged aside from the new addition and an appropriate `lastmod` value for the new entry."
+        "The string “Und es gibt Wege weiter.” no longer appears anywhere in frontend/src/pages/ZurichCouplesLandingPage.tsx.",
+        "The page renders the updated sentence exactly as: “Und es gibt Wege die weiterführen.” (including punctuation)."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under `frontend/src/components/ui` (compose using existing components only).",
-    "Do not edit immutable hook/bootstrap files: `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`.",
-    "Backend must remain single-actor; no backend changes are required for this landing page."
+    "Do not modify any files under frontend/src/components/ui (read-only).",
+    "Do not modify any files listed as immutable in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Building a new backend contact-form workflow (email sending, database, CRM integrations).",
-    "Adding the landing page to the main menu navigation.",
-    "Implementing third-party authentication or additional analytics/integrations beyond what already exists."
+    "No other copy changes on the landing page.",
+    "No layout, styling, SEO meta tag, or routing changes."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

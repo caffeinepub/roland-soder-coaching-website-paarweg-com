@@ -7,23 +7,23 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export interface CsrInfo {
-    status: string;
-    explanation: string;
-}
 export interface Pricing {
     id: bigint;
     title: string;
     description: string;
     price: string;
 }
-export interface UserProfile {
-    name: string;
-    email: string;
-}
 export interface PageContent {
     title: string;
     content: string;
+}
+export interface CsrInfo {
+    status: string;
+    explanation: string;
+}
+export interface UserProfile {
+    name: string;
+    email: string;
 }
 export enum UserRole {
     admin = "admin",
