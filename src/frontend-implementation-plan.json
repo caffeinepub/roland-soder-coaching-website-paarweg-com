@@ -1,0 +1,111 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Zurich-focused online couples counseling landing page at /paarberatung-zuerich",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add a new direct-access route `/paarberatung-zuerich` rendering a dedicated Zurich-focused landing page within the existing Layout.",
+      "acceptanceCriteria": [
+        "Navigating to `/paarberatung-zuerich` renders the new landing page.",
+        "The page uses the existing global `Layout` (header/footer) and existing UI components (Button/Card/etc.) to match the current site styling."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "create",
+          "description": "Create the new landing page React component using the existing styling patterns and existing UI components (e.g., shadcn Button/Card) so it fits PaarWeg’s current look and uses the global Layout via the router."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register a new TanStack Router route for `/paarberatung-zuerich` and wire it to the new ZurichCouplesLandingPage so it is reachable via direct URL."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement calm, reflective German landing page copy and required section structure, explicitly referencing Zurich and using the provided hero headline/subheadline verbatim.",
+      "acceptanceCriteria": [
+        "Hero section contains the exact headline: “Paarberatung Zürich – online neue Wege für eure Beziehung finden”.",
+        "Hero section contains the exact subheadline: “Online-Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich”.",
+        "Page includes distinct sections for: (1) typical couple challenges (e.g., stuck conversations, distance, conflicts), (2) how online counseling works at PaarWeg, (3) PaarWeg attitude/approach (appreciative, solution-oriented, on equal footing), (4) CTA invitation to an initial, non-binding first contact.",
+        "Copy avoids exaggerated promises and is consistent with the calm professional tone used on existing pages."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Add the full section structure and German copy: hero (with verbatim headline/subheadline), challenges section, “so läuft online ab” section, PaarWeg Haltung/Ansatz section, and a calm CTA invitation; ensure Zurich is clearly mentioned while positioning the offer as online."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add prominent repeated CTAs that use existing contact/booking conversion paths (Kontakt page and/or existing Calendly URL).",
+      "acceptanceCriteria": [
+        "Landing page includes a prominent CTA button above the fold and at least one CTA repetition near the bottom.",
+        "At least one CTA takes the user to an existing conversion path (e.g., `/kontakt` and/or `https://calendly.com/paarweg-info`) without introducing new third-party integrations."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Implement a primary above-the-fold CTA (e.g., to `/kontakt` and/or existing `https://calendly.com/paarweg-info`) and repeat the CTA near the bottom; reuse existing Button patterns and link behaviors from current pages without adding new integrations."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Keep the landing page unlisted in the main header and mobile navigation while remaining accessible via direct URL.",
+      "acceptanceCriteria": [
+        "Header desktop navigation and mobile navigation show no link to `/paarberatung-zuerich`.",
+        "The page remains accessible via direct URL entry."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add a small inline comment/guard near the `navigation` definition documenting that `/paarberatung-zuerich` is intentionally not linked in the menu; ensure no navigation item is added for this route."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the route remains registered in the router tree so direct URL access works independently of the header/mobile navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add page-specific SEO metadata for `/paarberatung-zuerich` (title, description, canonical, and Open Graph tags) aligned with existing pages.",
+      "acceptanceCriteria": [
+        "`document.title` is set on mount and includes “Paarberatung Zürich” and “PaarWeg”.",
+        "A meta description exists and references Zurich + online couples counseling/coaching + discreet/confidential/professional positioning.",
+        "Canonical link tag points to `https://www.paarweg.com/paarberatung-zuerich`.",
+        "Open Graph tags (`og:title`, `og:description`, `og:url`) exist and match the page topic."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "On mount, set `document.title`, create/update meta description, create/update canonical link, and create/update Open Graph tags (`og:title`, `og:description`, `og:url`) for `https://www.paarweg.com/paarberatung-zuerich`, mirroring the metadata injection approach used on existing pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add the new landing page URL to the public sitemap.xml while keeping it unlinked from the menu.",
+      "acceptanceCriteria": [
+        "`frontend/public/sitemap.xml` contains a `<url>` entry with `<loc>https://www.paarweg.com/paarberatung-zuerich</loc>`.",
+        "Existing sitemap entries remain valid XML and unchanged aside from the new addition and an appropriate `lastmod` value for the new entry."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "modify",
+          "description": "Add a new `<url>` entry for `https://www.paarweg.com/paarberatung-zuerich` with appropriate `lastmod`, `changefreq`, and `priority`, keeping the XML valid and leaving existing entries unchanged aside from inserting the new entry."
+        }
+      ]
+    }
+  ]
+}

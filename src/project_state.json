@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Create a calm, trustworthy, clear German landing page for paarweg.com targeting couples from Zurich seeking online couples counseling/coaching, hosted at /paarberatung-zuerich and not linked in the main menu, with a CTA for an initial contact.",
+  "architectural_notes": [
+    "Landing page should not be linked in the site menu; accessible only via direct URL (paarweg.com/paarberatung-zuerich).",
+    "Landing page copy/tone must match existing paarweg.com style; explicitly mention Zürich while emphasizing the online, discreet nature of the offer."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-new-landing-page-route-at-paarberatung-zuerich-that-renders-a-dedicated-landing-page-for-paarweg-com-paarberatung-zuerich-german-copy-targeting-couples-from-zurich-seeking-online-couples-counseling-coaching-and-ensure-this-page-is-reachable-by-direct-url",
+      "title": "Create a new landing page route at `/paarberatung-zuerich` that renders a dedicated landing page for `paarweg.com/paarberatung-zuerich` (German copy), targeting couples from Zurich seeking online couples counseling/coaching, and ensure this page is reachable by direct URL.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-landing-page-content-and-section-structure-with-a-calm-respectful-reflective-tone-no-hype-matching-the-existing-paarweg-com-style-explicitly-mention-zurich-clearly-even-though-the-service-is-online-use-the-provided-headline-and-subheadline-verbatim",
+      "title": "Implement the landing page content and section structure with a calm, respectful, reflective tone (no hype), matching the existing `paarweg.com` style; explicitly mention Zurich clearly even though the service is online. Use the provided headline and subheadline verbatim.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-clear-primary-call-to-action-on-the-landing-page-that-invites-visitors-to-request-an-initial-non-binding-first-contact-using-existing-contact-booking-options-already-used-on-the-site-e-g-link-to-kontakt-and-or-the-existing-calendly-url",
+      "title": "Add a clear primary Call-to-Action on the landing page that invites visitors to request an initial non-binding first contact, using existing contact/booking options already used on the site (e.g., link to `/kontakt` and/or the existing Calendly URL).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-landing-page-is-not-linked-from-the-main-header-navigation-or-mobile-menu-no-new-entry-added-to-the-navigation-list-in-frontend-src-components-layout-tsx",
+      "title": "Ensure the landing page is not linked from the main header navigation or mobile menu (no new entry added to the `navigation` list in `frontend/src/components/Layout.tsx`).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-seo-metadata-for-paarberatung-zuerich-consistent-with-existing-pages-set-document-title-meta-description-canonical-url-https-www-paarweg-com-paarberatung-zuerich-and-open-graph-tags-that-reflect-the-zurich-focused-online-service",
+      "title": "Add SEO metadata for `/paarberatung-zuerich` consistent with existing pages: set `document.title`, meta description, canonical URL (`https://www.paarweg.com/paarberatung-zuerich`), and Open Graph tags that reflect the Zurich-focused online service.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-public-sitemap-xml-to-include-https-www-paarweg-com-paarberatung-zuerich-as-an-indexable-url-entry-while-still-keeping-it-unlinked-from-the-menu",
+      "title": "Update `frontend/public/sitemap.xml` to include `https://www.paarweg.com/paarberatung-zuerich` as an indexable URL entry (while still keeping it unlinked from the menu).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create German landing page at paarweg.com/paarberatung-zuerich for couples in Zurich seeking online Paarberatung/Paarcoaching; calm professional tone matching existing site; include specified sections and CTA; page should not be linked in the main menu.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "paarweg.com",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

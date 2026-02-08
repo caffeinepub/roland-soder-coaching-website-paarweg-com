@@ -1,0 +1,49 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T12:10:04.850Z",
+  "summary": "Implemented a new Zurich-focused landing page component and added a reachable route at /paarberatung-zuerich using the global Layout. SEO metadata and sitemap entry were added, and the page was explicitly kept out of the main navigation. Due to file truncation, some content/section and CTA repetition acceptance criteria cannot be fully verified from the diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Page includes distinct sections for (1) typical couple challenges, (2) how online counseling works at PaarWeg, (3) PaarWeg attitude/approach, (4) CTA invitation to an initial non-binding first contact.",
+      "reason": "The added landing page file is truncated; only the Hero section and the beginning of a 'Challenges' section are visible. The required additional sections and their distinct structure cannot be confirmed from the provided diff excerpt.",
+      "evidence": [
+        "frontend/src/pages/ZurichCouplesLandingPage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Landing page includes a prominent CTA button above the fold and at least one CTA repetition near the bottom; at least one CTA goes to an existing conversion path (/kontakt and/or https://calendly.com/paarweg-info).",
+      "reason": "The hero CTA button to Calendly is visible, but the file is truncated and does not show whether a CTA is repeated near the bottom.",
+      "evidence": [
+        "frontend/src/pages/ZurichCouplesLandingPage.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added/updated internal project tracking metadata (project_state.json) describing feature requests and statuses.",
+      "reason": "The BuildRequest does not ask to introduce or modify repository/project tracking state files.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Updated/added a repository-wide 'frontend-file-summaries.txt' describing many pages and features beyond the Zurich landing page.",
+      "reason": "The BuildRequest only asks for a new landing page, routing, SEO metadata, and sitemap update; it does not request documentation/summary file updates.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.64,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/public/sitemap.xml",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "project_state.json"
+  ]
+}
