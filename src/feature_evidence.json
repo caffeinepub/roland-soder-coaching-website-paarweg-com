@@ -2,10 +2,13 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-on-the-zurich-couples-landing-page-replace-the-sentence-und-es-gibt-wege-weiter-with-und-es-gibt-wege-die-weiterf-hren-in-the-wenn-die-beziehung-feststeckt-section-file-frontend-src-pages-zurichcoupleslandingpage-tsx",
-      "featureTitle": "On the Zurich couples landing page, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.” in the “Wenn die Beziehung feststeckt” section (file: frontend/src/pages/ZurichCouplesLandingPage.tsx).",
+      "featureId": "feature-add-an-admin-facing-ui-section-that-displays-the-currently-active-hex-color-for-1-the-global-page-background-color-and-2-the-primary-button-color-used-for-the-book-introductory-session-booking-cta-button-so-the-values-can-be-copied-easily",
+      "featureTitle": "Add an admin-facing UI section that displays the currently active HEX color for (1) the global page background color and (2) the primary button color used for the “book introductory session” / booking CTA button, so the values can be copied easily.",
       "files": [
-        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+        "frontend/src/hooks/useComputedThemeHexColors.ts",
+        "frontend/src/pages/TechnicalStatusPage.tsx",
+        "frontend/src/utils/color.ts"
       ],
       "components": [
         "blob-storage@4.0.0",

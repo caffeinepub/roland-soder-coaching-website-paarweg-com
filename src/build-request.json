@@ -1,33 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Replace a sentence on the Zurich couples landing page",
+  "title": "Expose theme HEX codes for page background and booking buttons",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "On the Zurich couples landing page, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.” in the “Wenn die Beziehung feststeckt” section (file: frontend/src/pages/ZurichCouplesLandingPage.tsx).",
+      "text": "Add an admin-facing UI section that displays the currently active HEX color for (1) the global page background color and (2) the primary button color used for the “book introductory session” / booking CTA button, so the values can be copied easily.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-4",
+          "msg-6"
         ],
         "quotes": [
-          "Auf der Landingpage muss der text: „Und es gibt Wege weiter.“ durch „Und es gibt Wege die weiterführen.“ ersetzt werden."
+          "Was ist der HEx-Code für den Seitenhintergrund  und der  HEx Code für die Buttons zum Erstegespräch buchen?",
+          "ja"
         ]
       },
       "acceptanceCriteria": [
-        "The string “Und es gibt Wege weiter.” no longer appears anywhere in frontend/src/pages/ZurichCouplesLandingPage.tsx.",
-        "The page renders the updated sentence exactly as: “Und es gibt Wege die weiterführen.” (including punctuation)."
+        "A visible section is available on an existing admin page (e.g., /admin/technical-status) that lists at minimum: Background color (HEX) and Primary/CTA button color (HEX).",
+        "The HEX values are derived from the actual computed styles at runtime (not hard-coded), so they reflect the current theme (including dark mode if enabled).",
+        "Each listed color value can be copied by the user (e.g., via a copy button or selectable text).",
+        "All user-facing labels in this new section are in English."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/components/ui (read-only).",
-    "Do not modify any files listed as immutable in SYSTEM_CONTEXT."
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose existing UI components instead).",
+    "Keep backend as a single Motoko actor; no backend changes are required for this request."
   ],
   "nonGoals": [
-    "No other copy changes on the landing page.",
-    "No layout, styling, SEO meta tag, or routing changes."
+    "Do not redesign the site theme or change any existing colors.",
+    "Do not change Calendly integration behavior or booking links.",
+    "Do not introduce new authentication providers or external services."
   ],
   "imageRequirements": {
     "required": [],
@@ -36,7 +41,9 @@
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [],
+    "preferencesToAdd": [
+      "Use English for any user-facing text."
+    ],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

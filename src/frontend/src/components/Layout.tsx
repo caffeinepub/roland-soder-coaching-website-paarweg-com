@@ -1,4 +1,4 @@
-import { Outlet, Link, useLocation } from '@tanstack/react-router';
+import { Outlet, Link, useLocation, useNavigate } from '@tanstack/react-router';
 import { Menu, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 export default function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Navigation items - /paarberatung-zuerich is intentionally not included (landing page only)
@@ -21,6 +22,19 @@ export default function Layout() {
 
   const isActive = (href: string) => {
     return location.pathname === href;
+  };
+
+  // Handle navigation click with special logic for Kontakt page
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // If clicking Kontakt while already on /kontakt, reload the page
+    if (href === '/kontakt' && location.pathname === '/kontakt') {
+      e.preventDefault();
+      window.location.reload();
+    }
+    // For mobile menu, close it
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
   };
 
   // Scroll to top on route change - instant scroll for mobile
@@ -47,6 +61,7 @@ export default function Layout() {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className={`rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
                   isActive(item.href)
                     ? 'bg-accent text-accent-foreground'
@@ -76,7 +91,7 @@ export default function Layout() {
                   <Link
                     key={item.name}
                     to={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className={`rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
                       isActive(item.href)
                         ? 'bg-accent text-accent-foreground'
@@ -144,9 +159,9 @@ export default function Layout() {
           </div>
           <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
             <p className="flex items-center justify-center gap-1">
-              © 2025. Built with <Heart className="h-4 w-4 fill-primary text-primary" /> using{' '}
+              © {new Date().getFullYear()}. Built with <Heart className="h-4 w-4 fill-primary text-primary" /> using{' '}
               <a
-                href="https://caffeine.ai"
+                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium hover:text-foreground transition-colors"

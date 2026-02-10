@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Mail, Phone, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
+import { CalendlyInlineWidget } from '@/components/CalendlyInlineWidget';
 
 export default function ContactPage() {
   useEffect(() => {
@@ -149,6 +150,14 @@ export default function ContactPage() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Calendly Inline Widget */}
+          <div className="mt-12">
+            <CalendlyInlineWidget 
+              url="https://calendly.com/paarweg-info?hide_landing_page_details=1&hide_gdpr_banner=1"
+              minHeight={700}
+            />
+          </div>
         </div>
       </section>
 
@@ -244,122 +253,91 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-
-            {/* CTA Button for Booking Link */}
-            <div className="mt-10 text-left md:text-center">
-              <Button asChild size="lg" className="px-8 py-6 text-base w-full md:w-auto">
-                <a
-                  href="https://calendly.com/paarweg-info"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Calendar className="h-5 w-5 mr-2" />
-                  Jetzt Erstgespräch buchen
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Image Section */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-4xl">
-            <img
-              src="/assets/Videocall.png"
-              alt="Online Paarcoaching Videocall - Persönliche Beratung per Video"
-              className="rounded-2xl object-cover shadow-xl w-full"
-              loading="lazy"
-            />
-            <p className="mt-6 text-left md:text-center text-sm text-muted-foreground break-words">
-              Vertrauliche Online-Gespräche in angenehmer Atmosphäre – flexibel und persönlich
-            </p>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-muted/30 py-20 md:py-28">
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-12 text-left md:text-center text-3xl font-bold tracking-tight sm:text-4xl break-words">
               Häufige Fragen
             </h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="item-1" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Was kostet das Coaching?
+            
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Wie lange dauert eine Sitzung?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Das Erstgespräch kostet 60 CHF für 60 Minuten. Coaching-Sitzungen kosten 190 CHF für 90 Minuten, 
-                  unabhängig davon, ob Sie alleine oder als Paar kommen. Ich arbeite transparent und fair.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Das Erstgespräch dauert 60 Minuten und kostet 60 CHF. 
+                  Reguläre Coaching-Sessions dauern 90 Minuten und kosten 190 CHF. 
+                  Die Dauer kann je nach Bedarf angepasst werden.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-2" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Wie lange dauert ein Coaching?
+              <AccordionItem value="item-2" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Wie läuft das Online-Coaching ab?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Das ist sehr individuell. Manche Themen klären sich in wenigen Sitzungen, 
-                  andere brauchen längere Begleitung. Wir besprechen das gemeinsam und passen den Umfang 
-                  an Ihre Bedürfnisse an. Es gibt keine Mindestlaufzeit.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Wir treffen uns per Video-Call über eine sichere Plattform. 
+                  Sie benötigen lediglich einen Computer, Tablet oder Smartphone mit Kamera und Mikrofon 
+                  sowie eine stabile Internetverbindung. Den Link zum Video-Call erhalten Sie nach der Terminbuchung.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-3" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Arbeiten Sie online oder vor Ort?
+              <AccordionItem value="item-3" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Kann ich einen Termin absagen oder verschieben?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Grundsätzlich finden alle Sitzungen online per Video-Call statt. 
-                  Das ermöglicht flexible Termingestaltung und spart Anfahrtswege. 
-                  Die Qualität der Begleitung ist online genauso hoch wie vor Ort. 
-                  Präsenz-Termine sind in Ausnahmefällen nach Absprache möglich.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Ja, Sie können Termine bis zu 12 Stunden vor dem vereinbarten Zeitpunkt kostenfrei absagen 
+                  oder verschieben. Bei kurzfristigeren Absagen wird die volle Sitzungsgebühr fällig.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-4" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Ich habe keine oder wenig Erfahrung mit Video-Calls – ist das ein Problem?
+              <AccordionItem value="item-4" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Ist das Gespräch vertraulich?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Nein, überhaupt nicht. Wenn Sie wenig oder keine Erfahrung mit Video-Calls haben, 
-                  melden Sie sich gerne vorab bei mir. Ich unterstütze Sie Schritt für Schritt dabei, 
-                  alles in Ruhe einzurichten, sodass Sie entspannt und gut vorbereitet in unser Gespräch starten können.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Ja, absolut. Alles, was Sie mir erzählen, unterliegt der Schweigepflicht. 
+                  Ihre Privatsphäre und Ihr Vertrauen haben höchste Priorität.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-5" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Ist das Coaching vertraulich?
+              <AccordionItem value="item-5" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Muss ich mich langfristig verpflichten?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Absolut. Alles, was Sie mir anvertrauen, bleibt zwischen uns. 
-                  Vertraulichkeit ist die Grundlage meiner Arbeit und eine Selbstverständlichkeit.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Nein, es gibt keine langfristige Verpflichtung. Nach dem Erstgespräch entscheiden Sie, 
+                  ob und wie Sie weitermachen möchten. Sie buchen jede Sitzung einzeln und können jederzeit pausieren oder aufhören.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-6" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
-                  Kann ich auch alleine kommen, wenn es um Paarthemen geht?
+              <AccordionItem value="item-6" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
+                  Übernimmt die Krankenkasse die Kosten?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Ja, das ist möglich und oft sogar sinnvoll. Manchmal ist es hilfreich, 
-                  erst einmal für sich selbst Klarheit zu gewinnen, bevor man den Partner einbezieht. 
-                  Wir besprechen im Erstgespräch, was für Sie der beste Weg ist.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Coaching ist keine Psychotherapie und wird in der Regel nicht von der Krankenkasse übernommen. 
+                  Die Kosten tragen Sie selbst. Dafür sind Sie zeitlich flexibel und können sofort starten, 
+                  ohne auf einen Therapieplatz warten zu müssen.
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-7" className="rounded-lg border bg-card px-6">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+              <AccordionItem value="item-7" className="border rounded-lg px-6">
+                <AccordionTrigger className="text-left hover:no-underline">
                   Was ist der Unterschied zwischen Coaching und Therapie?
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground text-left break-words">
-                  Coaching richtet sich an psychisch gesunde Menschen, die an ihrer Entwicklung arbeiten möchten. 
-                  Therapie behandelt psychische Erkrankungen. Wenn Sie unsicher sind, 
-                  klären wir im Erstgespräch, was für Sie das Richtige ist.
+                <AccordionContent className="text-muted-foreground text-left break-words">
+                  Coaching richtet sich an Menschen, die keine psychische Erkrankung haben, 
+                  aber Unterstützung in einer herausfordernden Lebensphase suchen. 
+                  Es geht um Entwicklung, Klärung und konkrete Lösungen. 
+                  Bei psychischen Erkrankungen empfehle ich eine Psychotherapie.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

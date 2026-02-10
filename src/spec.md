@@ -1,9 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update a single sentence in the “Wenn die Beziehung feststeckt” section on the Zurich couples landing page.
+**Goal:** Expose the active theme HEX codes for the global page background and the primary booking CTA button in an admin-facing UI so they can be easily copied.
 
 **Planned changes:**
-- In `frontend/src/pages/ZurichCouplesLandingPage.tsx`, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.”
+- Add a new section on an existing admin page (e.g., `/admin/technical-status`) that displays the runtime-computed HEX value for the global page background color.
+- Display the runtime-computed HEX value for the primary/CTA button color used for the “book introductory session” booking button.
+- Provide an easy way to copy each HEX value (e.g., copy button and/or selectable text), with all labels in English.
 
-**User-visible outcome:** The Zurich couples landing page displays the updated sentence exactly as “Und es gibt Wege die weiterführen.” in the “Wenn die Beziehung feststeckt” section.
+**User-visible outcome:** On the admin page, an admin can view and copy the current HEX codes for the page background and the booking CTA button, reflecting the active theme (including dark mode if enabled).

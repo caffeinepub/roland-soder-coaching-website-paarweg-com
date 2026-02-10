@@ -16,6 +16,7 @@ import {
   Server,
   ExternalLink,
 } from 'lucide-react';
+import ThemeHexCodesSection from '@/components/admin/ThemeHexCodesSection';
 
 interface StatusCheck {
   name: string;
@@ -424,6 +425,9 @@ export default function TechnicalStatusPage() {
               </CardContent>
             </Card>
 
+            {/* Theme HEX Codes Section */}
+            <ThemeHexCodesSection />
+
             {/* Status Checks */}
             <Card>
               <CardHeader>
@@ -490,27 +494,17 @@ export default function TechnicalStatusPage() {
                   <h4 className="mb-2 font-semibold">SSL-Zertifikat</h4>
                   <div className="space-y-1 text-sm text-muted-foreground">
                     <p>• Common Name (CN): www.paarweg.com</p>
-                    <p>• Verschlüsselung: 2048-bit RSA</p>
-                    <p>• Format: Base64 PEM</p>
-                    <p>• Anbieter: united-domains.de</p>
-                  </div>
-                </div>
-                <Separator />
-                <div>
-                  <h4 className="mb-2 font-semibold">301-Weiterleitung</h4>
-                  <div className="space-y-1 text-sm text-muted-foreground">
-                    <p>• Von: http://paarweg.com → https://www.paarweg.com</p>
-                    <p>• Von: https://paarweg.com → https://www.paarweg.com</p>
-                    <p>• Status-Code: 301 (Permanent Redirect)</p>
+                    <p>• Organisation: Roland Soder</p>
+                    <p>• Standort: Basel, Basel Stadt, CH</p>
+                    <p>• Schlüssellänge: 2048-bit RSA</p>
                   </div>
                 </div>
                 <Separator />
                 <div>
                   <h4 className="mb-2 font-semibold">Analytics</h4>
                   <div className="space-y-1 text-sm text-muted-foreground">
-                    <p>• Plausible Analytics für www.paarweg.com</p>
-                    <p>• Script: https://plausible.io/js/script.js</p>
-                    <p>• data-domain: www.paarweg.com</p>
+                    <p>• Plausible Analytics Domain: www.paarweg.com</p>
+                    <p>• Script-URL: https://plausible.io/js/script.js</p>
                   </div>
                 </div>
               </CardContent>
@@ -519,57 +513,39 @@ export default function TechnicalStatusPage() {
             {/* Quick Links */}
             <Card>
               <CardHeader>
-                <CardTitle>Nützliche Links</CardTitle>
-                <CardDescription>Schnellzugriff auf wichtige Verwaltungsseiten</CardDescription>
+                <CardTitle>Schnellzugriff</CardTitle>
+                <CardDescription>Nützliche Links für die Verwaltung</CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
-                <a
-                  href="/admin/csr-generator"
-                  className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-accent"
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => window.open('/admin/csr-generator', '_blank')}
                 >
-                  <div className="flex items-center gap-3">
-                    <Server className="h-5 w-5 text-primary" />
-                    <span className="font-medium">CSR-Generator</span>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                </a>
-                <a
-                  href="https://www.united-domains.de"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-accent"
+                  <Server className="mr-2 h-4 w-4" />
+                  CSR-Generator öffnen
+                  <ExternalLink className="ml-auto h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => window.open('https://www.united-domains.de', '_blank')}
                 >
-                  <div className="flex items-center gap-3">
-                    <Globe className="h-5 w-5 text-primary" />
-                    <span className="font-medium">united-domains.de</span>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                </a>
-                <a
-                  href="https://plausible.io/www.paarweg.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-accent"
+                  <Globe className="mr-2 h-4 w-4" />
+                  United Domains Dashboard
+                  <ExternalLink className="ml-auto h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  onClick={() => window.open('https://plausible.io/www.paarweg.com', '_blank')}
                 >
-                  <div className="flex items-center gap-3">
-                    <TrendingUp className="h-5 w-5 text-primary" />
-                    <span className="font-medium">Plausible Analytics Dashboard</span>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
-                </a>
+                  <TrendingUp className="mr-2 h-4 w-4" />
+                  Plausible Analytics Dashboard
+                  <ExternalLink className="ml-auto h-4 w-4" />
+                </Button>
               </CardContent>
             </Card>
-
-            {/* Information Alert */}
-            <Alert>
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>
-                <strong>Hinweis:</strong> Diese Seite führt automatische Überprüfungen durch, um
-                den Status der technischen Konfiguration zu ermitteln. Einige Checks können nur
-                eingeschränkt funktionieren, wenn die Seite nicht über die Produktions-Domain
-                aufgerufen wird.
-              </AlertDescription>
-            </Alert>
           </div>
         </div>
       </section>

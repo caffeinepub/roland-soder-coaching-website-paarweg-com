@@ -1,20 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update Zurich couples landing page sentence",
+  "title": "Admin UI: runtime HEX codes for background and booking CTA button",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the specified sentence in the “Wenn die Beziehung feststeckt” section on the Zurich couples landing page.",
+      "summary": "Add an admin-facing section on an existing admin page that shows copyable, runtime-computed HEX values for the global page background and the primary booking CTA button color.",
       "acceptanceCriteria": [
-        "The string “Und es gibt Wege weiter.” no longer appears anywhere in frontend/src/pages/ZurichCouplesLandingPage.tsx.",
-        "The page renders the updated sentence exactly as: “Und es gibt Wege die weiterführen.” (including punctuation)."
+        "A visible section is available on an existing admin page (e.g., /admin/technical-status) that lists at minimum: Background color (HEX) and Primary/CTA button color (HEX).",
+        "The HEX values are derived from the actual computed styles at runtime (not hard-coded), so they reflect the current theme (including dark mode if enabled).",
+        "Each listed color value can be copied by the user (e.g., via a copy button or selectable text).",
+        "All user-facing labels in this new section are in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "path": "frontend/src/utils/color.ts",
+          "operation": "create",
+          "description": "Add color utilities to normalize computed CSS color strings (e.g., rgb/rgba) and convert them to HEX (e.g., #RRGGBB), suitable for showing copyable values in the admin UI."
+        },
+        {
+          "path": "frontend/src/hooks/useComputedThemeHexColors.ts",
+          "operation": "create",
+          "description": "Create a hook that derives HEX values at runtime by rendering/using hidden probe elements styled with the app’s real theme classes (e.g., background and a primary Button style), reading their computed styles, converting to HEX, and re-computing when theme changes (e.g., MutationObserver on the documentElement class for dark mode toggles)."
+        },
+        {
+          "path": "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+          "operation": "create",
+          "description": "Implement a reusable admin-only UI section that displays: (1) Page background (HEX) and (2) Booking CTA / primary button (HEX). Provide a copy interaction per value (Clipboard API with a safe fallback) and ensure all labels in this section are English. Compose existing UI components (e.g., Card, Button, Badge/Alert as appropriate); do not modify files in frontend/src/components/ui."
+        },
+        {
+          "path": "frontend/src/pages/TechnicalStatusPage.tsx",
           "operation": "modify",
-          "description": "In the “Wenn die Beziehung feststeckt” section paragraph, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.” without changing any other copy, layout, styling, SEO, or routing."
+          "description": "Wire the new ThemeHexCodesSection into the existing /admin/technical-status page so the HEX section is clearly visible and accessible for admins to copy values; ensure only the new section’s labels are in English and that values are sourced via the runtime-computed hook (not hard-coded)."
         }
       ]
     }

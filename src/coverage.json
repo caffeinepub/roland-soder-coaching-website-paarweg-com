@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T18:10:19.287Z",
+  "generatedAt": "2026-02-10T18:21:44.109Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,13 +12,19 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "On the Zurich couples landing page, replace the sentence “Und es gibt Wege weiter.” with “Und es gibt Wege die weiterführen.” in the “Wenn die Beziehung feststeckt” section (file: frontend/src/pages/ZurichCouplesLandingPage.tsx).",
+        "summary": "Add an admin-facing UI section that displays the currently active HEX color for (1) the global page background color and (2) the primary button color used for the “book introductory session” / booking CTA button, so the values can be copied easily.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+          "frontend/src/utils/color.ts",
+          "frontend/src/hooks/useComputedThemeHexColors.ts",
+          "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+          "frontend/src/pages/TechnicalStatusPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+          "frontend/src/utils/color.ts",
+          "frontend/src/hooks/useComputedThemeHexColors.ts",
+          "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+          "frontend/src/pages/TechnicalStatusPage.tsx"
         ]
       }
     ]
@@ -28,7 +34,10 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+    "frontend/src/hooks/useComputedThemeHexColors.ts",
+    "frontend/src/pages/TechnicalStatusPage.tsx",
+    "frontend/src/utils/color.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
