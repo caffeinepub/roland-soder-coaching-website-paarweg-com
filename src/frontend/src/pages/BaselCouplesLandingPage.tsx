@@ -28,7 +28,7 @@ export default function BaselCouplesLandingPage() {
       { property: 'og:description', content: 'Professionelle Online Paarberatung für Paare in Basel. Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen.' },
       { property: 'og:url', content: 'https://www.paarweg.com/paarberatung-basel' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://www.paarweg.com/assets/paar_an_notebook.png' },
+      { property: 'og:image', content: 'https://www.paarweg.com/assets/paar_an_notebook-1.png' },
       { property: 'og:locale', content: 'de_CH' },
     ];
 
@@ -83,8 +83,8 @@ export default function BaselCouplesLandingPage() {
             <div className="mx-auto w-full max-w-4xl">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl">
                 <img
-                  src="/assets/generated/basel-hero.dim_1200x600.jpg"
-                  alt="Paarberatung Basel – Online Coaching für Paare"
+                  src="/assets/paar_an_notebook-1.png"
+                  alt="Paar schaut gemeinsam auf Laptop während Online-Beratungssitzung"
                   className="h-full w-full object-cover"
                   loading="eager"
                 />
@@ -214,7 +214,17 @@ export default function BaselCouplesLandingPage() {
               </div>
             </div>
 
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="text-base">
+                <a
+                  href="https://calendly.com/paarweg-info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Erstgespräch buchen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
               <Button asChild variant="outline" size="lg" className="text-base">
                 <a href="/">
                   Mehr über PaarWeg

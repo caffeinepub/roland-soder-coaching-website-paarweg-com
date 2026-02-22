@@ -1,37 +1,20 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Align Basel landing page layout with Zürich page and add entry image",
+  "title": "Update Swiss landing page section title to match Basel page structure",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
+      "id": "REQ-4",
+      "summary": "Change the section title from 'So läuft PaarWeg ab' to 'So funktioniert Online-Paarberatung bei PaarWeg' on the Swiss Online Couples Landing Page to match the Basel page structure",
       "acceptanceCriteria": [
-        "Basel page (BaselCouplesLandingPage.tsx) uses the same section structure as Zürich page (ZurichCouplesLandingPage.tsx)",
-        "Content sections appear in the same order on both pages",
-        "Spacing and padding between sections matches Zürich page"
+        "The section title on SwissOnlineCouplesLandingPage.tsx matches the corresponding section title on BaselCouplesLandingPage.tsx",
+        "The title reads 'So funktioniert Online-Paarberatung bei PaarWeg' instead of 'So läuft PaarWeg ab'"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Restructure the page layout to match ZurichCouplesLandingPage.tsx structure. Add hero section with image container matching Zürich's layout, ensure consistent section ordering (hero, service description, call-to-action sections), apply matching spacing classes and container structure. Preserve all Basel-specific content text and SEO metadata including Open Graph tags. Maintain mobile responsiveness."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
-      "acceptanceCriteria": [
-        "Basel page displays a hero image in the same position and style as the Zürich page",
-        "Image is properly responsive and mobile-optimized",
-        "Image loads from frontend/public/assets/generated directory"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
-          "operation": "modify",
-          "description": "Add hero image integration using the generated image at frontend/public/assets/generated/basel-hero.dim_1200x600.jpg. Implement the image with the same responsive styling, positioning, and container structure as used in ZurichCouplesLandingPage.tsx. Ensure proper mobile optimization with appropriate image sizing and loading attributes. The image should be integrated into the hero section created in REQ-1."
+          "description": "Update the section title from 'So läuft PaarWeg ab' to 'So funktioniert Online-Paarberatung bei PaarWeg' to match the Basel landing page structure. Locate the existing section heading and replace the text with the exact wording used in BaselCouplesLandingPage.tsx."
         }
       ]
     }

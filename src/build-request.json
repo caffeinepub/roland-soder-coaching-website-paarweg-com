@@ -1,60 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Align Basel landing page layout with Zürich page and add entry image",
+  "title": "Update Swiss landing page section title to match Basel page structure",
   "projectName": "PaarWeg",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
+      "id": "REQ-4",
+      "text": "Change the section title 'So läuft PaarWeg ab' to 'So funktioniert Online-Paarberatung bei PaarWeg' on the Swiss Online Couples Landing Page to match the Basel page structure",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-4"
         ],
         "quotes": [
-          "Die BAsel Seite muss sich vom Layout mehr an der Zürich Seite orientieren"
+          "\"So läuft PaarWeg ab\" ist falsch, dies sollte analog der Basel Seite im Abschnitt \"So funktioniert Online-Paarberatung bei PaarWeg\" auf die Schweiz Seite übernommen werden."
         ]
       },
       "acceptanceCriteria": [
-        "Basel page (BaselCouplesLandingPage.tsx) uses the same section structure as Zürich page (ZurichCouplesLandingPage.tsx)",
-        "Content sections appear in the same order on both pages",
-        "Spacing and padding between sections matches Zürich page"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "auch das Eisntiegsbild haben"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Basel page displays a hero image in the same position and style as the Zürich page",
-        "Image is properly responsive and mobile-optimized",
-        "Image loads from frontend/public/assets/generated directory"
+        "The section title on SwissOnlineCouplesLandingPage.tsx matches the corresponding section title on BaselCouplesLandingPage.tsx",
+        "The title reads 'So funktioniert Online-Paarberatung bei PaarWeg' instead of 'So läuft PaarWeg ab'"
       ]
     }
   ],
   "constraints": [
-    "Maintain existing SEO metadata and Open Graph tags on Basel page",
-    "Preserve mobile responsiveness and mobile-first design",
-    "Do not modify routing or URL structure"
+    "Only modify the section title on the Swiss Online landing page",
+    "Match the exact wording used on the Basel landing page"
   ],
   "nonGoals": [
-    "Changing the content text of the Basel page",
-    "Modifying the Zürich page layout",
-    "Altering navigation or header components"
+    "Changing content in other sections",
+    "Modifying the Basel landing page",
+    "Updating other landing pages (Zurich, homepage)"
   ],
   "imageRequirements": {
-    "required": [
-      "Professional couples coaching hero image showing a couple in Basel setting, warm and welcoming atmosphere, suitable for relationship counseling context (basel-hero.dim_1200x600.jpg)"
-    ],
+    "required": [],
     "edits": []
   }
 }

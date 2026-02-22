@@ -1,28 +1,19 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Landing page project with location-specific pages (Basel and Zürich)",
+  "summary": "PaarWeg website project - online couples counseling platform with location-specific pages",
   "architectural_notes": [
-    "Multi-location landing page structure with Basel and Zürich pages",
-    "Shared layout components between location pages"
+    "Multi-page website with location-specific content (Basel, Switzerland pages)",
+    "Content sections need consistency across location pages"
   ],
   "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Professional couples coaching hero image showing a couple in Basel setting, warm and welcoming atmosphere, suitable for relationship counseling context (basel-hero.dim_1200x600.jpg)",
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-update-the-basel-couples-landing-page-layout-structure-to-match-the-z-rich-couples-landing-page-layout-including-section-arrangement-spacing-and-content-hierarchy",
-      "title": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
+      "id": "feature-change-the-section-title-so-l-uft-paarweg-ab-to-so-funktioniert-online-paarberatung-bei-paarweg-on-the-swiss-online-couples-landing-page-to-match-the-basel-page-structure",
+      "title": "Change the section title 'So läuft PaarWeg ab' to 'So funktioniert Online-Paarberatung bei PaarWeg' on the Swiss Online Couples Landing Page to match the Basel page structure",
       "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-an-entry-hero-image-to-the-basel-couples-landing-page-matching-the-visual-presentation-of-the-z-rich-couples-landing-page-hero-section",
-      "title": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
-      "reqIds": [
-        "REQ-2"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -30,11 +21,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update Basel page layout to match Zürich page layout including entry image",
+      "summary": "Update 'So läuft PaarWeg ab' section on Switzerland page to match Basel page structure ('So funktioniert Online-Paarberatung bei PaarWeg')",
       "reqIds": [],
       "status": "pending"
     }
   ],
+  "gameProjectType": "none",
   "projectName": "PaarWeg",
   "clarification_mode": "instant",
   "clarification_rounds": 0

@@ -214,7 +214,17 @@ export default function ZurichCouplesLandingPage() {
               </div>
             </div>
 
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="text-base">
+                <a
+                  href="https://calendly.com/paarweg-info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Erstgespräch buchen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
               <Button asChild variant="outline" size="lg" className="text-base">
                 <a href="/">
                   Mehr über PaarWeg

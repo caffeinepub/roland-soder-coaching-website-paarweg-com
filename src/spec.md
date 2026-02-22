@@ -1,10 +1,9 @@
 # Specification
 
 ## Summary
-**Goal:** Align the Basel couples landing page layout with the Zürich couples landing page and add a hero image.
+**Goal:** Update the section title on the Swiss Online Couples Landing Page to match the Basel page structure.
 
 **Planned changes:**
-- Update Basel page layout structure to match Zürich page section arrangement, spacing, and content hierarchy
-- Add hero/entry image to Basel page matching the visual presentation of Zürich page hero section
+- Change section title from "So läuft PaarWeg ab" to "So funktioniert Online-Paarberatung bei PaarWeg" on SwissOnlineCouplesLandingPage.tsx
 
-**User-visible outcome:** The Basel couples landing page will have a consistent layout and visual presentation matching the Zürich page, with an attractive hero image welcoming visitors.
+**User-visible outcome:** The Swiss Online landing page will have consistent section naming with the Basel page, improving clarity about the online couples counseling process.

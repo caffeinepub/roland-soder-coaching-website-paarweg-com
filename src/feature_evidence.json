@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-basel-couples-landing-page-layout-structure-to-match-the-z-rich-couples-landing-page-layout-including-section-arrangement-spacing-and-content-hierarchy",
-      "featureTitle": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
+      "featureId": "feature-change-the-section-title-so-l-uft-paarweg-ab-to-so-funktioniert-online-paarberatung-bei-paarweg-on-the-swiss-online-couples-landing-page-to-match-the-basel-page-structure",
+      "featureTitle": "Change the section title 'So läuft PaarWeg ab' to 'So funktioniert Online-Paarberatung bei PaarWeg' on the Swiss Online Couples Landing Page to match the Basel page structure",
       "files": [
-        "frontend/src/pages/BaselCouplesLandingPage.tsx"
+        "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx"
       ],
       "components": [
         "blob-storage@4.0.0",
@@ -17,27 +17,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-an-entry-hero-image-to-the-basel-couples-landing-page-matching-the-visual-presentation-of-the-z-rich-couples-landing-page-hero-section",
-      "featureTitle": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
-      "files": [
-        "frontend/src/pages/BaselCouplesLandingPage.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "authorization@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
+        "REQ-4"
       ],
       "confidence": "high"
     }
