@@ -1,37 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Admin UI: runtime HEX codes for background and booking CTA button",
+  "title": "Align Basel landing page layout with Zürich page and add entry image",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add an admin-facing section on an existing admin page that shows copyable, runtime-computed HEX values for the global page background and the primary booking CTA button color.",
+      "summary": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
       "acceptanceCriteria": [
-        "A visible section is available on an existing admin page (e.g., /admin/technical-status) that lists at minimum: Background color (HEX) and Primary/CTA button color (HEX).",
-        "The HEX values are derived from the actual computed styles at runtime (not hard-coded), so they reflect the current theme (including dark mode if enabled).",
-        "Each listed color value can be copied by the user (e.g., via a copy button or selectable text).",
-        "All user-facing labels in this new section are in English."
+        "Basel page (BaselCouplesLandingPage.tsx) uses the same section structure as Zürich page (ZurichCouplesLandingPage.tsx)",
+        "Content sections appear in the same order on both pages",
+        "Spacing and padding between sections matches Zürich page"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/utils/color.ts",
-          "operation": "create",
-          "description": "Add color utilities to normalize computed CSS color strings (e.g., rgb/rgba) and convert them to HEX (e.g., #RRGGBB), suitable for showing copyable values in the admin UI."
-        },
-        {
-          "path": "frontend/src/hooks/useComputedThemeHexColors.ts",
-          "operation": "create",
-          "description": "Create a hook that derives HEX values at runtime by rendering/using hidden probe elements styled with the app’s real theme classes (e.g., background and a primary Button style), reading their computed styles, converting to HEX, and re-computing when theme changes (e.g., MutationObserver on the documentElement class for dark mode toggles)."
-        },
-        {
-          "path": "frontend/src/components/admin/ThemeHexCodesSection.tsx",
-          "operation": "create",
-          "description": "Implement a reusable admin-only UI section that displays: (1) Page background (HEX) and (2) Booking CTA / primary button (HEX). Provide a copy interaction per value (Clipboard API with a safe fallback) and ensure all labels in this section are English. Compose existing UI components (e.g., Card, Button, Badge/Alert as appropriate); do not modify files in frontend/src/components/ui."
-        },
-        {
-          "path": "frontend/src/pages/TechnicalStatusPage.tsx",
+          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Wire the new ThemeHexCodesSection into the existing /admin/technical-status page so the HEX section is clearly visible and accessible for admins to copy values; ensure only the new section’s labels are in English and that values are sourced via the runtime-computed hook (not hard-coded)."
+          "description": "Restructure the page layout to match ZurichCouplesLandingPage.tsx structure. Add hero section with image container matching Zürich's layout, ensure consistent section ordering (hero, service description, call-to-action sections), apply matching spacing classes and container structure. Preserve all Basel-specific content text and SEO metadata including Open Graph tags. Maintain mobile responsiveness."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
+      "acceptanceCriteria": [
+        "Basel page displays a hero image in the same position and style as the Zürich page",
+        "Image is properly responsive and mobile-optimized",
+        "Image loads from frontend/public/assets/generated directory"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Add hero image integration using the generated image at frontend/public/assets/generated/basel-hero.dim_1200x600.jpg. Implement the image with the same responsive styling, positioning, and container structure as used in ZurichCouplesLandingPage.tsx. Ensure proper mobile optimization with appropriate image sizing and loading attributes. The image should be integrated into the hero section created in REQ-1."
         }
       ]
     }

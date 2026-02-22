@@ -1,22 +1,41 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
+  "summary": "Landing page project with location-specific pages (Basel and Zürich)",
+  "architectural_notes": [
+    "Multi-location landing page structure with Basel and Zürich pages",
+    "Shared layout components between location pages"
+  ],
   "known_issues": [],
   "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Professional couples coaching hero image showing a couple in Basel setting, warm and welcoming atmosphere, suitable for relationship counseling context (basel-hero.dim_1200x600.jpg)",
   "existing_features": [
     {
-      "id": "feature-add-an-admin-facing-ui-section-that-displays-the-currently-active-hex-color-for-1-the-global-page-background-color-and-2-the-primary-button-color-used-for-the-book-introductory-session-booking-cta-button-so-the-values-can-be-copied-easily",
-      "title": "Add an admin-facing UI section that displays the currently active HEX color for (1) the global page background color and (2) the primary button color used for the “book introductory session” / booking CTA button, so the values can be copied easily.",
+      "id": "feature-update-the-basel-couples-landing-page-layout-structure-to-match-the-z-rich-couples-landing-page-layout-including-section-arrangement-spacing-and-content-hierarchy",
+      "title": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-an-entry-hero-image-to-the-basel-couples-landing-page-matching-the-visual-presentation-of-the-z-rich-couples-landing-page-hero-section",
+      "title": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
     }
   ],
-  "new_feature_requests": [],
-  "projectName": "Expose theme HEX codes for page background and booking buttons",
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update Basel page layout to match Zürich page layout including entry image",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "PaarWeg",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

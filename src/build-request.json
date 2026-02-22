@@ -1,53 +1,60 @@
 {
   "kind": "build_request",
-  "title": "Expose theme HEX codes for page background and booking buttons",
+  "title": "Align Basel landing page layout with Zürich page and add entry image",
+  "projectName": "PaarWeg",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add an admin-facing UI section that displays the currently active HEX color for (1) the global page background color and (2) the primary button color used for the “book introductory session” / booking CTA button, so the values can be copied easily.",
+      "text": "Update the Basel couples landing page layout structure to match the Zürich couples landing page layout, including section arrangement, spacing, and content hierarchy",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4",
-          "msg-6"
+          "msg-5"
         ],
         "quotes": [
-          "Was ist der HEx-Code für den Seitenhintergrund  und der  HEx Code für die Buttons zum Erstegespräch buchen?",
-          "ja"
+          "Die BAsel Seite muss sich vom Layout mehr an der Zürich Seite orientieren"
         ]
       },
       "acceptanceCriteria": [
-        "A visible section is available on an existing admin page (e.g., /admin/technical-status) that lists at minimum: Background color (HEX) and Primary/CTA button color (HEX).",
-        "The HEX values are derived from the actual computed styles at runtime (not hard-coded), so they reflect the current theme (including dark mode if enabled).",
-        "Each listed color value can be copied by the user (e.g., via a copy button or selectable text).",
-        "All user-facing labels in this new section are in English."
+        "Basel page (BaselCouplesLandingPage.tsx) uses the same section structure as Zürich page (ZurichCouplesLandingPage.tsx)",
+        "Content sections appear in the same order on both pages",
+        "Spacing and padding between sections matches Zürich page"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add an entry/hero image to the Basel couples landing page matching the visual presentation of the Zürich couples landing page hero section",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "auch das Eisntiegsbild haben"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Basel page displays a hero image in the same position and style as the Zürich page",
+        "Image is properly responsive and mobile-optimized",
+        "Image loads from frontend/public/assets/generated directory"
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose existing UI components instead).",
-    "Keep backend as a single Motoko actor; no backend changes are required for this request."
+    "Maintain existing SEO metadata and Open Graph tags on Basel page",
+    "Preserve mobile responsiveness and mobile-first design",
+    "Do not modify routing or URL structure"
   ],
   "nonGoals": [
-    "Do not redesign the site theme or change any existing colors.",
-    "Do not change Calendly integration behavior or booking links.",
-    "Do not introduce new authentication providers or external services."
+    "Changing the content text of the Basel page",
+    "Modifying the Zürich page layout",
+    "Altering navigation or header components"
   ],
   "imageRequirements": {
-    "required": [],
-    "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Use English for any user-facing text."
+    "required": [
+      "Professional couples coaching hero image showing a couple in Basel setting, warm and welcoming atmosphere, suitable for relationship counseling context (basel-hero.dim_1200x600.jpg)"
     ],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
+    "edits": []
   }
 }

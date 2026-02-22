@@ -16,6 +16,7 @@ import TechnicalStatusPage from './pages/TechnicalStatusPage';
 import DomainVerificationPage from './pages/DomainVerificationPage';
 import SitemapPage from './pages/SitemapPage';
 import ZurichCouplesLandingPage from './pages/ZurichCouplesLandingPage';
+import BaselCouplesLandingPage from './pages/BaselCouplesLandingPage';
 
 const queryClient = new QueryClient();
 
@@ -84,6 +85,13 @@ const zurichCouplesLandingRoute = createRoute({
   component: ZurichCouplesLandingPage,
 });
 
+// Basel landing page route - intentionally not linked in navigation menu
+const baselCouplesLandingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/paarberatung-basel',
+  component: BaselCouplesLandingPage,
+});
+
 const csrGeneratorRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/csr-generator',
@@ -113,6 +121,7 @@ const routeTree = rootRoute.addChildren([
   legalRoute,
   sitemapRoute,
   zurichCouplesLandingRoute,
+  baselCouplesLandingRoute,
   csrGeneratorRoute,
   technicalStatusRoute,
   domainVerificationRoute,

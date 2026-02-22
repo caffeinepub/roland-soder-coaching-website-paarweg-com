@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Heart, MessageCircle, Users2, CheckCircle2 } from 'lucide-react';
 
-export default function ZurichCouplesLandingPage() {
+export default function BaselCouplesLandingPage() {
   useEffect(() => {
-    document.title = 'Paarberatung Zürich – Neue Wege für Ihre Beziehung online finden | PaarWeg';
+    document.title = 'Online Paarberatung Basel | PaarWeg';
     
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
@@ -12,7 +12,7 @@ export default function ZurichCouplesLandingPage() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Online Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich. Professionelle Unterstützung für mehr Nähe, Klarheit und gemeinsames Wachstum.');
+    metaDescription.setAttribute('content', 'Professionelle Online Paarberatung für Paare in Basel. Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen.');
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -20,16 +20,16 @@ export default function ZurichCouplesLandingPage() {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://www.paarweg.com/paarberatung-zuerich');
+    canonical.setAttribute('href', 'https://www.paarweg.com/paarberatung-basel');
 
     // Open Graph tags
     const ogTags = [
-      { property: 'og:title', content: 'Paarberatung Zürich – Neue Wege für Ihre Beziehung online finden | PaarWeg' },
-      { property: 'og:description', content: 'Online Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich. Professionelle Unterstützung für mehr Nähe, Klarheit und gemeinsames Wachstum.' },
-      { property: 'og:url', content: 'https://www.paarweg.com/paarberatung-zuerich' },
+      { property: 'og:title', content: 'Online Paarberatung Basel | PaarWeg' },
+      { property: 'og:description', content: 'Professionelle Online Paarberatung für Paare in Basel. Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen.' },
+      { property: 'og:url', content: 'https://www.paarweg.com/paarberatung-basel' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://www.paarweg.com/assets/paar_an_notebook-1.png' },
-      { property: 'og:locale', content: 'de_DE' },
+      { property: 'og:image', content: 'https://www.paarweg.com/assets/paar_an_notebook.png' },
+      { property: 'og:locale', content: 'de_CH' },
     ];
 
     ogTags.forEach(({ property, content }) => {
@@ -52,13 +52,13 @@ export default function ZurichCouplesLandingPage() {
             {/* Text Content */}
             <div className="mx-auto max-w-4xl text-center">
               <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Paarberatung Zürich
+                Online Paarberatung Basel
               </h1>
               <p className="mb-4 text-xl text-muted-foreground sm:text-2xl">
-                Neue Wege für Ihre Beziehung online finden
+                Professionelle Unterstützung für Ihre Beziehung
               </p>
               <p className="mb-8 text-lg text-muted-foreground">
-                Online Paarberatung & Coaching für Paare aus Zürich – flexibel, diskret, persönlich. Professionelle Unterstützung für mehr Nähe, Klarheit und gemeinsames Wachstum.
+                Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen. Online Paarberatung für Paare in Basel.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Button asChild size="lg" className="text-base">
@@ -83,8 +83,8 @@ export default function ZurichCouplesLandingPage() {
             <div className="mx-auto w-full max-w-4xl">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl">
                 <img
-                  src="/assets/paar_an_notebook-1.png"
-                  alt="Paar schaut gemeinsam auf Laptop während Online-Beratungssitzung"
+                  src="/assets/generated/basel-hero.dim_1200x600.jpg"
+                  alt="Paarberatung Basel – Online Coaching für Paare"
                   className="h-full w-full object-cover"
                   loading="eager"
                 />
@@ -168,7 +168,7 @@ export default function ZurichCouplesLandingPage() {
                 <div>
                   <h3 className="mb-2 text-xl font-semibold">Ortsunabhängig & flexibel</h3>
                   <p className="text-muted-foreground">
-                    Sie sind in Zürich ansässig, müssen aber nirgendwo hinfahren. Die Sitzungen finden online per Videoanruf statt – 
+                    Sie sind in Basel ansässig, müssen aber nirgendwo hinfahren. Die Sitzungen finden online per Videoanruf statt – 
                     von dort, wo Sie sich wohlfühlen. Das spart Zeit und gibt Ihnen Flexibilität bei der Terminplanung.
                   </p>
                 </div>
@@ -326,7 +326,7 @@ export default function ZurichCouplesLandingPage() {
               </Button>
             </div>
             <p className="mt-8 text-sm text-muted-foreground">
-              Für Paare aus Zürich und Umgebung – online, flexibel und vertraulich
+              Für Paare aus Basel und Umgebung – online, flexibel und vertraulich
             </p>
           </div>
         </div>

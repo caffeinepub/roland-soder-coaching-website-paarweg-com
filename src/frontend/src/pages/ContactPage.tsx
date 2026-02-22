@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Mail, Phone, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
-import { CalendlyInlineWidget } from '@/components/CalendlyInlineWidget';
 
 export default function ContactPage() {
   useEffect(() => {
@@ -66,20 +65,20 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Contact Information */}
-            <Card className="border-2">
+            <Card className="border border-border/60 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader>
                 <CardTitle className="text-2xl text-left">Direkter Kontakt</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="mb-1 font-semibold text-left">E-Mail</h3>
                     <a
                       href="mailto:info@paarweg.com"
-                      className="text-muted-foreground hover:text-foreground transition-colors break-all"
+                      className="text-muted-foreground hover:text-primary transition-colors break-all"
                     >
                       info@paarweg.com
                     </a>
@@ -87,14 +86,14 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <h3 className="mb-1 font-semibold text-left">Telefon</h3>
                     <a
                       href="tel:+41797703925"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       +41 79 770 39 25
                     </a>
@@ -102,7 +101,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <MessageCircle className="h-6 w-6 text-primary" />
                   </div>
                   <div>
@@ -111,7 +110,7 @@ export default function ContactPage() {
                       href="https://wa.me/+41797703925"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       +41 79 770 39 25
                     </a>
@@ -121,7 +120,7 @@ export default function ContactPage() {
             </Card>
 
             {/* Booking Card */}
-            <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
+            <Card className="border border-primary/30 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-primary/5 to-accent/5">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl text-left">
                   <Calendar className="h-6 w-6 text-primary" />
@@ -134,7 +133,7 @@ export default function ContactPage() {
                   oder eine Coaching-Session (90 Minuten - 190 CHF) über meinen Buchungslink. 
                   Schnell, unkompliziert und transparent.
                 </p>
-                <Button asChild size="lg" className="w-full">
+                <Button asChild size="lg" className="w-full shadow-sm">
                   <a
                     href="https://calendly.com/paarweg-info"
                     target="_blank"
@@ -150,14 +149,6 @@ export default function ContactPage() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Calendly Inline Widget */}
-          <div className="mt-12">
-            <CalendlyInlineWidget 
-              url="https://calendly.com/paarweg-info?hide_landing_page_details=1&hide_gdpr_banner=1"
-              minHeight={700}
-            />
-          </div>
         </div>
       </section>
 
@@ -170,10 +161,10 @@ export default function ContactPage() {
             </h2>
             
             <div className="space-y-6">
-              <Card className="border-2">
+              <Card className="border border-border/60 shadow-sm">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-semibold text-primary">
                       1
                     </div>
                     <div>
@@ -187,10 +178,10 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border border-border/60 shadow-sm">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-semibold text-primary">
                       2
                     </div>
                     <div>
@@ -205,10 +196,10 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border border-border/60 shadow-sm">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-semibold text-primary">
                       3
                     </div>
                     <div>
@@ -222,10 +213,10 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border border-border/60 shadow-sm">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-semibold text-primary">
                       4
                     </div>
                     <div>
@@ -241,7 +232,7 @@ export default function ContactPage() {
               </Card>
             </div>
 
-            <div className="mt-8 rounded-xl bg-primary/5 p-6">
+            <div className="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-6 shadow-sm">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                 <div>
@@ -266,7 +257,7 @@ export default function ContactPage() {
             </h2>
             
             <Accordion type="single" collapsible className="w-full space-y-4">
-              <AccordionItem value="item-1" className="border rounded-lg px-6">
+              <AccordionItem value="item-1" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Wie lange dauert eine Sitzung?
                 </AccordionTrigger>
@@ -277,7 +268,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-2" className="border rounded-lg px-6">
+              <AccordionItem value="item-2" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Wie läuft das Online-Coaching ab?
                 </AccordionTrigger>
@@ -288,7 +279,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-3" className="border rounded-lg px-6">
+              <AccordionItem value="item-3" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Kann ich einen Termin absagen oder verschieben?
                 </AccordionTrigger>
@@ -298,7 +289,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-4" className="border rounded-lg px-6">
+              <AccordionItem value="item-4" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Ist das Gespräch vertraulich?
                 </AccordionTrigger>
@@ -308,7 +299,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-5" className="border rounded-lg px-6">
+              <AccordionItem value="item-5" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Muss ich mich langfristig verpflichten?
                 </AccordionTrigger>
@@ -318,7 +309,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-6" className="border rounded-lg px-6">
+              <AccordionItem value="item-6" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Übernimmt die Krankenkasse die Kosten?
                 </AccordionTrigger>
@@ -329,7 +320,7 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="item-7" className="border rounded-lg px-6">
+              <AccordionItem value="item-7" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Was ist der Unterschied zwischen Coaching und Therapie?
                 </AccordionTrigger>
@@ -341,6 +332,37 @@ export default function ContactPage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-left md:text-center">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl break-words">
+              Bereit für den ersten Schritt?
+            </h2>
+            <p className="mb-8 text-lg text-muted-foreground break-words">
+              Buchen Sie jetzt Ihr Erstgespräch oder kontaktieren Sie mich direkt. 
+              Ich freue mich darauf, Sie kennenzulernen.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="shadow-md">
+                <a
+                  href="https://calendly.com/paarweg-info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Termin buchen
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="shadow-sm">
+                <a href="mailto:info@paarweg.com">
+                  E-Mail schreiben
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
