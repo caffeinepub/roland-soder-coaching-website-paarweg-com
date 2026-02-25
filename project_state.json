@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website project with coaching content. User wants to integrate a small MP4 video (4MB) as a replacement for the hero/entry image on the 'paarberatung-zuerich' page.",
+  "architectural_notes": [],
+  "known_issues": [
+    "Build failed with configuration error when attempting to integrate video on paarberatung-zuerich page"
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-on-the-zurichcoupleslandingpage-frontend-src-pages-zurichcoupleslandingpage-tsx-replace-the-hero-entry-image-with-an-html5-video-player-that-plays-the-uploaded-mp4-video-file-the-video-should-be-placed-at-frontend-public-assets-videos-hero-paarberatung-zuerich-mp4-the-video-element-should-autoplay-be-muted-loop-and-be-fully-responsive-object-fit-cover-matching-the-dimensions-and-layout-of-the-existing-hero-image-it-replaces",
+      "title": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Replace hero/entry image on paarberatung-zuerich page with an uploaded MP4 video",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "PaarWeg",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

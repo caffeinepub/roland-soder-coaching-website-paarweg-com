@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        
+        /* Warm sand/beige base colors */
+        --background: 0.97 0.015 45;
+        --foreground: 0.25 0.02 30;
+        
+        /* Card colors - slightly lighter than background */
+        --card: 0.98 0.012 50;
+        --card-foreground: 0.25 0.02 30;
+        
+        /* Popover colors */
+        --popover: 0.98 0.012 50;
+        --popover-foreground: 0.25 0.02 30;
+        
+        /* Primary - warm terracotta */
+        --primary: 0.58 0.15 35;
+        --primary-foreground: 0.98 0.01 50;
+        
+        /* Secondary - soft sage green */
+        --secondary: 0.88 0.08 140;
+        --secondary-foreground: 0.25 0.02 30;
+        
+        /* Muted - light beige */
+        --muted: 0.92 0.015 45;
+        --muted-foreground: 0.52 0.02 30;
+        
+        /* Accent - warm sand with slight orange */
+        --accent: 0.90 0.025 50;
+        --accent-foreground: 0.25 0.02 30;
+        
+        /* Destructive - muted red */
+        --destructive: 0.55 0.20 25;
+        --destructive-foreground: 0.98 0.01 50;
+        
+        /* Border and input */
+        --border: 0.88 0.015 45;
+        --input: 0.88 0.015 45;
+        --ring: 0.58 0.15 35;
+        
+        /* Chart colors - warm palette */
+        --chart-1: 0.58 0.15 35;
+        --chart-2: 0.65 0.12 140;
+        --chart-3: 0.70 0.10 50;
+        --chart-4: 0.62 0.14 25;
+        --chart-5: 0.68 0.11 60;
+        
+        /* Sidebar colors */
+        --sidebar: 0.97 0.015 45;
+        --sidebar-foreground: 0.25 0.02 30;
+        --sidebar-primary: 0.58 0.15 35;
+        --sidebar-primary-foreground: 0.98 0.01 50;
+        --sidebar-accent: 0.90 0.025 50;
+        --sidebar-accent-foreground: 0.25 0.02 30;
+        --sidebar-border: 0.88 0.015 45;
+        --sidebar-ring: 0.58 0.15 35;
+    }
+
+    .dark {
+        /* Dark mode with warm undertones */
+        --background: 0.20 0.015 30;
+        --foreground: 0.95 0.01 50;
+        
+        --card: 0.25 0.015 30;
+        --card-foreground: 0.95 0.01 50;
+        
+        --popover: 0.25 0.015 30;
+        --popover-foreground: 0.95 0.01 50;
+        
+        --primary: 0.65 0.15 35;
+        --primary-foreground: 0.20 0.015 30;
+        
+        --secondary: 0.35 0.08 140;
+        --secondary-foreground: 0.95 0.01 50;
+        
+        --muted: 0.30 0.015 30;
+        --muted-foreground: 0.70 0.015 45;
+        
+        --accent: 0.35 0.025 40;
+        --accent-foreground: 0.95 0.01 50;
+        
+        --destructive: 0.60 0.20 25;
+        --destructive-foreground: 0.95 0.01 50;
+        
+        --border: 0.30 0.015 30;
+        --input: 0.30 0.015 30;
+        --ring: 0.65 0.15 35;
+        
+        --chart-1: 0.65 0.15 35;
+        --chart-2: 0.70 0.12 140;
+        --chart-3: 0.75 0.10 50;
+        --chart-4: 0.68 0.14 25;
+        --chart-5: 0.73 0.11 60;
+        
+        --sidebar: 0.25 0.015 30;
+        --sidebar-foreground: 0.95 0.01 50;
+        --sidebar-primary: 0.65 0.15 35;
+        --sidebar-primary-foreground: 0.95 0.01 50;
+        --sidebar-accent: 0.35 0.025 40;
+        --sidebar-accent-foreground: 0.95 0.01 50;
+        --sidebar-border: 0.30 0.015 30;
+        --sidebar-ring: 0.65 0.15 35;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+    
+    /* Smooth scrolling disabled for instant scroll on mobile navigation */
+    html {
+        scroll-behavior: auto;
+    }
+    
+    /* Better text rendering */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ensure text wraps properly on mobile */
+    @media (max-width: 768px) {
+        h1, h2, h3, h4, h5, h6, p, span, a, button {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+    }
+}

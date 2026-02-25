@@ -1,0 +1,14 @@
+name	ttl	IN	type	prio	content
+*.paarweg.com.	600	IN	A		89.31.143.90
+paarweg.com.	600	IN	A		89.31.143.90
+*.autoconfig.paarweg.com.	600	IN	A		89.31.143.90
+autoconfig.paarweg.com.	600	IN	A		89.31.143.90
+*.autodiscover.paarweg.com.	600	IN	A		89.31.143.90
+autodiscover.paarweg.com.	600	IN	A		89.31.143.90
+www.paarweg.com.	600	IN	CNAME		paarweg-73d.caffeine.xyz.
+paarweg.com.	3600	IN	MX	1	smtp.google.com.
+paarweg.com.	86400	IN	NS		ns.udag.de.
+paarweg.com.	86400	IN	NS		ns.udag.net.
+paarweg.com.	86400	IN	NS		ns.udag.org.
+paarweg.com.	600	IN	TXT		google-site-verification=Vx3A-jrw-lrH90xvn8TeamtpQVGlOyIl5EaBSLGI0x4
+paarweg.com.	86400	IN	SOA		ns.udag.de hostmaster.united-domains.de 2025121957 10800 3600 604800 3600

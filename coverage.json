@@ -1,0 +1,38 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T10:41:28.384Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 1,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

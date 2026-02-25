@@ -1,0 +1,25 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Replace hero image with MP4 video on Zurich couples landing page",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace the hero image on ZurichCouplesLandingPage with an autoplay MP4 video that loops and is fully responsive",
+      "acceptanceCriteria": [
+        "The hero image on the Zurich couples landing page is no longer visible.",
+        "An MP4 video plays automatically (muted, looping) in the hero section where the image previously appeared.",
+        "The video is responsive and covers the same area as the previous hero image on all screen sizes.",
+        "The video file is served from frontend/public/assets/videos/hero-paarberatung-zuerich.mp4.",
+        "No layout shifts or broken UI elements occur on the Zurich landing page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Replace the existing hero image element with an HTML5 video element that references frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element must include autoplay, muted, loop, and playsInline attributes. Apply object-fit: cover styling and ensure the video maintains the same responsive layout dimensions as the current hero image across all screen sizes. Remove or comment out the img element that currently displays the hero image."
+        }
+      ]
+    }
+  ]
+}

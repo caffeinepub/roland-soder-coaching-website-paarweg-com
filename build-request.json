@@ -1,0 +1,43 @@
+{
+  "kind": "build_request",
+  "title": "Replace hero image with MP4 video on Zurich couples landing page",
+  "projectName": "PaarWeg",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Ich hätte das angehängte Video gerne anstelle der Einstiegsbilds auch der paarberatung-Zuerich seite."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The hero image on the Zurich couples landing page is no longer visible.",
+        "An MP4 video plays automatically (muted, looping) in the hero section where the image previously appeared.",
+        "The video is responsive and covers the same area as the previous hero image on all screen sizes.",
+        "The video file is served from frontend/public/assets/videos/hero-paarberatung-zuerich.mp4.",
+        "No layout shifts or broken UI elements occur on the Zurich landing page."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files listed in frontend.immutablePaths.",
+    "Video must be served as a static asset from the frontend public directory, not through the backend.",
+    "Only the ZurichCouplesLandingPage hero section should be changed; all other pages remain unaffected."
+  ],
+  "nonGoals": [
+    "Adding video to any other page.",
+    "Implementing video upload functionality through the admin UI.",
+    "Adding video controls or a play/pause button.",
+    "Backend changes."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
