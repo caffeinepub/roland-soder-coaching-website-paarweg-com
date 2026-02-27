@@ -1,27 +1,30 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Website project with coaching content. User wants to integrate a small MP4 video (4MB) as a replacement for the hero/entry image on the 'paarberatung-zuerich' page.",
-  "architectural_notes": [],
+  "summary": "Project involves managing draft and live site versions, with the current goal of building the draft as an exact copy of the live site (Version 145).",
+  "architectural_notes": [
+    "Draft and live are separate environments; draft must be explicitly synced from live files to ensure a 1:1 copy."
+  ],
   "known_issues": [
-    "Build failed with configuration error when attempting to integrate video on paarberatung-zuerich page"
+    "Draft version diverged from live (Version 145); previous restore attempts did not fully capture all files/components."
   ],
   "isFixRequest": false,
-  "existing_features": [
-    {
-      "id": "feature-on-the-zurichcoupleslandingpage-frontend-src-pages-zurichcoupleslandingpage-tsx-replace-the-hero-entry-image-with-an-html5-video-player-that-plays-the-uploaded-mp4-video-file-the-video-should-be-placed-at-frontend-public-assets-videos-hero-paarberatung-zuerich-mp4-the-video-element-should-autoplay-be-muted-loop-and-be-fully-responsive-object-fit-cover-matching-the-dimensions-and-layout-of-the-existing-hero-image-it-replaces",
-      "title": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    }
-  ],
+  "existing_features": [],
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Replace hero/entry image on paarberatung-zuerich page with an uploaded MP4 video",
-      "reqIds": [],
+      "summary": "Restore all frontend source files to their exact Version 145 (live) state. This includes all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), all layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), all hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files that exist in the live version. No file should differ from the live production version.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Restore the backend (backend/main.mo) to its exact Version 145 (live) state, ensuring all data types, CRUD operations, role-based access control, pricing entries, collections, navigation, and user profile logic are identical to the live version.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],

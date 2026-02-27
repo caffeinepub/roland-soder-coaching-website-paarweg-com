@@ -1,23 +1,180 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace hero image with MP4 video on Zurich couples landing page",
+  "title": "Restore PaarWeg Frontend to Version 145 (Live)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the hero image on ZurichCouplesLandingPage with an autoplay MP4 video that loops and is fully responsive",
+      "summary": "Restore all frontend source files to their exact Version 145 (live) state",
       "acceptanceCriteria": [
-        "The hero image on the Zurich couples landing page is no longer visible.",
-        "An MP4 video plays automatically (muted, looping) in the hero section where the image previously appeared.",
-        "The video is responsive and covers the same area as the previous hero image on all screen sizes.",
-        "The video file is served from frontend/public/assets/videos/hero-paarberatung-zuerich.mp4.",
-        "No layout shifts or broken UI elements occur on the Zurich landing page."
+        "All frontend pages render identically to the live Version 145 site",
+        "All routes defined in App.tsx match the live version exactly",
+        "Layout, header, footer, and navigation are identical to the live version",
+        "All page content (text, structure, components) matches Version 145",
+        "Calendly integration and all third-party scripts are configured identically to the live version",
+        "Tailwind theme tokens and CSS custom properties match the live version exactly",
+        "No empty or stub files remain where the live version has actual content"
       ],
       "file_operations": [
         {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Restore router configuration to Version 145 state, ensuring all routes (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage) are defined exactly as in the live version"
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Restore HomePage to Version 145 state with hero section, services grid (couples, men, women coaching), and coach approach sections matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Restore AboutPage to Version 145 state with Roland Soder's bio, qualifications, core values, and CTA matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/CouplesPage.tsx",
+          "operation": "modify",
+          "description": "Restore CouplesPage to Version 145 state with benefits, target audience, coaching process steps, hero image, and CTA matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/MenPage.tsx",
+          "operation": "modify",
+          "description": "Restore MenPage to Version 145 state with hero section, coaching topics grid (identity, emotions, communication), working-style section, and CTA matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/WomenPage.tsx",
+          "operation": "modify",
+          "description": "Restore WomenPage to Version 145 state with hero section, coaching topics grid (self-worth, boundary-setting, emotional intelligence), working-style section, and CTA matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "modify",
+          "description": "Restore PricingPage to Version 145 state with service cards (free intro call, 190 CHF session), four-step booking process, and FAQ accordion matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Restore ContactPage to Version 145 state with contact cards, step-by-step booking process, FAQs, and embedded Calendly widget matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/LegalPage.tsx",
+          "operation": "modify",
+          "description": "Restore LegalPage to Version 145 state with tabbed navigation (Impressum, Datenschutz, AGB) and all static legal text matching live content exactly"
+        },
+        {
+          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Restore BaselCouplesLandingPage to Version 145 state with SEO-targeted hero, benefits grid, target audience list, and inline Calendly widget matching live content exactly. Reference the generated image at frontend/public/assets/generated/basel-hero.dim_1200x600.jpg as a static asset"
+        },
+        {
           "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Replace the existing hero image element with an HTML5 video element that references frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element must include autoplay, muted, loop, and playsInline attributes. Apply object-fit: cover styling and ensure the video maintains the same responsive layout dimensions as the current hero image across all screen sizes. Remove or comment out the img element that currently displays the hero image."
+          "description": "Restore ZurichCouplesLandingPage to Version 145 state with hero video section, benefits grid, and embedded Calendly widget matching live content exactly"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Restore Layout component to Version 145 state with sticky header, desktop and mobile navigation, scroll-to-top on route changes, and footer with Basel headquarters info matching live version exactly"
+        },
+        {
+          "path": "frontend/src/components/CalendlyInlineWidget.tsx",
+          "operation": "modify",
+          "description": "Restore CalendlyInlineWidget component to Version 145 state, ensuring it dynamically loads and initializes the Calendly inline booking widget for roland-soder/kennenlernen exactly as in the live version"
+        },
+        {
+          "path": "frontend/src/hooks/useCalendlyScript.ts",
+          "operation": "modify",
+          "description": "Restore useCalendlyScript hook to Version 145 state, ensuring it lazily loads Calendly CSS and JS assets exactly as in the live version"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Restore useQueries hook to Version 145 state with useGetAllPricingEntries React Query hook matching live version exactly"
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Restore global CSS to Version 145 state with Tailwind directives and light/dark theme CSS custom properties using the exact oklch color palette from the live version"
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Restore Tailwind configuration to Version 145 state with custom color tokens (oklch/hsl CSS variables), border radius, font family, and plugins matching live version exactly"
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Restore HTML entry point to Version 145 state with German locale, SEO and Open Graph meta tags referencing Basel, and Plausible Analytics integration for www.paarweg.com matching live version exactly"
+        },
+        {
+          "path": "frontend/public/sitemap.xml",
+          "operation": "modify",
+          "description": "Restore sitemap.xml to Version 145 state listing all public pages with URLs, change frequencies, and priority values matching live version exactly"
+        },
+        {
+          "path": "frontend/ic-assets.json",
+          "operation": "modify",
+          "description": "Restore IC assets configuration to Version 145 state ensuring .well-known directory CORS headers match live version exactly"
+        },
+        {
+          "path": "frontend/src/types/calendly.d.ts",
+          "operation": "modify",
+          "description": "Restore TypeScript declaration file to Version 145 state with Calendly widget API methods on Window interface matching live version exactly"
+        },
+        {
+          "path": "frontend/src/components/admin/ThemeHexCodesSection.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/components/MobileReadMore.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/config/featureFlags.ts",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/hooks/useComputedThemeHexColors.ts",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/utils/color.ts",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/utils/urlParams.ts",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/pages/CSRGeneratorPage.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/pages/DomainVerificationPage.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/pages/SitemapPage.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
+        },
+        {
+          "path": "frontend/src/pages/TechnicalStatusPage.tsx",
+          "operation": "modify",
+          "description": "Restore or remove this file to match Version 145 state. If the live version contains actual content, restore it exactly; if it's intentionally empty in live, leave it empty"
         }
       ]
     }

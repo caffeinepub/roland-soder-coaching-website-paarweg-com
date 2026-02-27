@@ -1,25 +1,4 @@
 {
   "kind": "feature_evidence_report",
-  "features": [
-    {
-      "featureId": "feature-on-the-zurichcoupleslandingpage-frontend-src-pages-zurichcoupleslandingpage-tsx-replace-the-hero-entry-image-with-an-html5-video-player-that-plays-the-uploaded-mp4-video-file-the-video-should-be-placed-at-frontend-public-assets-videos-hero-paarberatung-zuerich-mp4-the-video-element-should-autoplay-be-muted-loop-and-be-fully-responsive-object-fit-cover-matching-the-dimensions-and-layout-of-the-existing-hero-image-it-replaces",
-      "featureTitle": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
-      "files": [
-        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "authorization@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    }
-  ]
+  "features": []
 }

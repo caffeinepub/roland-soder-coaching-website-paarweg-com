@@ -1,27 +1,26 @@
-import AccessControl "authorization/access-control";
 import Map "mo:core/Map";
 import Runtime "mo:core/Runtime";
-import Text "mo:core/Text";
-import Principal "mo:core/Principal";
+import Iter "mo:core/Iter";
 import MixinStorage "blob-storage/Mixin";
+import Text "mo:core/Text";
+import Nat "mo:core/Nat";
+import Principal "mo:core/Principal";
+import AccessControl "authorization/access-control";
 
-// Include blob storage mixin
+// Explicit migration using with-clause
+
 actor {
   include MixinStorage();
 
-  type UserProfile = {
-    name : Text;
-    email : Text;
-  };
-
-  let userProfiles = Map.empty<Principal, UserProfile>();
-
-  type PageContent = {
+  type Entry = {
+    id : Nat;
     title : Text;
-    content : Text;
+    collection : Text;
+    imagePath : Text;
+    description : Text;
+    imageAlt : Text;
+    price : Nat;
   };
-
-  let pageContents = Map.empty<Text, PageContent>();
 
   type Pricing = {
     id : Nat;
@@ -30,14 +29,41 @@ actor {
     description : Text;
   };
 
-  let pricingEntries = Map.empty<Nat, Pricing>();
-
-  var nextPricingId = 0;
-
-  type CsrInfo = {
-    explanation : Text;
-    status : Text;
+  type UserProfile = {
+    name : Text;
   };
+
+  let userProfiles = Map.empty<Principal, UserProfile>();
+
+  type NavigationEntry = {
+    id : Nat;
+    title : Text;
+    path : Text;
+  };
+
+  let homeNavigationEntries = Map.empty<Nat, NavigationEntry>();
+  let crownNavigationEntries = Map.empty<Nat, NavigationEntry>();
+  let aboutNavigationEntries = Map.empty<Nat, NavigationEntry>();
+  let contactNavigationEntries = Map.empty<Nat, NavigationEntry>();
+
+  let collections = Map.fromIter<Nat, { id : Nat; title : Text; path : Text }>(
+    [
+      (0, { id = 0; title = "Blütenpracht"; path = "/images/blossom-collection.jpeg" }),
+      (1, { id = 1; title = "Peak Time"; path = "/images/peak-time-collection.jpeg" }),
+      (2, { id = 2; title = "Vielfalt"; path = "/images/variety-collection.jpeg" }),
+    ].values()
+  );
+
+  let entries = Map.empty<Nat, Entry>();
+
+  var nextEntryId = 0;
+
+  var beeResultsStack : [Text] = [];
+  var lastBeeResult : ?Text = null;
+  var lastTrayResult : ?Text = null;
+  var lastHiveResult : ?Text = null;
+
+  let pricingEntries = Map.empty<Nat, Pricing>();
 
   let accessControlState = AccessControl.initState();
 
@@ -59,7 +85,7 @@ actor {
 
   public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only users can access profiles");
+      Runtime.trap("Unauthorized: Only users can save profiles");
     };
     userProfiles.get(caller);
   };
@@ -78,22 +104,68 @@ actor {
     userProfiles.add(caller, profile);
   };
 
-  public query func getPageContent(page : Text) : async ?PageContent {
-    pageContents.get(page);
+  public query func getNavigation(page : Text) : async [NavigationEntry] {
+    switch (page) {
+      case ("home") { homeNavigationEntries.values().toArray() };
+      case ("crowns") { crownNavigationEntries.values().toArray() };
+      case ("about") { aboutNavigationEntries.values().toArray() };
+      case ("contact") { contactNavigationEntries.values().toArray() };
+      case (_) { [] };
+    };
   };
 
-  public query ({ caller }) func getAllPageContents() : async [(Text, PageContent)] {
-    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
-      Runtime.trap("Unauthorized: Only admins can access all page contents");
+  public query func getCollections() : async [(Nat, { id : Nat; title : Text; path : Text })] {
+    collections.toArray();
+  };
+
+  public query func getEntriesByCollection(collectionId : Nat) : async [Entry] {
+    let collectionName = switch (collectionId) {
+      case (0) { "Blütenpracht" };
+      case (1) { "Peak Time" };
+      case (2) { "Vielfalt" };
+      case (_) { "" };
     };
-    pageContents.toArray();
+
+    if (collectionName == "") {
+      [];
+    } else {
+      let filteredEntries = entries.filter(
+        func(_id, entry) {
+          Text.equal(entry.collection, collectionName);
+        }
+      );
+      filteredEntries.values().toArray();
+    };
   };
 
   public query func getAllPricingEntries() : async [Pricing] {
-    pricingEntries.values().toArray();
+    let updatedEntry : Pricing = {
+      id = 0;
+      title = "Kennenlerngespräch";
+      price = "Kostenlos";
+      description = "Das Erstgespräch ist kostenfrei. Es findet via Zoom oder WhatsApp statt und dauert ca. 30 Minuten.";
+    };
+    [updatedEntry];
   };
 
-  public query func getCsrInfo() : async CsrInfo {
+  public query func getBeeResults() : async {
+    resultsStack : [Text];
+    lastBeeResult : ?Text;
+    lastTrayResult : ?Text;
+    lastHiveResult : ?Text;
+  } {
+    {
+      resultsStack = beeResultsStack;
+      lastBeeResult;
+      lastTrayResult;
+      lastHiveResult;
+    };
+  };
+
+  public query func getCsrInfo() : async {
+    explanation : Text;
+    status : Text;
+  } {
     {
       explanation = "CSR Generation now handled in the browser";
       status = "success";

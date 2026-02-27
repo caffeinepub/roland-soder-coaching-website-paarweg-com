@@ -1,40 +1,63 @@
 {
   "kind": "build_request",
-  "title": "Replace hero image with MP4 video on Zurich couples landing page",
+  "title": "Rebuild draft as exact copy of live site (Version 145)",
   "projectName": "PaarWeg",
-  "priority": "normal",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "On the ZurichCouplesLandingPage (frontend/src/pages/ZurichCouplesLandingPage.tsx), replace the hero/entry image with an HTML5 video player that plays the uploaded MP4 video file. The video should be placed at frontend/public/assets/videos/hero-paarberatung-zuerich.mp4. The video element should autoplay, be muted, loop, and be fully responsive (object-fit: cover), matching the dimensions and layout of the existing hero image it replaces.",
+      "text": "Restore all frontend source files to their exact Version 145 (live) state. This includes all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), all layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), all hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files that exist in the live version. No file should differ from the live production version.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-5",
+          "msg-6"
         ],
         "quotes": [
-          "Ich hätte das angehängte Video gerne anstelle der Einstiegsbilds auch der paarberatung-Zuerich seite."
+          "Build the draft as an exact copy of the live site (Version 145)",
+          "built it"
         ]
       },
       "acceptanceCriteria": [
-        "The hero image on the Zurich couples landing page is no longer visible.",
-        "An MP4 video plays automatically (muted, looping) in the hero section where the image previously appeared.",
-        "The video is responsive and covers the same area as the previous hero image on all screen sizes.",
-        "The video file is served from frontend/public/assets/videos/hero-paarberatung-zuerich.mp4.",
-        "No layout shifts or broken UI elements occur on the Zurich landing page."
+        "All frontend pages render identically to the live Version 145 site",
+        "All routes defined in App.tsx match the live version exactly",
+        "Layout, header, footer, and navigation are identical to the live version",
+        "All page content (text, structure, components) matches Version 145",
+        "Calendly integration and all third-party scripts are configured identically to the live version",
+        "Tailwind theme tokens and CSS custom properties match the live version exactly",
+        "No empty or stub files remain where the live version has actual content"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Restore the backend (backend/main.mo) to its exact Version 145 (live) state, ensuring all data types, CRUD operations, role-based access control, pricing entries, collections, navigation, and user profile logic are identical to the live version.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-6"
+        ],
+        "quotes": [
+          "Build the draft as an exact copy of the live site (Version 145)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All backend data types and stable variables match the live Version 145 schema",
+        "All CRUD endpoints for entries, collections, pricing, navigation, and user profiles are present and functional",
+        "Role-based access control logic is identical to the live version",
+        "Blob storage mixin is included and unchanged from the live version"
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files listed in frontend.immutablePaths.",
-    "Video must be served as a static asset from the frontend public directory, not through the backend.",
-    "Only the ZurichCouplesLandingPage hero section should be changed; all other pages remain unaffected."
+    "Do not introduce any new features, redesigns, or changes beyond restoring the exact live Version 145 state",
+    "Do not modify immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
+    "All restored content must match the live site exactly — no creative interpretation or improvements"
   ],
   "nonGoals": [
-    "Adding video to any other page.",
-    "Implementing video upload functionality through the admin UI.",
-    "Adding video controls or a play/pause button.",
-    "Backend changes."
+    "Adding new features or pages not present in Version 145",
+    "Redesigning or improving the UI beyond the live version",
+    "Changing the backend schema or adding new endpoints"
   ],
   "imageRequirements": {
     "required": [],

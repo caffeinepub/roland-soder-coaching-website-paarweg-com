@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the hero image on the Zurich couples landing page with an autoplaying MP4 video.
+**Goal:** Restore the entire PaarWeg application (frontend and backend) to the exact state of the live Version 145, with no differences from the production site.
 
 **Planned changes:**
-- Copy the uploaded MP4 video (`PaarWeg_ad.mp4`) to `frontend/public/assets/videos/hero-paarberatung-zuerich.mp4`
-- In `ZurichCouplesLandingPage.tsx`, replace the hero image element with an HTML5 `<video>` element that autoplays, is muted, loops, and uses `object-fit: cover` to match the existing hero layout
-- Ensure the video is fully responsive and matches the dimensions of the previous hero image on all screen sizes
+- Restore all frontend pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage) to their Version 145 state
+- Restore all shared components and layout files (Layout.tsx, CalendlyInlineWidget.tsx) to Version 145
+- Restore all hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx) to Version 145
+- Restore backend (backend/main.mo) including all data types, CRUD operations, role-based access control, pricing entries, collections, navigation, and user profile logic to Version 145
 
-**User-visible outcome:** Visitors to the Zurich couples landing page will see the MP4 video playing automatically (muted, looping) in the hero section instead of a static image.
+**User-visible outcome:** The draft site is an exact replica of the live Version 145 production site, with all pages, routes, content, styling, and backend functionality identical to the live version.

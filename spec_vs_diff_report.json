@@ -1,23 +1,20 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T10:41:28.382Z",
-  "summary": "The diff modifies ZurichCouplesLandingPage.tsx to include a hero video section. The code references a video element in the hero section based on the truncated diff ('Hero Video' comment visible). The implementation appears to address REQ-1, but the diff is truncated so full verification of all acceptance criteria is limited. The video file itself (frontend/public/assets/videos/hero-paarberatung-zuerich.mp4) is not shown as added, but binary/media files are typically excluded from diff summaries. No hallucinated features are evident.",
+  "generatedAt": "2026-02-27T11:00:16.858Z",
+  "summary": "The diff shows only 2 modified files: backend/main.mo and project_state.json. The backend/main.mo appears to have been partially restored (truncated in diff), but no frontend files were added or modified. REQ-1 requires restoring all frontend source files (10+ pages, layout components, hooks, config files, etc.), none of which appear in the diff. REQ-2 for backend restoration is partially evidenced but the diff is truncated so full verification is not possible.",
   "missing_requirements": [
     {
       "id": "REQ-1",
-      "requirement": "The video file must be served from frontend/public/assets/videos/hero-paarberatung-zuerich.mp4",
-      "reason": "The diff shows no added files, and the MP4 asset file is not listed as added. Binary files may be omitted from diff summaries, but there is no evidence the file was placed at the required path.",
-      "evidence": [
-        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
-      ]
+      "requirement": "Restore all frontend source files to their exact Version 145 (live) state, including all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files.",
+      "reason": "The diff shows zero frontend files added or modified. No files under frontend/src/ appear in the diff at all. All frontend page components, layout components, hooks, utilities, and configuration files are entirely absent from the changes.",
+      "evidence": []
     }
   ],
   "hallucinated_features": [],
-  "confidence": 0.6,
+  "confidence": 0.82,
   "changed_files": [
-    "frontend-file-summaries.txt",
-    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "backend/main.mo",
     "project_state.json"
   ]
 }

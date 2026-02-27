@@ -1,417 +1,183 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { useState } from 'react';
+
+type Section = 'impressum' | 'datenschutz' | 'agb';
 
 export default function LegalPage() {
+  const [activeSection, setActiveSection] = useState<Section>('impressum');
+
   return (
-    <div className="w-full">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background via-muted/20 to-accent/10 py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Impressum & Datenschutz
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Rechtliche Informationen und Datenschutzhinweise
-            </p>
+    <div className="flex flex-col">
+      {/* Hero */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Rechtliche Informationen
+          </h1>
+          <p className="text-muted-foreground">
+            Impressum, Datenschutzerklärung und Allgemeine Geschäftsbedingungen.
+          </p>
+        </div>
+      </section>
+
+      {/* Tab Navigation */}
+      <section className="bg-background border-b border-border sticky top-16 md:top-20 z-40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-1 py-2">
+            {(['impressum', 'datenschutz', 'agb'] as Section[]).map((section) => (
+              <button
+                key={section}
+                onClick={() => setActiveSection(section)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors capitalize ${
+                  activeSection === section
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+              >
+                {section === 'impressum' ? 'Impressum' : section === 'datenschutz' ? 'Datenschutz' : 'AGB'}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-4xl space-y-8">
-            {/* Impressum */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Impressum</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h3 className="mb-2 font-semibold">Angaben gemäß Schweizer Recht</h3>
-                  <p className="text-muted-foreground">
-                    Roland Soder Coaching<br />
-                    Basel<br />
-                    Schweiz
-                  </p>
-                </div>
+      {/* Content */}
+      <section className="py-12 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {activeSection === 'impressum' && (
+            <div className="prose prose-sm max-w-none text-foreground">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Impressum</h2>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Angaben gemäss Art. 12 DSG</h3>
+              <p className="text-foreground/80 mb-4">
+                <strong>Roland Soder</strong><br />
+                Paar- und Einzelcoaching<br />
+                Basel, Schweiz
+              </p>
 
-                <div>
-                  <h3 className="mb-2 font-semibold">Kontakt</h3>
-                  <p className="text-muted-foreground">
-                    Telefon: +41 79 770 39 25<br />
-                    E-Mail: info@paarweg.com
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Kontakt</h3>
+              <p className="text-foreground/80 mb-4">
+                E-Mail: <a href="mailto:roland@paarweg.com" className="text-primary hover:underline">roland@paarweg.com</a><br />
+                Website: <a href="https://www.paarweg.com" className="text-primary hover:underline">www.paarweg.com</a>
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Haftungsausschluss</h3>
+              <p className="text-foreground/80 mb-4">
+                Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit,
+                Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen.
+                Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art,
+                welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten
+                Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden
+                sind, werden ausgeschlossen.
+              </p>
 
-                <div>
-                  <h3 className="mb-2 font-semibold">Verantwortlich für den Inhalt</h3>
-                  <p className="text-muted-foreground">
-                    Roland Soder<br />
-                    Basel<br />
-                    Schweiz
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">Urheberrechte</h3>
+              <p className="text-foreground/80 mb-4">
+                Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien
+                auf der Website gehören ausschliesslich Roland Soder oder den speziell genannten
+                Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung
+                der Urheberrechtsträger im Voraus einzuholen.
+              </p>
+            </div>
+          )}
 
-                <Separator />
+          {activeSection === 'datenschutz' && (
+            <div className="prose prose-sm max-w-none text-foreground">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Datenschutzerklärung</h2>
 
-                <div>
-                  <h3 className="mb-2 font-semibold">Haftungsausschluss</h3>
-                  <h4 className="mb-2 mt-3 text-sm font-semibold">Haftung für Inhalte</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. 
-                    Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. 
-                    Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den 
-                    allgemeinen Gesetzen verantwortlich.
-                  </p>
-                  
-                  <h4 className="mb-2 mt-3 text-sm font-semibold">Haftung für Links</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. 
-                    Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. 
-                    Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-                  </p>
-                  
-                  <h4 className="mb-2 mt-3 text-sm font-semibold">Urheberrecht</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem Schweizer Urheberrecht. 
-                    Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes 
-                    bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">1. Datenschutz auf einen Blick</h3>
+              <p className="text-foreground/80 mb-4">
+                Der Schutz Ihrer persönlichen Daten ist mir ein wichtiges Anliegen. Ich behandle Ihre
+                personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften
+                sowie dieser Datenschutzerklärung.
+              </p>
 
-            {/* Datenschutz */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Datenschutzerklärung</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="mb-3 font-semibold">1. Datenschutz auf einen Blick</h3>
-                  <h4 className="mb-2 text-sm font-semibold">Allgemeine Hinweise</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten 
-                    passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, 
-                    mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz 
-                    entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">2. Verantwortliche Stelle</h3>
+              <p className="text-foreground/80 mb-4">
+                Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+                <strong>Roland Soder</strong><br />
+                Basel, Schweiz<br />
+                E-Mail: roland@paarweg.com
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">3. Erhebung und Verarbeitung von Daten</h3>
+              <p className="text-foreground/80 mb-4">
+                Beim Besuch dieser Website werden automatisch Informationen allgemeiner Natur erfasst
+                (Server-Logfiles). Diese Daten sind nicht personenbezogen und werden nicht mit anderen
+                Datenquellen zusammengeführt.
+              </p>
+              <p className="text-foreground/80 mb-4">
+                Wenn Sie über Calendly einen Termin buchen, werden Ihre Daten von Calendly verarbeitet.
+                Bitte beachten Sie die Datenschutzerklärung von Calendly.
+              </p>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">2. Datenerfassung auf dieser Website</h3>
-                  <h4 className="mb-2 text-sm font-semibold">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. 
-                    Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Wie erfassen wir Ihre Daten?</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. 
-                    Hierbei kann es sich z.B. um Daten handeln, die Sie uns per E-Mail oder Telefon mitteilen.
-                  </p>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website 
-                    durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, 
-                    Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, 
-                    sobald Sie diese Website betreten.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Wofür nutzen wir Ihre Daten?</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. 
-                    Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Welche Rechte haben Sie bezüglich Ihrer Daten?</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck 
-                    Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, 
-                    die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur 
-                    Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">4. Cookies</h3>
+              <p className="text-foreground/80 mb-4">
+                Diese Website verwendet keine eigenen Cookies. Drittanbieter-Dienste wie Calendly
+                können eigene Cookies setzen.
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">5. Ihre Rechte</h3>
+              <p className="text-foreground/80 mb-4">
+                Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der
+                Verarbeitung Ihrer personenbezogenen Daten. Wenden Sie sich dazu an:
+                roland@paarweg.com
+              </p>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">3. Hosting und Content Delivery Networks (CDN)</h3>
-                  <h4 className="mb-2 text-sm font-semibold">Externes Hosting</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Diese Website wird bei einem externen Dienstleister gehostet (Hoster). 
-                    Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. 
-                    Hierbei kann es sich v.a. um IP-Adressen, Kontaktanfragen, Meta- und Kommunikationsdaten, 
-                    Vertragsdaten, Kontaktdaten, Namen, Websitezugriffe und sonstige Daten, die über eine Website generiert werden, handeln.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">6. Analytik</h3>
+              <p className="text-foreground/80 mb-4">
+                Diese Website verwendet Plausible Analytics, ein datenschutzfreundliches
+                Analysetool, das keine Cookies setzt und keine personenbezogenen Daten speichert.
+              </p>
+            </div>
+          )}
 
-                <Separator />
+          {activeSection === 'agb' && (
+            <div className="prose prose-sm max-w-none text-foreground">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Allgemeine Geschäftsbedingungen</h2>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">4. Allgemeine Hinweise und Pflichtinformationen</h3>
-                  <h4 className="mb-2 text-sm font-semibold">Datenschutz</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. 
-                    Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften 
-                    sowie dieser Datenschutzerklärung.
-                  </p>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. 
-                    Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. 
-                    Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. 
-                    Sie erläutert auch, wie und zu welchem Zweck das geschieht.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Hinweis zur verantwortlichen Stelle</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br /><br />
-                    Roland Soder Coaching<br />
-                    Basel<br />
-                    Schweiz<br />
-                    Telefon: +41 79 770 39 25<br />
-                    E-Mail: info@paarweg.com
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen 
-                    über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">1. Geltungsbereich</h3>
+              <p className="text-foreground/80 mb-4">
+                Diese AGB gelten für alle Coaching-Dienstleistungen von Roland Soder, Basel.
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">2. Leistungen</h3>
+              <p className="text-foreground/80 mb-4">
+                Roland Soder bietet Paar- und Einzelcoaching an. Das Coaching ist keine
+                Psychotherapie und ersetzt keine medizinische oder psychologische Behandlung.
+              </p>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">5. Datenerfassung auf dieser Website</h3>
-                  <h4 className="mb-2 text-sm font-semibold">Kontaktaufnahme</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Wenn Sie uns per E-Mail oder Telefon kontaktieren, werden Ihre Angaben 
-                    zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. 
-                    Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
-                  </p>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, 
-                    sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher 
-                    Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse 
-                    an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer 
-                    Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Die von Ihnen mitgeteilten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, 
-                    Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt 
-                    (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – 
-                    insbesondere Aufbewahrungsfristen – bleiben unberührt.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">3. Termine und Absagen</h3>
+              <p className="text-foreground/80 mb-4">
+                Termine können bis 24 Stunden vor dem vereinbarten Zeitpunkt kostenlos abgesagt
+                oder verschoben werden. Bei kurzfristigeren Absagen (weniger als 24 Stunden vorher)
+                behält sich Roland Soder vor, die Sitzung in Rechnung zu stellen.
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">4. Preise und Zahlung</h3>
+              <p className="text-foreground/80 mb-4">
+                Die aktuellen Preise sind auf der Website unter «Preise» aufgeführt. Die Zahlung
+                erfolgt nach der Sitzung per Banküberweisung oder Twint.
+              </p>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">6. Cookies</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Diese Website verwendet Cookies. Cookies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden 
-                    und die Ihr Browser speichert. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Essenzielle Cookies</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Diese Cookies sind für den Betrieb der Website technisch notwendig und können nicht deaktiviert werden. 
-                    Sie werden in der Regel nur als Reaktion auf von Ihnen getätigte Aktionen gesetzt, die einer Dienstanforderung entsprechen, 
-                    wie etwa dem Festlegen Ihrer Datenschutzeinstellungen, dem Anmelden oder dem Ausfüllen von Formularen.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Statistik-Cookies</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Diese Cookies helfen uns zu verstehen, wie Besucher mit der Website interagieren, 
-                    indem Informationen anonym gesammelt und gemeldet werden. Diese Cookies werden nur mit Ihrer Zustimmung gesetzt.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Marketing-Cookies</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Diese Cookies werden verwendet, um Besuchern auf Webseiten zu folgen. 
-                    Die Absicht ist, Anzeigen zu zeigen, die relevant und ansprechend für den einzelnen Benutzer sind. 
-                    Diese Cookies werden nur mit Ihrer Zustimmung gesetzt.
-                  </p>
-                </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">5. Vertraulichkeit</h3>
+              <p className="text-foreground/80 mb-4">
+                Alle Inhalte der Coaching-Sitzungen werden streng vertraulich behandelt.
+                Ausnahmen gelten nur bei gesetzlicher Verpflichtung.
+              </p>
 
-                <Separator />
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">6. Haftung</h3>
+              <p className="text-foreground/80 mb-4">
+                Roland Soder haftet nicht für Schäden, die durch die Umsetzung von
+                Coaching-Empfehlungen entstehen. Der Klient trägt die Verantwortung für
+                seine eigenen Entscheidungen und Handlungen.
+              </p>
 
-                <div>
-                  <h3 className="mb-3 font-semibold">7. Ihre Rechte</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, 
-                    deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung 
-                    oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten 
-                    können Sie sich jederzeit an uns wenden.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Recht auf Einschränkung der Verarbeitung</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Recht auf Datenübertragbarkeit</h4>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags 
-                    automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen.
-                  </p>
-                  
-                  <h4 className="mb-2 text-sm font-semibold">Widerspruchsrecht</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Sofern Ihre personenbezogenen Daten auf Grundlage von berechtigten Interessen gemäß Art. 6 Abs. 1 lit. f DSGVO 
-                    verarbeitet werden, haben Sie das Recht, gemäß Art. 21 DSGVO Widerspruch gegen die Verarbeitung Ihrer 
-                    personenbezogenen Daten einzulegen, soweit dafür Gründe vorliegen, die sich aus Ihrer besonderen Situation ergeben.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* AGB */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl">Allgemeine Geschäftsbedingungen</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="mb-3 font-semibold">1. Geltungsbereich</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Coaching-Leistungen von Roland Soder Coaching. 
-                    Mit der Buchung eines Termins oder der Inanspruchnahme einer Leistung erkennen Sie diese AGB an.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">2. Leistungsumfang</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Das Coaching umfasst die Begleitung von Einzelpersonen und Paaren in Fragen der persönlichen 
-                    und partnerschaftlichen Entwicklung. Die konkreten Inhalte und der Umfang werden individuell vereinbart.
-                  </p>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    <strong>Wichtig:</strong> Coaching ist keine Psychotherapie und kein Ersatz für eine solche. 
-                    Coaching richtet sich an psychisch gesunde Menschen, die an ihrer persönlichen oder partnerschaftlichen 
-                    Entwicklung arbeiten möchten.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Bei psychischen Erkrankungen, akuten Krisen, Suchtproblematiken oder traumatischen Erfahrungen 
-                    wird die Inanspruchnahme therapeutischer oder ärztlicher Hilfe empfohlen. 
-                    Der Coach ist nicht berechtigt, Diagnosen zu stellen oder Therapien durchzuführen.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">3. Termine und Absagen</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Termine werden individuell vereinbart und sind verbindlich. 
-                    Bei Verhinderung ist eine Absage bis spätestens 12 Stunden vor dem vereinbarten Termin erforderlich.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Bei späterer Absage oder Nichterscheinen ohne wichtigen Grund wird das volle Honorar fällig. 
-                    Als wichtiger Grund gelten unvorhersehbare Ereignisse wie akute Erkrankung (mit ärztlichem Attest) 
-                    oder andere außergewöhnliche Umstände.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">4. Honorar und Zahlung</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Das Honorar wird individuell vereinbart und ist nach jeder Sitzung fällig, 
-                    sofern keine andere Vereinbarung getroffen wurde. Die Zahlung erfolgt per Rechnung.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Das Erstgespräch (60 Minuten) kostet 60 CHF und dient dem gegenseitigen Kennenlernen 
-                    sowie der Klärung Ihres Anliegens.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">5. Vertraulichkeit</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Alle Inhalte der Coaching-Sitzungen werden streng vertraulich behandelt. 
-                    Eine Weitergabe von Informationen an Dritte erfolgt nur mit ausdrücklicher Zustimmung des Klienten 
-                    oder bei gesetzlicher Verpflichtung (z.B. bei konkreter Gefahr für Leib und Leben).
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Der Coach unterliegt keiner gesetzlichen Schweigepflicht wie Ärzte oder Psychotherapeuten, 
-                    verpflichtet sich aber zur Verschwiegenheit über alle ihm anvertrauten Informationen.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">6. Eigenverantwortung des Klienten</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Der Klient trägt die Verantwortung für seine Entscheidungen und Handlungen. 
-                    Der Coach gibt Impulse, stellt Fragen und begleitet Prozesse, trifft aber keine Entscheidungen für den Klienten.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Der Klient verpflichtet sich, den Coach über relevante gesundheitliche oder psychische Einschränkungen zu informieren, 
-                    die für das Coaching von Bedeutung sein könnten.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">7. Haftung</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Die Haftung für Schäden, die aus der Coaching-Tätigkeit entstehen, ist auf Vorsatz und grobe Fahrlässigkeit beschränkt. 
-                    Eine Haftung für den Erfolg des Coachings wird nicht übernommen.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Der Coach haftet nicht für Entscheidungen und Handlungen des Klienten, die dieser aufgrund oder während des Coachings trifft.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">8. Beendigung der Zusammenarbeit</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Beide Parteien können die Zusammenarbeit jederzeit beenden. 
-                    Bereits vereinbarte und bezahlte Termine werden nach den Regelungen unter Punkt 3 behandelt.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">9. Salvatorische Klausel</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, 
-                    bleibt die Wirksamkeit der übrigen Bestimmungen davon unberührt.
-                  </p>
-                </div>
-
-                <Separator />
-
-                <div>
-                  <h3 className="mb-3 font-semibold">10. Anwendbares Recht und Gerichtsstand</h3>
-                  <p className="mb-3 text-sm text-muted-foreground">
-                    Es gilt das Recht der Schweiz. Gerichtsstand ist Basel.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Firmensitz: Basel, Schweiz
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-3">7. Gerichtsstand</h3>
+              <p className="text-foreground/80 mb-4">
+                Gerichtsstand ist Basel-Stadt, Schweiz. Es gilt Schweizer Recht.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </div>
