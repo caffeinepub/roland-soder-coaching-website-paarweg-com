@@ -1,233 +1,440 @@
-import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-
-const pricingCards = [
-  {
-    title: 'Kennenlerngespräch',
-    price: 'Kostenlos',
-    duration: '30 Minuten',
-    description: 'Das Erstgespräch ist kostenfrei. Es findet via Zoom oder WhatsApp statt und dauert ca. 30 Minuten.',
-    features: [
-      'Kostenlos & unverbindlich',
-      'Via Zoom oder WhatsApp',
-      'Ca. 30 Minuten',
-      'Kennenlernen & Situationsanalyse',
-      'Keine Verpflichtung',
-    ],
-    cta: 'Jetzt buchen',
-    highlighted: false,
-  },
-  {
-    title: 'Coaching-Session',
-    price: '190 CHF',
-    duration: '60 Minuten',
-    description: 'Eine vollständige Coaching-Sitzung, individuell auf Ihre Bedürfnisse zugeschnitten.',
-    features: [
-      '60 Minuten Coaching',
-      'In Basel oder online',
-      'Individuelle Begleitung',
-      'Konkrete Werkzeuge & Übungen',
-      'Nachbereitung & Hausaufgaben',
-    ],
-    cta: 'Termin buchen',
-    highlighted: true,
-  },
-];
-
-const bookingProcess = [
-  {
-    step: '01',
-    title: 'Kennenlerngespräch buchen',
-    desc: 'Buchen Sie zunächst das kostenlose Kennenlerngespräch über den Kalender.',
-  },
-  {
-    step: '02',
-    title: 'Situation besprechen',
-    desc: 'Wir besprechen Ihre Situation und klären, ob und wie ich Ihnen helfen kann.',
-  },
-  {
-    step: '03',
-    title: 'Coaching starten',
-    desc: 'Bei gegenseitigem Interesse vereinbaren wir die ersten Coaching-Sitzungen.',
-  },
-  {
-    step: '04',
-    title: 'Flexibel bleiben',
-    desc: 'Sie können jederzeit pausieren oder aufhören – keine Mindestlaufzeit.',
-  },
-];
-
-const faqs = [
-  {
-    q: 'Wie viele Sitzungen brauche ich?',
-    a: 'Das hängt von Ihrer Situation und Ihren Zielen ab. Viele Klienten erleben bereits nach 3–5 Sitzungen deutliche Veränderungen. Wir besprechen dies im Kennenlerngespräch und passen den Prozess laufend an.',
-  },
-  {
-    q: 'Kann ich Sitzungen absagen oder verschieben?',
-    a: 'Ja, Sitzungen können bis 24 Stunden vorher kostenlos abgesagt oder verschoben werden. Bei kurzfristigeren Absagen behalte ich mir vor, die Sitzung in Rechnung zu stellen.',
-  },
-  {
-    q: 'Gibt es Pakete oder Rabatte?',
-    a: 'Aktuell biete ich keine festen Pakete an. Wir besprechen im Kennenlerngespräch, was für Sie sinnvoll ist.',
-  },
-  {
-    q: 'Werden die Kosten von der Krankenkasse übernommen?',
-    a: 'Coaching ist keine Psychotherapie und wird in der Regel nicht von der Krankenkasse übernommen. Bitte klären Sie dies direkt mit Ihrer Versicherung.',
-  },
-  {
-    q: 'Wie bezahle ich?',
-    a: 'Die Bezahlung erfolgt nach der Sitzung per Banküberweisung oder Twint.',
-  },
-];
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { CheckCircle2, Calendar, Euro, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function PricingPage() {
+  useEffect(() => {
+    document.title = 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg Roland Soder';
+    
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF (60 Min), Coaching-Sitzungen 190 CHF (90 Min). Online-Termine für maximale Flexibilität. Jetzt buchen bei PaarWeg Roland Soder.');
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://www.paarweg.com/preise');
+
+    // Open Graph tags
+    const ogTags = [
+      { property: 'og:title', content: 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg' },
+      { property: 'og:description', content: 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF, Coaching-Sitzungen 190 CHF. Online-Termine verfügbar.' },
+      { property: 'og:url', content: 'https://www.paarweg.com/preise' },
+    ];
+
+    ogTags.forEach(({ property, content }) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    });
+
+    // Twitter Card tags
+    const twitterTags = [
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:title', content: 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg' },
+      { name: 'twitter:description', content: 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF, Coaching-Sitzungen 190 CHF.' },
+    ];
+
+    twitterTags.forEach(({ name, content }) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    });
+  }, []);
+
+  // FAQ data structure - easily editable
+  const faqItems = [
+    {
+      question: "Warum kostet das Erstgespräch 60 CHF?",
+      answer: "Das Erstgespräch ist eine vollwertige Coaching-Sitzung von 60 Minuten, in der wir Ihr Anliegen klären und erste Impulse setzen. Der Preis reflektiert den Wert und die Zeit, die ich für Ihre individuelle Situation aufwende."
+    },
+    {
+      question: "Gibt es Ermäßigungen oder Pakete?",
+      answer: "Ich arbeite ohne Paketbindung, damit Sie flexibel bleiben. In besonderen Fällen (z.B. finanzielle Härte) sprechen Sie mich gerne an – wir finden gemeinsam eine Lösung."
+    },
+    {
+      question: "Werden die Kosten von der Krankenkasse übernommen?",
+      answer: "Coaching ist keine Therapie und wird nicht von Krankenkassen übernommen."
+    },
+    {
+      question: "Wie viele Sitzungen brauche ich?",
+      answer: "Das ist sehr individuell. Manche Themen klären sich in wenigen Sitzungen, andere brauchen längere Begleitung. Wir besprechen das gemeinsam und passen den Umfang an Ihre Bedürfnisse an. Es gibt keine Mindestlaufzeit."
+    },
+    {
+      question: "Was passiert, wenn ich einen Termin absagen muss?",
+      answer: "Bitte sagen Sie Termine mindestens 12 Stunden vorher ab. Bei kurzfristigeren Absagen muss ich die Sitzung in Rechnung stellen, da ich die Zeit für Sie reserviert habe."
+    },
+    {
+      question: "Kann ich auch nur Einzelsitzungen buchen, wenn es um Paarthemen geht?",
+      answer: "Ja, das ist möglich und oft sogar sinnvoll. Der Preis bleibt gleich – 190 CHF für 90 Minuten, unabhängig davon, ob Sie alleine oder als Paar kommen."
+    }
+  ];
+
   return (
-    <div className="flex flex-col">
-      {/* Hero */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">
-            Preise
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Transparente Preise
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Klare Preise ohne versteckte Kosten. Starten Sie mit dem kostenlosen
-            Kennenlerngespräch.
-          </p>
+    <div className="w-full">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-background via-muted/20 to-accent/10">
+        <div className="container mx-auto px-4 py-20 md:px-6 md:py-32">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              Transparente Preise
+            </h1>
+            <p className="text-lg text-muted-foreground md:text-xl">
+              Klarheit von Anfang an. Keine versteckten Kosten, keine Überraschungen. 
+              Investieren Sie in Ihre Beziehung mit einem fairen und transparenten Preismodell.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section className="py-16 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pricingCards.map((card) => (
-              <div
-                key={card.title}
-                className={`rounded-2xl border p-8 flex flex-col ${
-                  card.highlighted
-                    ? 'border-primary bg-primary/5 shadow-lg'
-                    : 'border-border bg-card'
-                }`}
-              >
-                {card.highlighted && (
-                  <div className="mb-4">
-                    <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
-                      Empfohlen
-                    </span>
+      {/* Pricing Cards Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 max-w-5xl mx-auto">
+            {/* Erstgespräch Card */}
+            <Card className="border-2 border-primary/20 shadow-lg">
+              <CardHeader className="text-center pb-8">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <Calendar className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl">Erstgespräch</CardTitle>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Lernen Sie mich kennen und klären Sie Ihr Anliegen
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="text-center">
+                  <div className="flex items-baseline justify-center gap-2">
+                    <span className="text-5xl font-bold">60</span>
+                    <span className="text-2xl font-semibold text-muted-foreground">CHF</span>
                   </div>
-                )}
-                <h2 className="text-2xl font-bold text-foreground mb-1">{card.title}</h2>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-primary">{card.price}</span>
-                  <span className="text-muted-foreground text-sm">/ {card.duration}</span>
+                  <p className="mt-2 text-sm text-muted-foreground">60 Minuten</p>
                 </div>
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{card.description}</p>
-                <ul className="space-y-2 mb-8 flex-1">
-                  {card.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-foreground/80">
-                      <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className={`inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-colors duration-200 ${
-                    card.highlighted
-                      ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                      : 'border border-border text-foreground hover:bg-muted'
-                  }`}
-                >
-                  {card.cta}
-                </Link>
-              </div>
-            ))}
+
+                <div className="space-y-3 pt-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Persönliches Kennenlernen per Video-Call
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Klärung Ihres Anliegens und Ihrer Ziele
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Vorstellung meiner Arbeitsweise
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Raum für alle Ihre Fragen
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Keine Verpflichtung zur weiteren Zusammenarbeit
+                    </p>
+                  </div>
+                </div>
+
+                <Button asChild size="lg" className="w-full mt-6">
+                  <a
+                    href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Erstgespräch buchen
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Coaching Sessions Card */}
+            <Card className="border-2 border-primary/30 shadow-lg bg-gradient-to-br from-primary/5 to-accent/5">
+              <CardHeader className="text-center pb-8">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                  <Sparkles className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="text-3xl">Coaching-Sitzungen</CardTitle>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Einzelsitzung oder Paarsitzung
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="text-center">
+                  <div className="flex items-baseline justify-center gap-2">
+                    <span className="text-5xl font-bold">190</span>
+                    <span className="text-2xl font-semibold text-muted-foreground">CHF</span>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">90 Minuten</p>
+                  <p className="mt-1 text-xs text-muted-foreground italic">
+                    Unabhängig ob Einzel- oder Paarsitzung
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Intensive Begleitung über 90 Minuten
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Systemische Paarbegleitung oder Einzelcoaching
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Flexible Online-Termine nach Vereinbarung
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Individuelle Begleitung auf Ihrem Weg
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+                    <p className="text-sm text-muted-foreground">
+                      Keine Mindestlaufzeit oder Paketbindung
+                    </p>
+                  </div>
+                </div>
+
+                <Button asChild size="lg" className="w-full mt-6">
+                  <a
+                    href="https://calendly.com/paarweg-info/erstgesprach-60-min-klon"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Coaching-Sitzung buchen
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Booking Process */}
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">
-              So geht es los
-            </p>
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Der Buchungsprozess
+      {/* Value Proposition Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+              Was Sie für Ihre Investition erhalten
             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {bookingProcess.map((item) => (
-              <div key={item.step} className="text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <span className="text-primary font-bold">{item.step}</span>
-                </div>
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+            <div className="space-y-6 text-lg text-muted-foreground">
+              <p>
+                Coaching und Paarbegleitung sind eine Investition in Ihre Beziehung und in sich selbst. 
+                Eine Investition in Klarheit, Verbindung und gemeinsames Wachstum.
+              </p>
+              <p>
+                Sie erhalten einen geschützten Raum, in dem beide Perspektiven Platz haben. 
+                Professionelle Begleitung durch einen erfahrenen systemischen Coach. 
+                Und die Möglichkeit, Ihre Beziehung bewusst zu gestalten – mit Empathie, Klarheit und Respekt.
+              </p>
+              <p className="font-medium text-foreground">
+                Die Preise sind transparent und fair. Es gibt keine versteckten Kosten, 
+                keine Paketbindung, keine Mindestlaufzeit. Sie entscheiden nach jeder Sitzung, 
+                ob und wie Sie weitermachen möchten.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 bg-background">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">
-              FAQ
-            </p>
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+      {/* Online Flexibility Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                <Clock className="h-8 w-8 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Flexible Online-Termine
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl">
+                Alle Sitzungen finden online statt – Sie benötigen lediglich einen Computer, 
+                ein Notebook oder ein Tablet mit Kamera. Das ermöglicht maximale Flexibilität: 
+                Sie können von zu Hause aus teilnehmen, ohne Anfahrt, zu Zeiten, die für Sie passen.
+              </p>
+              <p className="text-muted-foreground">
+                Termine können flexibel (auch abends oder am Wochenende) über mein Buchungstool gebucht werden – sollte kein passender Termin verfügbar sein, schreiben Sie mir bitte eine E-Mail oder WhatsApp und wir suchen nach einer Lösung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Payment & Booking Process Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+              Buchung und Bezahlung
+            </h2>
+            
+            <div className="space-y-6">
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                      1
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-semibold">Erstgespräch buchen</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Buchen Sie Ihr Erstgespräch direkt über den Buchungslink oder kontaktieren Sie mich per E-Mail, Telefon oder WhatsApp. 
+                        Sie erhalten eine Bestätigung mit allen Details zum Video-Call.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                      2
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-semibold">Erstgespräch durchführen</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Im Erstgespräch (60 Minuten, 60 CHF) lernen wir uns kennen, klären Ihr Anliegen und besprechen, 
+                        wie ich Sie unterstützen kann. Die Bezahlung erfolgt per Rechnung oder Zahlungslink, je nach Vereinbarung.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                      3
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-semibold">Weitere Sitzungen vereinbaren</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie sich für eine Zusammenarbeit entscheiden, vereinbaren wir gemeinsam 
+                        die nächsten Termine. Sie können flexibel entscheiden, wie oft und in welchem Rhythmus 
+                        Sie Sitzungen wahrnehmen möchten.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                      4
+                    </div>
+                    <div>
+                      <h3 className="mb-2 font-semibold">Bezahlung</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Die Bezahlung erfolgt nach jeder Sitzung per Rechnung oder Zahlungslink, je nach Vereinbarung.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Now using Accordion for easy editing */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
               Häufige Fragen zu den Preisen
             </h2>
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem 
+                  key={`faq-${index}`} 
+                  value={`item-${index}`}
+                  className="border rounded-lg px-6 bg-card"
+                >
+                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground pb-4">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card border border-border rounded-2xl px-6 overflow-hidden"
-              >
-                <AccordionTrigger className="text-left font-semibold text-foreground py-4 hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-4">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-primary/5 border-y border-primary/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
-            Starten Sie mit dem kostenlosen Gespräch
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Das Kennenlerngespräch ist kostenlos und unverbindlich.
-            Lernen Sie mich kennen und entscheiden Sie dann.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors duration-200 text-base"
-          >
-            Kostenloses Kennenlerngespräch buchen
-          </Link>
+      {/* CTA Section */}
+      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Bereit für den ersten Schritt?
+            </h2>
+            <p className="mb-8 text-lg text-muted-foreground">
+              Buchen Sie jetzt Ihr Erstgespräch und investieren Sie in Ihre Beziehung. 
+              Transparent, fair und ohne versteckte Kosten.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="text-base">
+                <a
+                  href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Erstgespräch buchen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="text-base">
+                <Link to="/kontakt">
+                  Fragen? Kontakt aufnehmen
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>

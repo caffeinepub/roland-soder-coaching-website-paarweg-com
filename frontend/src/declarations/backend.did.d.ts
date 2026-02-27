@@ -10,27 +10,15 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface Entry {
-  'id' : bigint,
-  'title' : string,
-  'imagePath' : string,
-  'collection' : string,
-  'description' : string,
-  'imageAlt' : string,
-  'price' : bigint,
-}
-export interface NavigationEntry {
-  'id' : bigint,
-  'title' : string,
-  'path' : string,
-}
+export interface CsrInfo { 'status' : string, 'explanation' : string }
+export interface PageContent { 'title' : string, 'content' : string }
 export interface Pricing {
   'id' : bigint,
   'title' : string,
   'description' : string,
   'price' : string,
 }
-export interface UserProfile { 'name' : string }
+export interface UserProfile { 'name' : string, 'email' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
@@ -62,25 +50,12 @@ export interface _SERVICE {
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'getAllPageContents' : ActorMethod<[], Array<[string, PageContent]>>,
   'getAllPricingEntries' : ActorMethod<[], Array<Pricing>>,
-  'getBeeResults' : ActorMethod<
-    [],
-    {
-      'lastTrayResult' : [] | [string],
-      'lastHiveResult' : [] | [string],
-      'resultsStack' : Array<string>,
-      'lastBeeResult' : [] | [string],
-    }
-  >,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
-  'getCollections' : ActorMethod<
-    [],
-    Array<[bigint, { 'id' : bigint, 'title' : string, 'path' : string }]>
-  >,
-  'getCsrInfo' : ActorMethod<[], { 'status' : string, 'explanation' : string }>,
-  'getEntriesByCollection' : ActorMethod<[bigint], Array<Entry>>,
-  'getNavigation' : ActorMethod<[string], Array<NavigationEntry>>,
+  'getCsrInfo' : ActorMethod<[], CsrInfo>,
+  'getPageContent' : ActorMethod<[string], [] | [PageContent]>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'initializeAccessControl' : ActorMethod<[], undefined>,
   'isCallerAdmin' : ActorMethod<[], boolean>,

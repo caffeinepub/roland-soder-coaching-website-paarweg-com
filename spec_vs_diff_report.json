@@ -1,20 +1,14 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T11:00:16.858Z",
-  "summary": "The diff shows only 2 modified files: backend/main.mo and project_state.json. The backend/main.mo appears to have been partially restored (truncated in diff), but no frontend files were added or modified. REQ-1 requires restoring all frontend source files (10+ pages, layout components, hooks, config files, etc.), none of which appear in the diff. REQ-2 for backend restoration is partially evidenced but the diff is truncated so full verification is not possible.",
-  "missing_requirements": [
-    {
-      "id": "REQ-1",
-      "requirement": "Restore all frontend source files to their exact Version 145 (live) state, including all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files.",
-      "reason": "The diff shows zero frontend files added or modified. No files under frontend/src/ appear in the diff at all. All frontend page components, layout components, hooks, utilities, and configuration files are entirely absent from the changes.",
-      "evidence": []
-    }
-  ],
+  "generatedAt": "2026-02-25T17:09:25.249Z",
+  "summary": "REQ-1 is implemented in ZurichCouplesLandingPage.tsx using a useEffect-based injection pattern. The gtag.js script with ID G-NQHZEVRPBL is loaded, window.dataLayer is initialized, and gtag('config', 'G-NQHZEVRPBL') is called. Cleanup on unmount is included. The implementation deviates slightly from the Basel pattern (which uses React Helmet) by using manual DOM manipulation via useEffect, but functionally meets all acceptance criteria. No other pages are modified to include this tag.",
+  "missing_requirements": [],
   "hallucinated_features": [],
-  "confidence": 0.82,
+  "confidence": 0.9,
   "changed_files": [
-    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
     "project_state.json"
   ]
 }

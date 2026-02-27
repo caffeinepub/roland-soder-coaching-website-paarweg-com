@@ -1,4 +1,25 @@
 {
   "kind": "feature_evidence_report",
-  "features": []
+  "features": [
+    {
+      "featureId": "feature-inject-google-tag-gtag-js-with-id-g-nqhzevrpbl-into-the-z-rich-couples-landing-page-frontend-src-pages-zurichcoupleslandingpage-tsx-scoped-to-that-page-only-follow-the-same-pattern-used-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-where-a-script-tag-loads-https-www-googletagmanager-com-gtag-js-id-g-nqhzevrpbl-and-an-inline-initialization-script-calls-window-datalayer-and-gtag-config-g-nqhzevrpbl-use-react-helmet-or-equivalent-head-injection-mechanism-already-in-use-on-the-basel-page",
+      "featureTitle": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
+      "files": [
+        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "authorization@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    }
+  ]
 }

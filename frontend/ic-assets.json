@@ -1,9 +1,6 @@
 [
   {
     "match": ".well-known",
-    "ignore": false,
-    "headers": {
-      "Access-Control-Allow-Origin": "*"
-    }
+    "ignore": false
   }
 ]

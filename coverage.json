@@ -1,69 +1,34 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-27T11:00:16.862Z",
+  "generatedAt": "2026-02-25T17:09:25.252Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 0,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Restore all frontend source files to their exact Version 145 (live) state. This includes all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), all layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), all hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files that exist in the live version. No file should differ from the live production version.",
-        "status": "missing",
+        "summary": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
+        "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/AboutPage.tsx",
-          "frontend/src/pages/CouplesPage.tsx",
-          "frontend/src/pages/MenPage.tsx",
-          "frontend/src/pages/WomenPage.tsx",
-          "frontend/src/pages/PricingPage.tsx",
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/pages/LegalPage.tsx",
-          "frontend/src/pages/BaselCouplesLandingPage.tsx",
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx",
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/components/CalendlyInlineWidget.tsx",
-          "frontend/src/hooks/useCalendlyScript.ts",
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/index.html",
-          "frontend/public/sitemap.xml",
-          "frontend/ic-assets.json",
-          "frontend/src/types/calendly.d.ts",
-          "frontend/src/components/admin/ThemeHexCodesSection.tsx",
-          "frontend/src/components/MobileReadMore.tsx",
-          "frontend/src/config/featureFlags.ts",
-          "frontend/src/hooks/useComputedThemeHexColors.ts",
-          "frontend/src/utils/color.ts",
-          "frontend/src/utils/urlParams.ts",
-          "frontend/src/pages/CSRGeneratorPage.tsx",
-          "frontend/src/pages/DomainVerificationPage.tsx",
-          "frontend/src/pages/SitemapPage.tsx",
-          "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-          "frontend/src/pages/TechnicalStatusPage.tsx"
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
         ],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Restore the backend (backend/main.mo) to its exact Version 145 (live) state, ensuring all data types, CRUD operations, role-based access control, pricing entries, collections, navigation, and user profile logic are identical to the live version.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
+        "matchedFiles": [
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
+    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
+    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

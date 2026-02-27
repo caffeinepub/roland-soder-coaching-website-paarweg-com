@@ -1,173 +1,352 @@
-import { Link } from '@tanstack/react-router';
-
-const topics = [
-  {
-    title: 'Männliche Identität',
-    description: 'Erkunden Sie, was es für Sie bedeutet, ein Mann zu sein, und wie Sie authentisch leben können.',
-  },
-  {
-    title: 'Emotionen verstehen',
-    description: 'Lernen Sie, Ihre Emotionen wahrzunehmen, zu verstehen und konstruktiv auszudrücken.',
-  },
-  {
-    title: 'Beziehungen gestalten',
-    description: 'Entwickeln Sie tiefere und erfüllendere Beziehungen – in der Partnerschaft und im Alltag.',
-  },
-  {
-    title: 'Stärke & Verletzlichkeit',
-    description: 'Entdecken Sie, wie echte Stärke und Verletzlichkeit zusammengehören.',
-  },
-  {
-    title: 'Beruf & Privatleben',
-    description: 'Finden Sie eine gesunde Balance zwischen beruflichen Anforderungen und persönlichem Wohlbefinden.',
-  },
-  {
-    title: 'Kommunikation verbessern',
-    description: 'Lernen Sie, klarer und empathischer zu kommunizieren – mit Ihrer Partnerin und anderen.',
-  },
-];
-
-const workingStyle = [
-  {
-    title: 'Auf Augenhöhe',
-    description: 'Ich begegne Ihnen respektvoll und ohne Vorurteile.',
-  },
-  {
-    title: 'Direkt & klar',
-    description: 'Klare Kommunikation und konkrete Handlungsschritte statt endloser Analyse.',
-  },
-  {
-    title: 'Lösungsorientiert',
-    description: 'Wir fokussieren uns auf das, was Sie erreichen möchten.',
-  },
-  {
-    title: 'Vertraulich',
-    description: 'Alles, was wir besprechen, bleibt absolut vertraulich.',
-  },
-];
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Shield, Compass, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useEffect } from 'react';
+import MobileReadMore from '@/components/MobileReadMore';
 
 export default function MenPage() {
+  useEffect(() => {
+    document.title = 'Coaching für Männer in Beziehungen – Raum für Klarheit | PaarWeg';
+    
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.');
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://www.paarweg.com/maenner');
+
+    // Open Graph tags
+    const ogTags = [
+      { property: 'og:title', content: 'Coaching für Männer in Beziehungen | PaarWeg' },
+      { property: 'og:description', content: 'Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.' },
+      { property: 'og:url', content: 'https://www.paarweg.com/maenner' },
+    ];
+
+    ogTags.forEach(({ property, content }) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    });
+  }, []);
+
   return (
-    <div className="flex flex-col">
-      {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/assets/Mann_nachdenklich.png"
-            alt="Coaching für Männer"
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
-        </div>
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium text-primary uppercase tracking-widest mb-4">
-              Einzelcoaching für Männer
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
-              Klarheit gewinnen, authentisch leben
-            </h1>
-            <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-              Coaching für Männer, die mehr Klarheit über sich selbst suchen und ihre
-              Beziehungen bewusster gestalten möchten.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center px-8 py-3.5 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors duration-200"
-            >
-              Kostenloses Kennenlerngespräch buchen
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Topics */}
-      <section className="py-20 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">
-              Coaching-Themen
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Womit ich Ihnen helfen kann
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Jeder Mann hat seine eigene Geschichte und seine eigenen Ziele. Ich begleite Sie
-              auf Ihrem individuellen Weg.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topics.map((topic) => (
-              <div
-                key={topic.title}
-                className="bg-card border border-border rounded-2xl p-6 hover:shadow-md transition-shadow"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{topic.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{topic.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How I Work */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-medium text-primary uppercase tracking-widest mb-3">
-                  Meine Arbeitsweise
-                </p>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  So arbeiten wir zusammen
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Mein Coaching für Männer ist direkt, respektvoll und lösungsorientiert.
-                  Kein Psycho-Kram, sondern konkrete Werkzeuge für echte Veränderung.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {workingStyle.map((item) => (
-                  <div key={item.title} className="bg-card border border-border rounded-xl p-4">
-                    <h3 className="font-semibold text-foreground mb-1 text-sm">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+    <div className="w-full">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-background via-muted/20 to-accent/10">
+        <div className="container mx-auto px-4 py-20 md:px-6 md:py-32">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="flex flex-col justify-center space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                  Coaching für Männer in Beziehungen
+                </h1>
+                <MobileReadMore collapsedHeight="200px">
+                  <div className="space-y-4 text-lg text-muted-foreground md:text-xl">
+                    <p>
+                      Wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. 
+                      Wenn Sie sich hilflos fühlen, weil nichts, was Sie tun, richtig zu sein scheint. 
+                      Wenn Sie sich nach echter Verbindung sehnen, aber nicht wissen, wie Sie sie erreichen.
+                    </p>
+                    <p>
+                      Wenn Sie das Gefühl haben, dass Ihre Partnerin Sie nicht versteht. 
+                      Wenn Sie sich zurückziehen, weil Sie nicht wissen, was Sie sagen sollen. 
+                      Wenn Sie sich fragen, ob Sie überhaupt noch der Richtige sind.
+                    </p>
+                    <p className="font-medium text-foreground">
+                      Hier ist Raum für Ihre Perspektive. Für Ihre Fragen. Für die Suche nach Klarheit – 
+                      ohne Vorwürfe, ohne Druck, ohne Erwartungen.
+                    </p>
                   </div>
-                ))}
+                </MobileReadMore>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button asChild size="lg" className="text-base">
+                  <a
+                    href="https://calendly.com/paarweg-info"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Erstgespräch buchen
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
               </div>
             </div>
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+            <div className="relative">
               <img
-                src="/assets/Waldweg.png"
-                alt="Coaching Atmosphäre"
-                className="w-full h-full object-cover"
+                src="/assets/Mann_nachdenklich.png"
+                alt="Nachdenklicher Mann – Coaching für Männer in Beziehungsfragen"
+                className="rounded-2xl object-cover shadow-2xl w-full"
+                loading="lazy"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-primary/5 border-y border-primary/10">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Bereit für den nächsten Schritt?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Machen Sie den ersten Schritt und buchen Sie Ihr kostenloses Kennenlerngespräch.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors duration-200 text-base"
-          >
-            Kostenloses Kennenlerngespräch buchen
-          </Link>
+      {/* Typische Themen Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+              Typische Themen im Coaching für Männer
+            </h2>
+            
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Hilflosigkeit</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie nicht wissen, was Sie tun sollen. Wenn nichts, was Sie versuchen, zu funktionieren scheint. 
+                        Wenn Sie das Gefühl haben, dass Sie es nur noch schlimmer machen.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Rückzug</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie sich zurückziehen, weil Sie nicht wissen, was Sie sagen sollen. 
+                        Wenn Sie Konflikten aus dem Weg gehen, weil Sie nicht wissen, wie Sie damit umgehen sollen.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Kommunikation</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie nicht wissen, wie Sie ansprechen sollen, was Sie bewegt. 
+                        Wenn Sie das Gefühl haben, dass Ihre Partnerin Sie nicht versteht. 
+                        Wenn Gespräche zu Streit werden.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Erwartungen</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie das Gefühl haben, dass Sie nie genug sind. 
+                        Wenn Sie sich fragen, was Ihre Partnerin eigentlich von Ihnen will. 
+                        Wenn Sie nicht wissen, wie Sie es richtig machen sollen.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Entscheidungen</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie nicht wissen, ob Sie bleiben oder gehen sollen. 
+                        Wenn Sie sich fragen, ob es noch Hoffnung gibt. 
+                        Wenn Sie Klarheit brauchen, um eine Entscheidung treffen zu können.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Verbindung</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie sich nach echter Nähe sehnen, aber nicht wissen, wie Sie sie erreichen. 
+                        Wenn Sie sich fremd geworden sind. Wenn Sie nicht wissen, wie Sie wieder zueinander finden.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wie ich arbeite Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+              Wie ich mit Männern arbeite
+            </h2>
+            <MobileReadMore collapsedHeight="220px">
+              <div className="space-y-6 text-lg text-muted-foreground">
+                <p>
+                  Im Coaching für Männer geht es nicht darum, Ihnen zu sagen, was Sie falsch machen. 
+                  Es geht darum, einen Raum zu schaffen, in dem Sie selbst herausfinden können, was Sie brauchen. 
+                  In dem Sie Klarheit gewinnen. In dem Sie verstehen, was zwischen Ihnen und Ihrer Partnerin steht – 
+                  und was Sie tun können, um das zu verändern.
+                </p>
+                <p>
+                  Ich höre zu. Ich stelle Fragen. Ich benenne, was ich sehe – auch wenn es unangenehm ist. 
+                  Ich fordere Sie heraus, ohne Sie zu verurteilen. Ich bin nicht hier, um Ihnen zu sagen, 
+                  dass Sie schuld sind. Ich bin hier, um Sie dabei zu unterstützen, Verantwortung zu übernehmen – 
+                  für sich selbst und für die Beziehung.
+                </p>
+                <p>
+                  Wir schauen auf Ihre Bedürfnisse, auf Ihre Muster, auf das, was Sie zurückhält. 
+                  Wir entwickeln Strategien, wie Sie für sich einstehen können – ohne sich zurückzuziehen. 
+                  Wie Sie kommunizieren können – ohne dass es zu Streit wird. 
+                  Wie Sie Nähe herstellen können – ohne sich zu verlieren.
+                </p>
+                <p className="font-medium text-foreground">
+                  Coaching ist keine Therapie. Es ist ein Prozess der Selbstklärung. 
+                  Ein Raum, in dem Sie sich selbst wieder begegnen können. 
+                  Ein Weg zu mehr Klarheit, Orientierung und innerer Stärke.
+                </p>
+              </div>
+            </MobileReadMore>
+          </div>
+        </div>
+      </section>
+
+      {/* Was Männer im Coaching finden Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Was Männer im Coaching finden
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              Drei zentrale Werte, die den Weg zu mehr Klarheit ebnen
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            <Card className="border-2 transition-all hover:shadow-lg">
+              <CardContent className="pt-8">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                  <Compass className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="mb-3 text-xl font-semibold">Klarheit</h3>
+                <p className="text-muted-foreground">
+                  Verstehen, was wirklich los ist. Nicht was sein sollte, sondern was ist. 
+                  Klarheit über Ihre Bedürfnisse, über Ihre Muster, über das, was Sie wirklich wollen.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 transition-all hover:shadow-lg">
+              <CardContent className="pt-8">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                  <Shield className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="mb-3 text-xl font-semibold">Orientierung</h3>
+                <p className="text-muted-foreground">
+                  Wissen, was Sie tun können. Konkrete Strategien entwickeln. 
+                  Handlungsfähigkeit zurückgewinnen. Nicht mehr hilflos sein, sondern aktiv gestalten.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 transition-all hover:shadow-lg">
+              <CardContent className="pt-8">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                  <Users className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="mb-3 text-xl font-semibold">Verbindung</h3>
+                <p className="text-muted-foreground">
+                  Lernen, wie Sie Nähe herstellen können. Wie Sie kommunizieren können, ohne dass es zu Streit wird. 
+                  Wie Sie für sich einstehen können, ohne sich zurückzuziehen.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-3xl">
+            <Card className="border-2 bg-background">
+              <CardContent className="pt-8">
+                <div className="mb-6 flex justify-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                    <Shield className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <blockquote className="space-y-4 text-center">
+                  <p className="text-lg italic text-muted-foreground md:text-xl">
+                    „Ich habe gelernt, dass Rückzug keine Lösung ist. Dass ich nicht hilflos bin. 
+                    Dass ich etwas tun kann – auch wenn es unangenehm ist. 
+                    Das hat unsere Beziehung gerettet."
+                  </p>
+                  <footer className="text-sm font-medium text-foreground">
+                    — Mann, 45 Jahre
+                  </footer>
+                </blockquote>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 py-20 md:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center space-y-8">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Bereit für den nächsten Schritt?
+            </h2>
+            <p className="text-lg text-muted-foreground md:text-xl">
+              Buchen Sie ein unverbindliches Erstgespräch. Wir klären gemeinsam, 
+              ob und wie ich Sie auf Ihrem Weg begleiten kann.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="text-base">
+                <a
+                  href="https://calendly.com/paarweg-info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Erstgespräch buchen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>

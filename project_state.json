@@ -1,30 +1,28 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project involves managing draft and live site versions, with the current goal of building the draft as an exact copy of the live site (Version 145).",
+  "summary": "Web project with multiple city landing pages (Basel, Zürich). Google Tags are being integrated per page.",
   "architectural_notes": [
-    "Draft and live are separate environments; draft must be explicitly synced from live files to ensure a 1:1 copy."
+    "Google Tag (AW-17916128725) integrated on Basel page",
+    "Google Tag (G-NQHZEVRPBL) to be integrated on Zürich page"
   ],
-  "known_issues": [
-    "Draft version diverged from live (Version 145); previous restore attempts did not fully capture all files/components."
-  ],
+  "known_issues": [],
   "isFixRequest": false,
-  "existing_features": [],
-  "new_feature_requests": [
+  "existing_features": [
     {
-      "id": "AR-1",
-      "summary": "Restore all frontend source files to their exact Version 145 (live) state. This includes all pages (HomePage, AboutPage, CouplesPage, MenPage, WomenPage, PricingPage, ContactPage, LegalPage, BaselCouplesLandingPage, ZurichCouplesLandingPage), all layout and shared components (Layout.tsx, CalendlyInlineWidget.tsx), all hooks, utilities, configuration files (tailwind.config.js, index.css, App.tsx), and any other frontend files that exist in the live version. No file should differ from the live production version.",
+      "id": "feature-inject-google-tag-gtag-js-with-id-g-nqhzevrpbl-into-the-z-rich-couples-landing-page-frontend-src-pages-zurichcoupleslandingpage-tsx-scoped-to-that-page-only-follow-the-same-pattern-used-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-where-a-script-tag-loads-https-www-googletagmanager-com-gtag-js-id-g-nqhzevrpbl-and-an-inline-initialization-script-calls-window-datalayer-and-gtag-config-g-nqhzevrpbl-use-react-helmet-or-equivalent-head-injection-mechanism-already-in-use-on-the-basel-page",
+      "title": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
       "reqIds": [
         "REQ-1"
       ],
-      "status": "pending"
-    },
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
     {
-      "id": "AR-2",
-      "summary": "Restore the backend (backend/main.mo) to its exact Version 145 (live) state, ensuring all data types, CRUD operations, role-based access control, pricing entries, collections, navigation, and user profile logic are identical to the live version.",
-      "reqIds": [
-        "REQ-2"
-      ],
+      "id": "AR-1",
+      "summary": "Integrate Google Tag G-NQHZEVRPBL on the Zürich page",
+      "reqIds": [],
       "status": "pending"
     }
   ],

@@ -24,26 +24,23 @@ export const UserRole = IDL.Variant({
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
+export const PageContent = IDL.Record({
+  'title' : IDL.Text,
+  'content' : IDL.Text,
+});
 export const Pricing = IDL.Record({
   'id' : IDL.Nat,
   'title' : IDL.Text,
   'description' : IDL.Text,
   'price' : IDL.Text,
 });
-export const UserProfile = IDL.Record({ 'name' : IDL.Text });
-export const Entry = IDL.Record({
-  'id' : IDL.Nat,
-  'title' : IDL.Text,
-  'imagePath' : IDL.Text,
-  'collection' : IDL.Text,
-  'description' : IDL.Text,
-  'imageAlt' : IDL.Text,
-  'price' : IDL.Nat,
+export const UserProfile = IDL.Record({
+  'name' : IDL.Text,
+  'email' : IDL.Text,
 });
-export const NavigationEntry = IDL.Record({
-  'id' : IDL.Nat,
-  'title' : IDL.Text,
-  'path' : IDL.Text,
+export const CsrInfo = IDL.Record({
+  'status' : IDL.Text,
+  'explanation' : IDL.Text,
 });
 
 export const idlService = IDL.Service({
@@ -74,44 +71,16 @@ export const idlService = IDL.Service({
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-  'getAllPricingEntries' : IDL.Func([], [IDL.Vec(Pricing)], ['query']),
-  'getBeeResults' : IDL.Func(
+  'getAllPageContents' : IDL.Func(
       [],
-      [
-        IDL.Record({
-          'lastTrayResult' : IDL.Opt(IDL.Text),
-          'lastHiveResult' : IDL.Opt(IDL.Text),
-          'resultsStack' : IDL.Vec(IDL.Text),
-          'lastBeeResult' : IDL.Opt(IDL.Text),
-        }),
-      ],
+      [IDL.Vec(IDL.Tuple(IDL.Text, PageContent))],
       ['query'],
     ),
+  'getAllPricingEntries' : IDL.Func([], [IDL.Vec(Pricing)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-  'getCollections' : IDL.Func(
-      [],
-      [
-        IDL.Vec(
-          IDL.Tuple(
-            IDL.Nat,
-            IDL.Record({
-              'id' : IDL.Nat,
-              'title' : IDL.Text,
-              'path' : IDL.Text,
-            }),
-          )
-        ),
-      ],
-      ['query'],
-    ),
-  'getCsrInfo' : IDL.Func(
-      [],
-      [IDL.Record({ 'status' : IDL.Text, 'explanation' : IDL.Text })],
-      ['query'],
-    ),
-  'getEntriesByCollection' : IDL.Func([IDL.Nat], [IDL.Vec(Entry)], ['query']),
-  'getNavigation' : IDL.Func([IDL.Text], [IDL.Vec(NavigationEntry)], ['query']),
+  'getCsrInfo' : IDL.Func([], [CsrInfo], ['query']),
+  'getPageContent' : IDL.Func([IDL.Text], [IDL.Opt(PageContent)], ['query']),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
@@ -141,27 +110,15 @@ export const idlFactory = ({ IDL }) => {
     'user' : IDL.Null,
     'guest' : IDL.Null,
   });
+  const PageContent = IDL.Record({ 'title' : IDL.Text, 'content' : IDL.Text });
   const Pricing = IDL.Record({
     'id' : IDL.Nat,
     'title' : IDL.Text,
     'description' : IDL.Text,
     'price' : IDL.Text,
   });
-  const UserProfile = IDL.Record({ 'name' : IDL.Text });
-  const Entry = IDL.Record({
-    'id' : IDL.Nat,
-    'title' : IDL.Text,
-    'imagePath' : IDL.Text,
-    'collection' : IDL.Text,
-    'description' : IDL.Text,
-    'imageAlt' : IDL.Text,
-    'price' : IDL.Nat,
-  });
-  const NavigationEntry = IDL.Record({
-    'id' : IDL.Nat,
-    'title' : IDL.Text,
-    'path' : IDL.Text,
-  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text, 'email' : IDL.Text });
+  const CsrInfo = IDL.Record({ 'status' : IDL.Text, 'explanation' : IDL.Text });
   
   return IDL.Service({
     '_caffeineStorageBlobIsLive' : IDL.Func(
@@ -191,48 +148,16 @@ export const idlFactory = ({ IDL }) => {
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-    'getAllPricingEntries' : IDL.Func([], [IDL.Vec(Pricing)], ['query']),
-    'getBeeResults' : IDL.Func(
+    'getAllPageContents' : IDL.Func(
         [],
-        [
-          IDL.Record({
-            'lastTrayResult' : IDL.Opt(IDL.Text),
-            'lastHiveResult' : IDL.Opt(IDL.Text),
-            'resultsStack' : IDL.Vec(IDL.Text),
-            'lastBeeResult' : IDL.Opt(IDL.Text),
-          }),
-        ],
+        [IDL.Vec(IDL.Tuple(IDL.Text, PageContent))],
         ['query'],
       ),
+    'getAllPricingEntries' : IDL.Func([], [IDL.Vec(Pricing)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-    'getCollections' : IDL.Func(
-        [],
-        [
-          IDL.Vec(
-            IDL.Tuple(
-              IDL.Nat,
-              IDL.Record({
-                'id' : IDL.Nat,
-                'title' : IDL.Text,
-                'path' : IDL.Text,
-              }),
-            )
-          ),
-        ],
-        ['query'],
-      ),
-    'getCsrInfo' : IDL.Func(
-        [],
-        [IDL.Record({ 'status' : IDL.Text, 'explanation' : IDL.Text })],
-        ['query'],
-      ),
-    'getEntriesByCollection' : IDL.Func([IDL.Nat], [IDL.Vec(Entry)], ['query']),
-    'getNavigation' : IDL.Func(
-        [IDL.Text],
-        [IDL.Vec(NavigationEntry)],
-        ['query'],
-      ),
+    'getCsrInfo' : IDL.Func([], [CsrInfo], ['query']),
+    'getPageContent' : IDL.Func([IDL.Text], [IDL.Opt(PageContent)], ['query']),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],

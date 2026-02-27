@@ -1,212 +1,170 @@
+import { Outlet, Link, useLocation, useNavigate } from '@tanstack/react-router';
+import { Menu, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Link, useRouter } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
-const navItems = [
-  { label: 'Startseite', path: '/' },
-  { label: 'Paare', path: '/couples' },
-  { label: 'Für Frauen', path: '/women' },
-  { label: 'Für Männer', path: '/men' },
-  { label: 'Über mich', path: '/about' },
-  { label: 'Preise', path: '/pricing' },
-  { label: 'Kontakt', path: '/contact' },
-];
-
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
 
+  // Navigation items - /paarberatung-zuerich is intentionally not included (landing page only)
+  const navigation = [
+    { name: 'Startseite', href: '/' },
+    { name: 'Für Paare', href: '/paare' },
+    { name: 'Für Frauen', href: '/frauen' },
+    { name: 'Für Männer', href: '/maenner' },
+    { name: 'Über mich', href: '/ueber-mich' },
+    { name: 'Preise', href: '/preise' },
+    { name: 'Kontakt', href: '/kontakt' },
+  ];
+
+  const isActive = (href: string) => {
+    return location.pathname === href;
+  };
+
+  // Handle navigation click with special logic for Kontakt page
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // If clicking Kontakt while already on /kontakt, reload the page
+    if (href === '/kontakt' && location.pathname === '/kontakt') {
+      e.preventDefault();
+      window.location.reload();
+    }
+    // For mobile menu, close it
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
+
+  // Scroll to top on route change - instant scroll for mobile
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll to top instantly on route change
-  useEffect(() => {
-    const unsubscribe = router.subscribe('onResolved', () => {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    });
-    return () => unsubscribe();
-  }, [router]);
-
-  const currentPath = router.state.location.pathname;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-background/95 backdrop-blur-sm shadow-sm border-b border-border'
-            : 'bg-background/90 backdrop-blur-sm'
-        }`}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
-              <img
-                src="/assets/PaarWeg Logo final (2).png"
-                alt="PaarWeg Logo"
-                className="h-10 md:h-12 w-auto"
-              />
-            </Link>
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto flex h-24 md:h-28 items-center justify-between px-4 md:px-6">
+          <Link to="/" className="flex items-center space-x-3">
+            <img
+              src="/assets/PaarWeg Logo final (3).png"
+              alt="PaarWeg – Roland Soder Coaching & Beziehungsbegleitung"
+              className="h-16 w-auto md:h-18 lg:h-22"
+            />
+          </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                    currentPath === item.path
-                      ? 'text-primary bg-primary/10'
-                      : 'text-foreground/70 hover:text-foreground hover:bg-muted'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center space-x-1 md:flex">
+            {navigation.map((item) => (
               <Link
-                to="/contact"
-                className="ml-3 px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors duration-200"
+                key={item.name}
+                to={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
+                  isActive(item.href)
+                    ? 'bg-accent text-accent-foreground'
+                    : 'text-muted-foreground'
+                }`}
               >
-                Termin buchen
+                {item.name}
               </Link>
-            </nav>
+            ))}
+          </nav>
 
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="Menü öffnen"
-            >
-              {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+          {/* Mobile Menu - Hamburger icon with terracotta color */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-12 w-12 hover:bg-accent"
+              >
+                <Menu className="h-7 w-7 text-primary" strokeWidth={2} />
+                <span className="sr-only">Menü öffnen</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col space-y-4 pt-8">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={`rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
+                      isActive(item.href)
+                        ? 'bg-accent text-accent-foreground'
+                        : 'text-muted-foreground'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-border bg-background/98 backdrop-blur-sm">
-            <div className="max-w-6xl mx-auto px-4 py-3 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-200 ${
-                    currentPath === item.path
-                      ? 'text-primary bg-primary/10'
-                      : 'text-foreground/70 hover:text-foreground hover:bg-muted'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="pt-2 pb-1">
-                <Link
-                  to="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-4 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors duration-200"
-                >
-                  Termin buchen
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* Main Content */}
       <main className="flex-1">
-        {children}
+        <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="bg-muted/50 border-t border-border mt-auto">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Brand */}
-            <div className="space-y-4">
-              <img
-                src="/assets/PaarWeg Logo final (2).png"
-                alt="PaarWeg Logo"
-                className="h-10 w-auto"
-              />
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Professionelles Paar- und Einzelcoaching in Basel und online.
-                Ihr Weg zu einer erfüllten Beziehung.
+      <footer className="border-t border-border/40 bg-muted/30">
+        <div className="container mx-auto px-4 py-12 md:px-6">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div>
+              <div className="mb-4 flex items-center">
+                <img
+                  src="/assets/PaarWeg Logo final (3).png"
+                  alt="PaarWeg – Roland Soder Coaching & Beziehungsbegleitung"
+                  className="h-7 w-auto opacity-60"
+                />
+              </div>
+              <p className="text-sm text-muted-foreground text-left">
+                Begleitung für Paare auf dem Weg zu mehr Nähe, Verständnis und gemeinsamer Entwicklung.
               </p>
             </div>
-
-            {/* Navigation */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Navigation</h3>
-              <ul className="space-y-2">
-                {navItems.map((item) => (
-                  <li key={item.path}>
-                    <Link
-                      to={item.path}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">Kontakt</h3>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Roland Soder</p>
-                <p>Basel, Schweiz</p>
-                <a
-                  href="mailto:roland@paarweg.com"
-                  className="block hover:text-foreground transition-colors"
-                >
-                  roland@paarweg.com
-                </a>
-                <Link
-                  to="/legal"
-                  className="block hover:text-foreground transition-colors"
-                >
-                  Impressum & Datenschutz
-                </Link>
+            <div>
+              <h3 className="mb-4 text-lg font-semibold text-left">Kontakt</h3>
+              <div className="space-y-1 text-sm text-left">
+                <p className="text-foreground">Tel: +41 79 770 39 25</p>
+                <p className="text-foreground break-all">E-Mail: info@paarweg.com</p>
+                <p className="text-foreground">
+                  <a
+                    href="https://wa.me/+41797703925"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    WhatsApp: +41 79 770 39 25
+                  </a>
+                </p>
+                <p className="mt-3 text-xs text-muted-foreground/70">
+                  Firmensitz: Basel
+                </p>
               </div>
             </div>
+            <div>
+              <h3 className="mb-4 text-lg font-semibold text-left">Rechtliches</h3>
+              <nav className="flex flex-col space-y-2 text-sm text-left">
+                <Link to="/impressum" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Impressum & Datenschutz
+                </Link>
+              </nav>
+            </div>
           </div>
-
-          <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} PaarWeg – Roland Soder, Basel. Alle Rechte vorbehalten.
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Built with{' '}
-              <span className="text-red-400">♥</span>
-              {' '}using{' '}
+          <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
+            <p className="flex items-center justify-center gap-1">
+              © {new Date().getFullYear()}. Built with <Heart className="h-4 w-4 fill-primary text-primary" /> using{' '}
               <a
-                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== 'undefined' ? window.location.hostname : 'paarweg')}`}
+                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
+                className="font-medium hover:text-foreground transition-colors"
               >
                 caffeine.ai
               </a>

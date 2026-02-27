@@ -1,24 +1,28 @@
-import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
+import { RouterProvider, createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
 import CouplesPage from './pages/CouplesPage';
-import MenPage from './pages/MenPage';
 import WomenPage from './pages/WomenPage';
+import MenPage from './pages/MenPage';
+import AboutPage from './pages/AboutPage';
 import PricingPage from './pages/PricingPage';
+import ContactPage from './pages/ContactPage';
 import LegalPage from './pages/LegalPage';
-import BaselCouplesLandingPage from './pages/BaselCouplesLandingPage';
+import CSRGeneratorPage from './pages/CSRGeneratorPage';
+import TechnicalStatusPage from './pages/TechnicalStatusPage';
+import DomainVerificationPage from './pages/DomainVerificationPage';
+import SitemapPage from './pages/SitemapPage';
 import ZurichCouplesLandingPage from './pages/ZurichCouplesLandingPage';
+import BaselCouplesLandingPage from './pages/BaselCouplesLandingPage';
+import SwissOnlineCouplesLandingPage from './pages/SwissOnlineCouplesLandingPage';
+
+const queryClient = new QueryClient();
 
 const rootRoute = createRootRoute({
-  component: () => (
-    <Layout>
-      <Outlet />
-    </Layout>
-  ),
+  component: Layout,
 });
 
 const indexRoute = createRoute({
@@ -27,86 +31,120 @@ const indexRoute = createRoute({
   component: HomePage,
 });
 
-const aboutRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/about',
-  component: AboutPage,
-});
-
-const contactRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/contact',
-  component: ContactPage,
-});
-
 const couplesRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/couples',
+  path: '/paare',
   component: CouplesPage,
-});
-
-const menRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/men',
-  component: MenPage,
 });
 
 const womenRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/women',
+  path: '/frauen',
   component: WomenPage,
+});
+
+const menRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/maenner',
+  component: MenPage,
+});
+
+const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/ueber-mich',
+  component: AboutPage,
 });
 
 const pricingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/pricing',
+  path: '/preise',
   component: PricingPage,
+});
+
+const contactRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/kontakt',
+  component: ContactPage,
 });
 
 const legalRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/legal',
+  path: '/rechtliches',
   component: LegalPage,
 });
 
-const baselCouplesRoute = createRoute({
+const sitemapRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/paartherapie-basel',
+  path: '/sitemap',
+  component: SitemapPage,
+});
+
+// Zurich landing page route - intentionally not linked in navigation menu
+const zurichCouplesLandingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/paarberatung-zuerich',
+  component: ZurichCouplesLandingPage,
+});
+
+// Basel landing page route - intentionally not linked in navigation menu
+const baselCouplesLandingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/paarberatung-basel',
   component: BaselCouplesLandingPage,
 });
 
-const zurichCouplesRoute = createRoute({
+// Swiss Online landing page route - intentionally not linked in navigation menu
+const swissOnlineCouplesLandingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/paartherapie-zuerich',
-  component: ZurichCouplesLandingPage,
+  path: '/online-paarberatung-schweiz',
+  component: SwissOnlineCouplesLandingPage,
+});
+
+const csrGeneratorRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/csr-generator',
+  component: CSRGeneratorPage,
+});
+
+const technicalStatusRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/technical-status',
+  component: TechnicalStatusPage,
+});
+
+const domainVerificationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/domain-verification',
+  component: DomainVerificationPage,
 });
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  aboutRoute,
-  contactRoute,
   couplesRoute,
-  menRoute,
   womenRoute,
+  menRoute,
+  aboutRoute,
   pricingRoute,
+  contactRoute,
   legalRoute,
-  baselCouplesRoute,
-  zurichCouplesRoute,
+  sitemapRoute,
+  zurichCouplesLandingRoute,
+  baselCouplesLandingRoute,
+  swissOnlineCouplesLandingRoute,
+  csrGeneratorRoute,
+  technicalStatusRoute,
+  domainVerificationRoute,
 ]);
 
 const router = createRouter({ routeTree });
 
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router;
-  }
-}
-
 export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-      <RouterProvider router={router} />
-      <Toaster />
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
