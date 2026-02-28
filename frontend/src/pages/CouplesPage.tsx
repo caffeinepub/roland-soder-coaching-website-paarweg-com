@@ -73,7 +73,7 @@ export default function CouplesPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Erstgespräch buchen
+                    Kennenlerngespräch buchen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -354,7 +354,7 @@ export default function CouplesPage() {
               Bereit für den nächsten Schritt?
             </h2>
             <p className="text-lg text-muted-foreground md:text-xl">
-              Buchen Sie ein unverbindliches Erstgespräch. Wir klären gemeinsam, 
+              Buchen Sie ein kostenloses Kennenlerngespräch. Wir klären gemeinsam, 
               ob und wie ich Sie auf Ihrem Weg begleiten kann.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -364,7 +364,7 @@ export default function CouplesPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Erstgespräch buchen
+                  Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>

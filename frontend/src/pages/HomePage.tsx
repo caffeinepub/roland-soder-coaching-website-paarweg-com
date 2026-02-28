@@ -170,7 +170,7 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Erstgespräch buchen
+                    Kennenlerngespräch buchen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -381,9 +381,8 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <h3 className="mb-4 text-2xl font-semibold">Für Frauen</h3>
                 <p className="mb-6 text-muted-foreground">
-                  Wenn Sie sich erschöpft fühlen vom Versuch, alles richtig zu machen. 
-                  Wenn Sie sich unsichtbar fühlen in Ihrer Beziehung. Wenn Sie sich nach Leichtigkeit sehnen, 
-                  nach echtem Gesehen-Werden, nach einem Raum, in dem Sie einfach sein dürfen.
+                  Wenn Sie als Frau Klarheit suchen – über sich, über Ihre Beziehung, über das, was Sie wirklich brauchen. 
+                  Coaching für Frauen, die sich selbst besser verstehen und ihre Beziehung bewusst gestalten möchten.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/frauen">
@@ -399,7 +398,7 @@ export default function HomePage() {
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src="/assets/Mann_nachdenklich.png"
-                  alt="Nachdenklicher Mann – Coaching für Männer in Beziehungsfragen"
+                  alt="Nachdenklicher Mann - Coaching für Männer in Beziehungsfragen"
                   className="h-full w-full object-cover transition-transform hover:scale-105"
                   loading="lazy"
                 />
@@ -407,9 +406,8 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <h3 className="mb-4 text-2xl font-semibold">Für Männer</h3>
                 <p className="mb-6 text-muted-foreground">
-                  Wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. 
-                  Wenn Sie sich hilflos fühlen, weil nichts, was Sie tun, richtig zu sein scheint. 
-                  Wenn Sie sich nach echter Verbindung sehnen, aber nicht wissen, wie Sie sie erreichen.
+                  Wenn Sie als Mann Orientierung suchen – in der Beziehung, in sich selbst, im Umgang mit dem, 
+                  was Sie bewegt. Coaching für Männer, die bereit sind, hinzuschauen und Verantwortung zu übernehmen.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/maenner">
@@ -423,16 +421,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 py-20 md:py-28">
+      {/* CTA Section */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Bereit für den nächsten Schritt?
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Bereit für den ersten Schritt?
             </h2>
-            <p className="text-lg text-muted-foreground md:text-xl">
-              Buchen Sie ein unverbindliches Erstgespräch. Wir klären gemeinsam, 
-              ob und wie ich Sie auf Ihrem Weg begleiten kann.
+            <p className="text-lg text-muted-foreground">
+              Ein unverbindliches Kennenlerngespräch – um zu spüren, ob der Weg gemeinsam passt. 
+              Kein Druck. Keine Verpflichtung. Nur ein offenes Gespräch.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="text-base">
@@ -441,14 +439,13 @@ export default function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Erstgespräch buchen
+                  Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-base">
                 <Link to="/kontakt">
                   Kontakt aufnehmen
-                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>

@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T17:09:25.252Z",
+  "generatedAt": "2026-02-28T08:59:59.006Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,13 +12,13 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
+        "summary": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+          "frontend/src/pages/AboutPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+          "frontend/src/pages/AboutPage.tsx"
         ]
       }
     ]
@@ -28,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "frontend/src/pages/AboutPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

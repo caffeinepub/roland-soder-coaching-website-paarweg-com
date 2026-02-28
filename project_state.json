@@ -1,17 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Web project with multiple city landing pages (Basel, Zürich). Google Tags are being integrated per page.",
-  "architectural_notes": [
-    "Google Tag (AW-17916128725) integrated on Basel page",
-    "Google Tag (G-NQHZEVRPBL) to be integrated on Zürich page"
-  ],
+  "summary": "New project",
+  "architectural_notes": [],
   "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-inject-google-tag-gtag-js-with-id-g-nqhzevrpbl-into-the-z-rich-couples-landing-page-frontend-src-pages-zurichcoupleslandingpage-tsx-scoped-to-that-page-only-follow-the-same-pattern-used-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-where-a-script-tag-loads-https-www-googletagmanager-com-gtag-js-id-g-nqhzevrpbl-and-an-inline-initialization-script-calls-window-datalayer-and-gtag-config-g-nqhzevrpbl-use-react-helmet-or-equivalent-head-injection-mechanism-already-in-use-on-the-basel-page",
-      "title": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
+      "id": "feature-restore-the-lernen-sie-mich-kennen-get-to-know-me-section-on-the-about-page-aboutpage-tsx-to-match-the-layout-typography-spacing-and-visual-formatting-it-had-in-the-draft-prior-to-draft-177-this-includes-restoring-any-card-layout-heading-styles-text-formatting-section-padding-margins-and-any-decorative-elements-that-were-present-before-the-most-recent-changes",
+      "title": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
       "reqIds": [
         "REQ-1"
       ],
@@ -21,12 +18,11 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Integrate Google Tag G-NQHZEVRPBL on the Zürich page",
+      "summary": "Format von 'Lernen Sie mich kennen' soll wie im vorherigen Entwurf sein",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
   "projectName": "PaarWeg",
   "clarification_mode": "instant",
   "clarification_rounds": 0

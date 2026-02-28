@@ -1,14 +1,14 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T17:09:25.249Z",
-  "summary": "REQ-1 is implemented in ZurichCouplesLandingPage.tsx using a useEffect-based injection pattern. The gtag.js script with ID G-NQHZEVRPBL is loaded, window.dataLayer is initialized, and gtag('config', 'G-NQHZEVRPBL') is called. Cleanup on unmount is included. The implementation deviates slightly from the Basel pattern (which uses React Helmet) by using manual DOM manipulation via useEffect, but functionally meets all acceptance criteria. No other pages are modified to include this tag.",
+  "generatedAt": "2026-02-28T08:59:59.002Z",
+  "summary": "The diff shows modifications to AboutPage.tsx that appear to restore the 'Lernen Sie mich kennen' section formatting and preserve the 'Wichtiger Hinweis' info box. The file-summaries.txt explicitly confirms both requirements are addressed: the 'Wichtiger Hinweis' box remains below 'Mein Hintergrund', and the 'Lernen Sie mich kennen' CTA section is described as 'restored... matching the pre-Draft-177 format'. The diff is truncated so full visual verification is not possible, but all available evidence supports compliance with REQ-1.",
   "missing_requirements": [],
   "hallucinated_features": [],
-  "confidence": 0.9,
+  "confidence": 0.78,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+    "frontend/src/pages/AboutPage.tsx",
     "project_state.json"
   ]
 }

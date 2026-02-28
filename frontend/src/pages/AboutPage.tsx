@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle2, Heart, Users, Eye, ArrowRight, Compass, Sparkles } from 'lucide-react';
+import { CheckCircle2, Heart, Users, Eye, ArrowRight, Compass, Info } from 'lucide-react';
 import { useEffect } from 'react';
 
 export default function AboutPage() {
@@ -356,74 +356,72 @@ export default function AboutPage() {
               </p>
               <p>
                 Aber wichtiger als Zertifikate ist für mich die Haltung: Ich begegne Menschen mit Respekt, 
-                Neugier und dem echten Interesse daran, was sie bewegt. Ich bin nicht hier, um zu urteilen 
-                oder Ratschläge zu erteilen – ich bin hier, um zu begleiten. Um Raum zu schaffen für das, 
-                was entstehen will.
+                Neugier und dem echten Interesse daran, was sie bewegt und was sie sich wünschen. 
+                Das ist die Grundlage jeder guten Begleitung.
               </p>
               <p>
-                Meine eigene Lebenserfahrung, meine Auseinandersetzung mit Beziehung, Nähe und Entwicklung 
-                fließen in meine Arbeit ein. Ich weiß, dass Veränderung möglich ist – und dass sie Zeit, 
-                Mut und Bereitschaft braucht. Ich weiß, dass Beziehungen herausfordernd sind – 
-                und dass sie uns wachsen lassen können, wenn wir bereit sind hinzuschauen.
+                Ich habe selbst erlebt, wie herausfordernd Beziehungen sein können – und wie viel möglich ist, 
+                wenn man bereit ist, hinzuschauen und Verantwortung zu übernehmen. Diese persönliche Erfahrung 
+                macht mich nicht zum Experten für Ihr Leben, aber sie lässt mich verstehen, wovon Sie sprechen.
               </p>
               <p>
-                Meine Tätigkeit umfasst sowohl die Begleitung von Paaren als auch von Einzelpersonen, 
-                die an ihrer Beziehungsfähigkeit arbeiten möchten. Die Sitzungen finden grundsätzlich online statt, 
-                was maximale Flexibilität ermöglicht. In Ausnahmefällen sind nach Absprache auch Präsenz-Termine möglich.
+                Mein Angebot richtet sich an Paare und Einzelpersonen – online via Videocall oder in Präsenz. 
+                Ich arbeite mit Menschen aus der ganzen Schweiz und dem deutschsprachigen Raum.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Important Note Section */}
-      <section className="py-20 md:py-28">
+      {/* Important Notice Section */}
+      <section className="py-16 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl">
-            <Card className="border-2 border-primary/20 bg-background">
-              <CardContent className="pt-8">
-                <h3 className="mb-4 text-xl font-semibold">Wichtiger Hinweis</h3>
-                <div className="space-y-3 text-muted-foreground">
-                  <p>
-                    Mein Angebot ist Coaching, keine Therapie. Ich arbeite mit Menschen, die grundsätzlich 
-                    psychisch gesund sind und an ihrer Beziehung oder persönlichen Entwicklung arbeiten möchten.
+          <div className="mx-auto max-w-4xl">
+            <div className="rounded-2xl border-2 border-primary/30 bg-primary/5 p-6 md:p-8">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 rounded-full bg-primary/10 p-2">
+                  <Info className="h-6 w-6 text-primary" />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold">Wichtiger Hinweis</h3>
+                  <p className="text-muted-foreground">
+                    Paarcoaching und Beziehungsbegleitung sind keine Psychotherapie und kein Ersatz für medizinische 
+                    oder psychiatrische Behandlung. Bei psychischen Erkrankungen, Sucht oder akuten Krisen wenden Sie 
+                    sich bitte an eine Fachperson für Psychotherapie oder an den ärztlichen Notfalldienst.
                   </p>
-                  <p>
-                    Bei psychischen Erkrankungen, akuten Krisen, Suchtproblematiken oder traumatischen Erfahrungen 
-                    empfehle ich therapeutische oder ärztliche Unterstützung. Coaching kann Therapie nicht ersetzen – 
-                    aber es kann eine wertvolle Ergänzung sein oder im Anschluss an eine Therapie sinnvoll sein.
-                  </p>
-                  <p>
-                    Wenn Sie unsicher sind, ob Coaching das Richtige für Sie ist, 
-                    klären wir das gerne im Erstgespräch.
+                  <p className="text-muted-foreground">
+                    Meine Arbeit richtet sich an Menschen, die an ihrer Beziehung arbeiten möchten, 
+                    die Klarheit suchen oder die sich in einer herausfordernden Lebensphase befinden – 
+                    ohne dass eine psychische Erkrankung im Vordergrund steht.
                   </p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 py-20 md:py-28">
+      {/* Get to Know Me / CTA Section */}
+      <section className="bg-muted/30 py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
               Lernen Sie mich kennen
             </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              In einem Erstgespräch klären wir, ob die Chemie stimmt und wie ich Sie unterstützen kann. 
-              Unverbindlich, vertraulich und mit Raum für Ihre Fragen.
+            <p className="mb-4 text-lg text-muted-foreground">
+              Der erste Schritt ist oft der schwerste. Aber er muss kein großer sein. 
+              Ein erstes Gespräch, unverbindlich und kostenlos, reicht aus, um zu spüren, 
+              ob die Chemie stimmt und ob meine Begleitung das Richtige für Sie ist.
             </p>
-            <Button asChild size="lg" className="text-base">
-              <a
-                href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Erstgespräch vereinbaren
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+            <p className="mb-10 text-lg text-muted-foreground">
+              Ich freue mich darauf, Sie kennenzulernen – und gemeinsam herauszufinden, 
+              was möglich ist.
+            </p>
+            <Button asChild size="lg" className="gap-2">
+              <Link to="/kontakt">
+                Kennenlerngespräch buchen
+                <ArrowRight className="h-5 w-5" />
+              </Link>
             </Button>
           </div>
         </div>

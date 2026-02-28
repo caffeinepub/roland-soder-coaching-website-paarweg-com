@@ -1,22 +1,23 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Integrate Google Tag G-NQHZEVRPBL on the Zürich landing page",
+  "title": "Restore 'Get to Know Me' section format to previous draft",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page, scoped to that page only, following the same pattern used on the Basel couples landing page",
+      "summary": "Restore the 'Lernen Sie mich kennen' section formatting on AboutPage.tsx to match the layout, typography, spacing, and visual styling from the draft prior to Draft 177",
       "acceptanceCriteria": [
-        "The gtag.js script with ID G-NQHZEVRPBL is loaded only when the Zürich couples landing page is rendered.",
-        "The gtag initialization script calls gtag('config', 'G-NQHZEVRPBL') on page load.",
-        "No other pages load this tag.",
-        "The implementation mirrors the pattern used in BaselCouplesLandingPage.tsx."
+        "The 'Lernen Sie mich kennen' section visually matches the layout and styling from the draft before Draft 177.",
+        "Heading style, typography, spacing, and any card or container formatting are restored.",
+        "The section content (text, structure) remains intact — only formatting is reverted.",
+        "No other sections on AboutPage.tsx are affected by this change.",
+        "The 'Wichtiger Hinweis' info box added in Draft 177 (below 'Mein Hintergrund') remains in place."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "path": "frontend/src/pages/AboutPage.tsx",
           "operation": "modify",
-          "description": "Add Google Tag (gtag.js) with ID G-NQHZEVRPBL using React Helmet, mirroring the exact implementation pattern from BaselCouplesLandingPage.tsx. Include both the external script tag loading https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and the inline initialization script that sets up window.dataLayer and calls gtag('config', 'G-NQHZEVRPBL'). Ensure the scripts are scoped to this page component only and execute on page load."
+          "description": "Restore the 'Lernen Sie mich kennen' section to its previous formatting by reverting any layout, typography, spacing, padding/margin, card styling, or decorative element changes introduced in Draft 177. Keep all text content unchanged. Preserve the 'Wichtiger Hinweis' info box that was added below 'Mein Hintergrund' section. Only modify the visual presentation of the 'Lernen Sie mich kennen' section itself."
         }
       ]
     }

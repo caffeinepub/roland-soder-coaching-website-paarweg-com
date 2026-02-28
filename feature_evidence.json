@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-inject-google-tag-gtag-js-with-id-g-nqhzevrpbl-into-the-z-rich-couples-landing-page-frontend-src-pages-zurichcoupleslandingpage-tsx-scoped-to-that-page-only-follow-the-same-pattern-used-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-where-a-script-tag-loads-https-www-googletagmanager-com-gtag-js-id-g-nqhzevrpbl-and-an-inline-initialization-script-calls-window-datalayer-and-gtag-config-g-nqhzevrpbl-use-react-helmet-or-equivalent-head-injection-mechanism-already-in-use-on-the-basel-page",
-      "featureTitle": "Inject Google Tag (gtag.js) with ID G-NQHZEVRPBL into the Zürich couples landing page (frontend/src/pages/ZurichCouplesLandingPage.tsx), scoped to that page only. Follow the same pattern used on the Basel couples landing page (BaselCouplesLandingPage.tsx), where a <script> tag loads https://www.googletagmanager.com/gtag/js?id=G-NQHZEVRPBL and an inline initialization script calls window.dataLayer and gtag('config', 'G-NQHZEVRPBL'). Use React Helmet or equivalent head-injection mechanism already in use on the Basel page.",
+      "featureId": "feature-restore-the-lernen-sie-mich-kennen-get-to-know-me-section-on-the-about-page-aboutpage-tsx-to-match-the-layout-typography-spacing-and-visual-formatting-it-had-in-the-draft-prior-to-draft-177-this-includes-restoring-any-card-layout-heading-styles-text-formatting-section-padding-margins-and-any-decorative-elements-that-were-present-before-the-most-recent-changes",
+      "featureTitle": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
       "files": [
-        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        "frontend/src/pages/AboutPage.tsx"
       ],
       "components": [
         "blob-storage@4.0.0",
