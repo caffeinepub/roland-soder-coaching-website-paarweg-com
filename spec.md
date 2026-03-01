@@ -1,10 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Restore the "Lernen Sie mich kennen" section on the About page to its previous formatting (prior to Draft 177).
+**Goal:** Remove redundant cost-related phrases from the ContactPage to avoid repetition.
 
 **Planned changes:**
-- Revert the layout, typography, spacing, card/container styling, heading styles, and decorative elements of the "Lernen Sie mich kennen" section in `AboutPage.tsx` to match the draft before Draft 177.
-- Leave all other sections on the About page unchanged, including the "Wichtiger Hinweis" info box.
+- In the "Wichtig zu wissen" section of ContactPage.tsx, remove the phrase "– ganz ohne Kosten" (including the em dash) wherever it appears.
+- In the "Termin buchen" section of ContactPage.tsx, change "(30 Minuten – kostenlos)" to "(30 Minuten)".
 
-**User-visible outcome:** The "Lernen Sie mich kennen" section visually matches its earlier format, while the rest of the About page remains as-is.
+**User-visible outcome:** The ContactPage no longer repeats cost qualifiers redundantly; the affected sentences read more cleanly without the removed phrases.

@@ -344,29 +344,29 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                Ich arbeite seit vielen Jahren mit Paaren und Einzelpersonen. Meine Ausbildungen und Weiterbildungen 
-                umfassen systemische Beratung und verschiedene Ansätze der Persönlichkeitsentwicklung. 
+                Ich arbeite seit vielen Jahren mit Paaren und Einzelpersonen. Meine Ausbildungen und Weiterbildungen
+                umfassen systemische Beratung und verschiedene Ansätze der Persönlichkeitsentwicklung.
                 Ich bilde mich kontinuierlich weiter, weil ich glaube, dass gute Begleitung lebenslanges Lernen erfordert.
               </p>
               <p>
-                Ich bin Mitgründer von <strong className="text-foreground">paarwärts®</strong>, einer Premium-Partnervermittlung. 
-                In diesem Rahmen habe ich zahlreiche intensive Gespräche mit Singles geführt – über Beziehungsmuster, 
-                wiederkehrende Herausforderungen und die Frage, warum frühere Partnerschaften gescheitert sind. 
+                Ich bin Mitgründer von <strong className="text-foreground">paarwärts®</strong>, einer Premium-Partnervermittlung.
+                In diesem Rahmen habe ich zahlreiche intensive Gespräche mit Singles geführt – über Beziehungsmuster,
+                wiederkehrende Herausforderungen und die Frage, warum frühere Partnerschaften gescheitert sind.
                 Diese Erfahrung hat meinen Blick für Beziehungsdynamiken geschärft und fließt heute direkt in meine Coaching-Arbeit ein.
               </p>
               <p>
-                Aber wichtiger als Zertifikate ist für mich die Haltung: Ich begegne Menschen mit Respekt, 
-                Neugier und dem echten Interesse daran, was sie bewegt und was sie sich wünschen. 
-                Das ist die Grundlage jeder guten Begleitung.
+                Ich begegne Menschen mit Respekt, Neugier und dem echten Interesse daran, was sie bewegt.
+                Ich bin nicht hier, um zu urteilen oder Ratschläge zu erteilen – sondern um gemeinsam mit Ihnen
+                herauszufinden, was wirklich gebraucht wird und welche Schritte sinnvoll sind.
               </p>
               <p>
-                Ich habe selbst erlebt, wie herausfordernd Beziehungen sein können – und wie viel möglich ist, 
-                wenn man bereit ist, hinzuschauen und Verantwortung zu übernehmen. Diese persönliche Erfahrung 
-                macht mich nicht zum Experten für Ihr Leben, aber sie lässt mich verstehen, wovon Sie sprechen.
+                Meine Arbeit ist geprägt von der Überzeugung, dass jeder Mensch die Ressourcen in sich trägt,
+                die er für Veränderung braucht. Meine Aufgabe ist es, diese sichtbar zu machen und nutzbar zu machen.
               </p>
               <p>
-                Mein Angebot richtet sich an Paare und Einzelpersonen – online via Videocall oder in Präsenz. 
-                Ich arbeite mit Menschen aus der ganzen Schweiz und dem deutschsprachigen Raum.
+                Ich lebe selbst in einer Partnerschaft und weiß aus eigener Erfahrung, dass Beziehungen Arbeit bedeuten –
+                schöne, herausfordernde, manchmal anstrengende Arbeit. Diese persönliche Erfahrung fließt in meine
+                Begleitung ein: nicht als Ratschlag, sondern als Verständnis.
               </p>
             </div>
           </div>
@@ -374,53 +374,49 @@ export default function AboutPage() {
       </section>
 
       {/* Important Notice Section */}
-      <section className="py-16 md:py-20">
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
-            <div className="rounded-2xl border-2 border-primary/30 bg-primary/5 p-6 md:p-8">
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 rounded-full bg-primary/10 p-2">
-                  <Info className="h-6 w-6 text-primary" />
+            <Card className="border-2 border-primary/20 bg-primary/5">
+              <CardContent className="pt-8 pb-8">
+                <div className="flex items-start gap-4">
+                  <Info className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                  <div>
+                    <h2 className="mb-4 text-xl font-semibold">Wichtiger Hinweis</h2>
+                    <div className="space-y-4 text-muted-foreground">
+                      <p>
+                        Mein Angebot ist Coaching, keine Therapie. Ich arbeite mit Menschen, die grundsätzlich psychisch gesund sind und an ihrer Beziehung oder persönlichen Entwicklung arbeiten möchten.
+                      </p>
+                      <p>
+                        Bei psychischen Erkrankungen, akuten Krisen, Suchtproblematiken oder traumatischen Erfahrungen empfehle ich therapeutische oder ärztliche Unterstützung. Coaching kann Therapie nicht ersetzen – aber es kann eine wertvolle Ergänzung sein oder im Anschluss an eine Therapie sinnvoll sein.
+                      </p>
+                      <p>
+                        Wenn Sie unsicher sind, ob Coaching das Richtige für Sie ist, klären wir das gerne im Kennenlerngespräch.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold">Wichtiger Hinweis</h3>
-                  <p className="text-muted-foreground">
-                    Paarcoaching und Beziehungsbegleitung sind keine Psychotherapie und kein Ersatz für medizinische 
-                    oder psychiatrische Behandlung. Bei psychischen Erkrankungen, Sucht oder akuten Krisen wenden Sie 
-                    sich bitte an eine Fachperson für Psychotherapie oder an den ärztlichen Notfalldienst.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Meine Arbeit richtet sich an Menschen, die an ihrer Beziehung arbeiten möchten, 
-                    die Klarheit suchen oder die sich in einer herausfordernden Lebensphase befinden – 
-                    ohne dass eine psychische Erkrankung im Vordergrund steht.
-                  </p>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Get to Know Me / CTA Section */}
+      {/* CTA Section */}
       <section className="bg-muted/30 py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
               Lernen Sie mich kennen
             </h2>
-            <p className="mb-4 text-lg text-muted-foreground">
-              Der erste Schritt ist oft der schwerste. Aber er muss kein großer sein. 
-              Ein erstes Gespräch, unverbindlich und kostenlos, reicht aus, um zu spüren, 
-              ob die Chemie stimmt und ob meine Begleitung das Richtige für Sie ist.
-            </p>
-            <p className="mb-10 text-lg text-muted-foreground">
-              Ich freue mich darauf, Sie kennenzulernen – und gemeinsam herauszufinden, 
-              was möglich ist.
+            <p className="mb-8 text-lg text-muted-foreground">
+              Am besten lernen wir uns in einem unverbindlichen Kennenlerngespräch kennen. 
+              Erzählen Sie mir, was Sie bewegt – ich höre zu.
             </p>
             <Button asChild size="lg" className="gap-2">
               <Link to="/kontakt">
                 Kennenlerngespräch buchen
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>

@@ -14,7 +14,7 @@ export default function ContactPage() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Kontaktieren Sie Roland Soder für ein Erstgespräch (60 Minuten, 60 CHF). Paarcoaching, Beziehungsbegleitung und Online Coaching für Paare in Basel. Flexible Online-Termine verfügbar.');
+    metaDescription.setAttribute('content', 'Kontaktieren Sie Roland Soder für ein kostenloses Kennenlerngespräch (30 Minuten, kostenlos). Paarcoaching, Beziehungsbegleitung und Online Coaching für Paare. Flexible Online-Termine verfügbar.');
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -27,7 +27,7 @@ export default function ContactPage() {
     // Open Graph tags
     const ogTags = [
       { property: 'og:title', content: 'Kontakt & Terminbuchung – Online Paarcoaching & Beziehungsbegleitung | PaarWeg' },
-      { property: 'og:description', content: 'Erstgespräch (60 Minuten, 60 CHF) für Paarcoaching und Beziehungsbegleitung. Online-Termine für maximale Flexibilität.' },
+      { property: 'og:description', content: 'Kostenloses Kennenlerngespräch (30 Minuten) für Paarcoaching und Beziehungsbegleitung. Online-Termine für maximale Flexibilität.' },
       { property: 'og:url', content: 'https://www.paarweg.com/kontakt' },
     ];
 
@@ -129,8 +129,8 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground text-left break-words">
-                  Buchen Sie direkt online entweder das Erstgespräch (60 Minuten - 60 CHF) 
-                  oder eine Coaching-Session (90 Minuten - 190 CHF) über meinen Buchungslink. 
+                  Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten) 
+                  oder eine Coaching-Session (90 Minuten – 190 CHF) über meinen Buchungslink. 
                   Schnell, unkompliziert und transparent.
                 </p>
                 <Button asChild size="lg" className="w-full shadow-sm">
@@ -157,7 +157,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
             <h2 className="mb-12 text-left md:text-center text-3xl font-bold tracking-tight sm:text-4xl break-words">
-              Wie läuft ein Erstgespräch ab?
+              Wie läuft das kostenlose Kennenlerngespräch ab?
             </h2>
             
             <div className="space-y-6">
@@ -205,7 +205,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="mb-2 font-semibold text-left">Das Gespräch</h3>
                       <p className="text-sm text-muted-foreground text-left break-words">
-                        Im Erstgespräch (60 Minuten, 60 CHF) klären wir Ihr Anliegen, besprechen meine Arbeitsweise 
+                        Im kostenlosen Kennenlerngespräch (30 Minuten) klären wir Ihr Anliegen, besprechen meine Arbeitsweise 
                         und schauen, ob die Chemie stimmt. Sie haben Raum für alle Ihre Fragen.
                       </p>
                     </div>
@@ -238,7 +238,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="mb-2 font-semibold text-left">Wichtig zu wissen</h3>
                   <p className="text-sm text-muted-foreground text-left break-words">
-                    Das Erstgespräch kostet 60 CHF für 60 Minuten und dient dem gegenseitigen Kennenlernen. 
+                    Das kostenlose Kennenlerngespräch dauert 30 Minuten und dient dem gegenseitigen Kennenlernen. 
                     Sie gehen keine langfristige Verpflichtung ein. Alles, was Sie mir erzählen, bleibt vertraulich.
                   </p>
                 </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                   Wie lange dauert eine Sitzung?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Das Erstgespräch dauert 60 Minuten und kostet 60 CHF. 
+                  Das kostenlose Kennenlerngespräch dauert 30 Minuten und ist für Sie kostenlos. 
                   Reguläre Coaching-Sessions dauern 90 Minuten und kosten 190 CHF. 
                   Die Dauer kann je nach Bedarf angepasst werden.
                 </AccordionContent>
@@ -304,7 +304,7 @@ export default function ContactPage() {
                   Muss ich mich langfristig verpflichten?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Nein, es gibt keine langfristige Verpflichtung. Nach dem Erstgespräch entscheiden Sie, 
+                  Nein, es gibt keine langfristige Verpflichtung. Nach dem kostenlosen Kennenlerngespräch entscheiden Sie, 
                   ob und wie Sie weitermachen möchten. Sie buchen jede Sitzung einzeln und können jederzeit pausieren oder aufhören.
                 </AccordionContent>
               </AccordionItem>
@@ -344,7 +344,7 @@ export default function ContactPage() {
               Bereit für den ersten Schritt?
             </h2>
             <p className="mb-8 text-lg text-muted-foreground break-words">
-              Buchen Sie jetzt Ihr Erstgespräch oder kontaktieren Sie mich direkt. 
+              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch oder kontaktieren Sie mich direkt. 
               Ich freue mich darauf, Sie kennenzulernen.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -354,10 +354,10 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Termin buchen
+                  Kennenlerngespräch buchen
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="shadow-sm">
+              <Button asChild variant="outline" size="lg">
                 <a href="mailto:info@paarweg.com">
                   E-Mail schreiben
                 </a>

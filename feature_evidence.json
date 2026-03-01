@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-restore-the-lernen-sie-mich-kennen-get-to-know-me-section-on-the-about-page-aboutpage-tsx-to-match-the-layout-typography-spacing-and-visual-formatting-it-had-in-the-draft-prior-to-draft-177-this-includes-restoring-any-card-layout-heading-styles-text-formatting-section-padding-margins-and-any-decorative-elements-that-were-present-before-the-most-recent-changes",
-      "featureTitle": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
+      "featureId": "feature-in-contactpage-tsx-within-the-wichtig-zu-wissen-section-remove-the-phrase-ganz-ohne-kosten-including-the-em-dash-wherever-it-appears-leaving-the-surrounding-sentence-intact",
+      "featureTitle": "In ContactPage.tsx, within the 'Wichtig zu wissen' section, remove the phrase '– ganz ohne Kosten' (including the em dash) wherever it appears, leaving the surrounding sentence intact.",
       "files": [
-        "frontend/src/pages/AboutPage.tsx"
+        "frontend/src/pages/ContactPage.tsx"
       ],
       "components": [
         "blob-storage@4.0.0",
@@ -18,6 +18,26 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-in-contactpage-tsx-within-the-termin-buchen-section-change-the-sentence-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten-kostenlos-to-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten",
+      "featureTitle": "In ContactPage.tsx, within the 'Termin buchen' section, change the sentence 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)'.",
+      "files": [
+        "frontend/src/pages/ContactPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "authorization@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

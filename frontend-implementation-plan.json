@@ -1,23 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Restore 'Get to Know Me' section format to previous draft",
+  "title": "Remove redundant cost phrases in ContactPage",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Restore the 'Lernen Sie mich kennen' section formatting on AboutPage.tsx to match the layout, typography, spacing, and visual styling from the draft prior to Draft 177",
+      "summary": "Remove the phrase '– ganz ohne Kosten' from the 'Wichtig zu wissen' section in ContactPage.tsx",
       "acceptanceCriteria": [
-        "The 'Lernen Sie mich kennen' section visually matches the layout and styling from the draft before Draft 177.",
-        "Heading style, typography, spacing, and any card or container formatting are restored.",
-        "The section content (text, structure) remains intact — only formatting is reverted.",
-        "No other sections on AboutPage.tsx are affected by this change.",
-        "The 'Wichtiger Hinweis' info box added in Draft 177 (below 'Mein Hintergrund') remains in place."
+        "The string '– ganz ohne Kosten' no longer appears anywhere in the 'Wichtig zu wissen' section of ContactPage.tsx.",
+        "The rest of the sentence reads naturally without the removed phrase.",
+        "No other text in the section is altered."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AboutPage.tsx",
+          "path": "frontend/src/pages/ContactPage.tsx",
           "operation": "modify",
-          "description": "Restore the 'Lernen Sie mich kennen' section to its previous formatting by reverting any layout, typography, spacing, padding/margin, card styling, or decorative element changes introduced in Draft 177. Keep all text content unchanged. Preserve the 'Wichtiger Hinweis' info box that was added below 'Mein Hintergrund' section. Only modify the visual presentation of the 'Lernen Sie mich kennen' section itself."
+          "description": "In the 'Wichtig zu wissen' section, locate and remove all occurrences of the phrase '– ganz ohne Kosten' (including the em dash and surrounding spaces). Ensure the surrounding sentence remains grammatically correct and natural after the removal."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Remove redundant '– kostenlos' from the Kennenlerngespräch description in the 'Termin buchen' section",
+      "acceptanceCriteria": [
+        "The parenthetical '– kostenlos' is removed from the Kennenlerngespräch description in the 'Termin buchen' section.",
+        "The sentence now reads '(30 Minuten)' without any cost qualifier inside the parentheses.",
+        "No other text in the 'Termin buchen' section is altered."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "In the 'Termin buchen' section, change the text 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)' by removing '– kostenlos' from inside the parentheses."
         }
       ]
     }

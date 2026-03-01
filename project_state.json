@@ -1,28 +1,30 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
+  "summary": "Website project with contact page updates. Removing redundant cost references from text.",
   "architectural_notes": [],
   "known_issues": [],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-restore-the-lernen-sie-mich-kennen-get-to-know-me-section-on-the-about-page-aboutpage-tsx-to-match-the-layout-typography-spacing-and-visual-formatting-it-had-in-the-draft-prior-to-draft-177-this-includes-restoring-any-card-layout-heading-styles-text-formatting-section-padding-margins-and-any-decorative-elements-that-were-present-before-the-most-recent-changes",
-      "title": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
+      "id": "feature-in-contactpage-tsx-within-the-wichtig-zu-wissen-section-remove-the-phrase-ganz-ohne-kosten-including-the-em-dash-wherever-it-appears-leaving-the-surrounding-sentence-intact",
+      "title": "In ContactPage.tsx, within the 'Wichtig zu wissen' section, remove the phrase '– ganz ohne Kosten' (including the em dash) wherever it appears, leaving the surrounding sentence intact.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    }
-  ],
-  "new_feature_requests": [
+    },
     {
-      "id": "AR-1",
-      "summary": "Format von 'Lernen Sie mich kennen' soll wie im vorherigen Entwurf sein",
-      "reqIds": [],
-      "status": "pending"
+      "id": "feature-in-contactpage-tsx-within-the-termin-buchen-section-change-the-sentence-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten-kostenlos-to-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten",
+      "title": "In ContactPage.tsx, within the 'Termin buchen' section, change the sentence 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)'.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
     }
   ],
+  "new_feature_requests": [],
+  "gameProjectType": "none",
   "projectName": "PaarWeg",
   "clarification_mode": "instant",
   "clarification_rounds": 0

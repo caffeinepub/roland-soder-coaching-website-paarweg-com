@@ -1,38 +1,54 @@
 {
   "kind": "build_request",
-  "title": "Restore 'Get to Know Me' section format to previous draft",
+  "title": "Remove redundant cost phrases in ContactPage",
   "projectName": "PaarWeg",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Restore the 'Lernen Sie mich kennen' (Get to Know Me) section on the About page (AboutPage.tsx) to match the layout, typography, spacing, and visual formatting it had in the draft prior to Draft 177. This includes restoring any card layout, heading styles, text formatting, section padding/margins, and any decorative elements that were present before the most recent changes.",
+      "text": "In ContactPage.tsx, within the 'Wichtig zu wissen' section, remove the phrase '– ganz ohne Kosten' (including the em dash) wherever it appears, leaving the surrounding sentence intact.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Das Format von \"Lernen Sie mich kennen\" muss wie im vorherigen Entwurf sein."
+          "BEi Wichtig zu wissen kann dies \" – ganz ohne Kosten\" ganz weggelassen werden."
         ]
       },
       "acceptanceCriteria": [
-        "The 'Lernen Sie mich kennen' section visually matches the layout and styling from the draft before Draft 177.",
-        "Heading style, typography, spacing, and any card or container formatting are restored.",
-        "The section content (text, structure) remains intact — only formatting is reverted.",
-        "No other sections on AboutPage.tsx are affected by this change.",
-        "The 'Wichtiger Hinweis' info box added in Draft 177 (below 'Mein Hintergrund') remains in place."
+        "The string '– ganz ohne Kosten' no longer appears anywhere in the 'Wichtig zu wissen' section of ContactPage.tsx.",
+        "The rest of the sentence reads naturally without the removed phrase.",
+        "No other text in the section is altered."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "In ContactPage.tsx, within the 'Termin buchen' section, change the sentence 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "unter \"Termin buchen\" sollte der Satz: \"Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos) \" so angepasst werden: \"Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten) \""
+        ]
+      },
+      "acceptanceCriteria": [
+        "The parenthetical '– kostenlos' is removed from the Kennenlerngespräch description in the 'Termin buchen' section.",
+        "The sentence now reads '(30 Minuten)' without any cost qualifier inside the parentheses.",
+        "No other text in the 'Termin buchen' section is altered."
       ]
     }
   ],
   "constraints": [
-    "Do not remove or reposition the 'Wichtiger Hinweis' info box that was added in the previous build.",
-    "Only modify the 'Lernen Sie mich kennen' section's formatting — do not alter content or other sections."
+    "Only modify ContactPage.tsx — no other files should be changed.",
+    "Do not alter any other text, layout, or functionality on the page."
   ],
   "nonGoals": [
-    "Changing any other sections on the About page.",
+    "Changing any other pages or components.",
     "Modifying backend logic or data models.",
-    "Altering any other pages."
+    "Updating SEO metadata or Open Graph tags."
   ],
   "imageRequirements": {
     "required": [],

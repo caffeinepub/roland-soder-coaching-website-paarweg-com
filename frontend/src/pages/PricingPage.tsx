@@ -1,13 +1,12 @@
-import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { CheckCircle2, Calendar, Euro, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import { CheckCircle2, Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
 import { useEffect } from 'react';
 
 export default function PricingPage() {
   useEffect(() => {
-    document.title = 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg Roland Soder';
+    document.title = 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg Roland Soder';
     
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
@@ -15,7 +14,7 @@ export default function PricingPage() {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF (60 Min), Coaching-Sitzungen 190 CHF (90 Min). Online-Termine für maximale Flexibilität. Jetzt buchen bei PaarWeg Roland Soder.');
+    metaDescription.setAttribute('content', 'Transparente Preise für Paarberatung und Coaching. Kostenloses Kennenlerngespräch (30 Min), Coaching-Sitzungen 190 CHF (90 Min). Online-Termine für maximale Flexibilität. Jetzt buchen bei PaarWeg Roland Soder.');
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -27,8 +26,8 @@ export default function PricingPage() {
 
     // Open Graph tags
     const ogTags = [
-      { property: 'og:title', content: 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg' },
-      { property: 'og:description', content: 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF, Coaching-Sitzungen 190 CHF. Online-Termine verfügbar.' },
+      { property: 'og:title', content: 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg' },
+      { property: 'og:description', content: 'Transparente Preise für Paarberatung und Coaching. Kostenloses Kennenlerngespräch (30 Min), Coaching-Sitzungen 190 CHF. Online-Termine verfügbar.' },
       { property: 'og:url', content: 'https://www.paarweg.com/preise' },
     ];
 
@@ -45,8 +44,8 @@ export default function PricingPage() {
     // Twitter Card tags
     const twitterTags = [
       { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:title', content: 'Preise – Paarberatung Kosten & Erstgespräch buchen | PaarWeg' },
-      { name: 'twitter:description', content: 'Transparente Preise für Paarberatung und Coaching. Erstgespräch 60 CHF, Coaching-Sitzungen 190 CHF.' },
+      { name: 'twitter:title', content: 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg' },
+      { name: 'twitter:description', content: 'Transparente Preise für Paarberatung und Coaching. Kostenloses Kennenlerngespräch (30 Min), Coaching-Sitzungen 190 CHF.' },
     ];
 
     twitterTags.forEach(({ name, content }) => {
@@ -60,12 +59,8 @@ export default function PricingPage() {
     });
   }, []);
 
-  // FAQ data structure - easily editable
+  // FAQ data structure - easily editable (first item removed)
   const faqItems = [
-    {
-      question: "Warum kostet das Erstgespräch 60 CHF?",
-      answer: "Das Erstgespräch ist eine vollwertige Coaching-Sitzung von 60 Minuten, in der wir Ihr Anliegen klären und erste Impulse setzen. Der Preis reflektiert den Wert und die Zeit, die ich für Ihre individuelle Situation aufwende."
-    },
     {
       question: "Gibt es Ermäßigungen oder Pakete?",
       answer: "Ich arbeite ohne Paketbindung, damit Sie flexibel bleiben. In besonderen Fällen (z.B. finanzielle Härte) sprechen Sie mich gerne an – wir finden gemeinsam eine Lösung."
@@ -109,13 +104,13 @@ export default function PricingPage() {
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 max-w-5xl mx-auto">
-            {/* Erstgespräch Card */}
+            {/* Kennenlerngespräch Card */}
             <Card className="border-2 border-primary/20 shadow-lg">
               <CardHeader className="text-center pb-8">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <Calendar className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl">Erstgespräch</CardTitle>
+                <CardTitle className="text-3xl">Kostenloses Kennenlerngespräch</CardTitle>
                 <p className="text-sm text-muted-foreground mt-2">
                   Lernen Sie mich kennen und klären Sie Ihr Anliegen
                 </p>
@@ -123,10 +118,9 @@ export default function PricingPage() {
               <CardContent className="space-y-6">
                 <div className="text-center">
                   <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-5xl font-bold">60</span>
-                    <span className="text-2xl font-semibold text-muted-foreground">CHF</span>
+                    <span className="text-5xl font-bold">Kostenlos</span>
                   </div>
-                  <p className="mt-2 text-sm text-muted-foreground">60 Minuten</p>
+                  <p className="mt-2 text-sm text-muted-foreground">30 Minuten</p>
                 </div>
 
                 <div className="space-y-3 pt-4">
@@ -168,7 +162,7 @@ export default function PricingPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Erstgespräch buchen
+                    Kostenloses Kennenlerngespräch buchen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -314,9 +308,9 @@ export default function PricingPage() {
                       1
                     </div>
                     <div>
-                      <h3 className="mb-2 font-semibold">Erstgespräch buchen</h3>
+                      <h3 className="mb-2 font-semibold">Kostenloses Kennenlerngespräch buchen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Buchen Sie Ihr Erstgespräch direkt über den Buchungslink oder kontaktieren Sie mich per E-Mail, Telefon oder WhatsApp. 
+                        Buchen Sie Ihr kostenloses Kennenlerngespräch direkt über den Buchungslink oder kontaktieren Sie mich per E-Mail, Telefon oder WhatsApp. 
                         Sie erhalten eine Bestätigung mit allen Details zum Video-Call.
                       </p>
                     </div>
@@ -331,10 +325,10 @@ export default function PricingPage() {
                       2
                     </div>
                     <div>
-                      <h3 className="mb-2 font-semibold">Erstgespräch durchführen</h3>
+                      <h3 className="mb-2 font-semibold">Kostenloses Kennenlerngespräch durchführen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Im Erstgespräch (60 Minuten, 60 CHF) lernen wir uns kennen, klären Ihr Anliegen und besprechen, 
-                        wie ich Sie unterstützen kann. Die Bezahlung erfolgt per Rechnung oder Zahlungslink, je nach Vereinbarung.
+                        Im kostenlosen Kennenlerngespräch (30 Minuten) lernen wir uns kennen, klären Ihr Anliegen und besprechen, 
+                        wie ich Sie unterstützen kann.
                       </p>
                     </div>
                   </div>
@@ -368,7 +362,8 @@ export default function PricingPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Bezahlung</h3>
                       <p className="text-sm text-muted-foreground">
-                        Die Bezahlung erfolgt nach jeder Sitzung per Rechnung oder Zahlungslink, je nach Vereinbarung.
+                        Die Bezahlung erfolgt per Rechnung oder Zahlungslink nach der Sitzung, je nach Vereinbarung. 
+                        Keine Vorauszahlung erforderlich.
                       </p>
                     </div>
                   </div>
@@ -379,24 +374,24 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FAQ Section - Now using Accordion for easy editing */}
+      {/* FAQ Section */}
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-              Häufige Fragen zu den Preisen
+              Häufige Fragen
             </h2>
-            <Accordion type="single" collapsible className="w-full space-y-4">
+            <Accordion type="single" collapsible className="space-y-4">
               {faqItems.map((item, index) => (
-                <AccordionItem 
-                  key={`faq-${index}`} 
+                <AccordionItem
+                  key={index}
                   value={`item-${index}`}
-                  className="border rounded-lg px-6 bg-card"
+                  className="border-2 rounded-lg px-6"
                 >
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
+                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-5">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground pb-4">
+                  <AccordionContent className="text-muted-foreground pb-5">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -407,33 +402,26 @@ export default function PricingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 py-20 md:py-28">
+      <section className="bg-primary/5 py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          <div className="mx-auto max-w-3xl text-center space-y-6">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Bereit für den ersten Schritt?
             </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              Buchen Sie jetzt Ihr Erstgespräch und investieren Sie in Ihre Beziehung. 
-              Transparent, fair und ohne versteckte Kosten.
+            <p className="text-lg text-muted-foreground">
+              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch und erfahren Sie, 
+              wie ich Sie und Ihre Beziehung unterstützen kann.
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="text-base">
-                <a
-                  href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Erstgespräch buchen
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-base">
-                <Link to="/kontakt">
-                  Fragen? Kontakt aufnehmen
-                </Link>
-              </Button>
-            </div>
+            <Button asChild size="lg" className="mt-4">
+              <a
+                href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Kennenlerngespräch buchen
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
