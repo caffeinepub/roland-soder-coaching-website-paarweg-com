@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Remove redundant cost-related phrases from the ContactPage to avoid repetition.
+**Goal:** Update all Kennenlerntermin (introductory appointment) buttons and links across the entire application to use the correct Calendly URL: `https://calendly.com/paarweg-info/paarweg-session-90-min-klon`.
 
 **Planned changes:**
-- In the "Wichtig zu wissen" section of ContactPage.tsx, remove the phrase "– ganz ohne Kosten" (including the em dash) wherever it appears.
-- In the "Termin buchen" section of ContactPage.tsx, change "(30 Minuten – kostenlos)" to "(30 Minuten)".
+- Replace all existing Calendly URLs used for intro/booking CTAs in HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx with `https://calendly.com/paarweg-info/paarweg-session-90-min-klon`
+- Update any Calendly popup widget initializations (`Calendly.initPopupWidget`) to use the new URL
+- Update any Calendly inline widget initializations or `data-url` attributes on booking/contact pages to use the new URL
 
-**User-visible outcome:** The ContactPage no longer repeats cost qualifiers redundantly; the affected sentences read more cleanly without the removed phrases.
+**User-visible outcome:** All booking and introductory appointment buttons/links across the site now open the correct Calendly session at the updated URL.

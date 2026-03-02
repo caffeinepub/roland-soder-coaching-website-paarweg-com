@@ -1,56 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Calendar, Heart, MessageCircle, Users2, CheckCircle2, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, CheckCircle, MapPin } from 'lucide-react';
+import MobileReadMore from '@/components/MobileReadMore';
+import CalendlyInlineWidget from '@/components/CalendlyInlineWidget';
 
-const GTAG_ID = 'AW-17916128725';
+const CALENDLY_URL = 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon';
 
 export default function BaselCouplesLandingPage() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-
-  // Google Tag – scoped to Basel page only
-  useEffect(() => {
-    const scriptSrc = `https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`;
-
-    // Avoid duplicate injection
-    if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-      const gtagScript = document.createElement('script');
-      gtagScript.async = true;
-      gtagScript.src = scriptSrc;
-      gtagScript.id = 'gtag-basel-script';
-      document.head.appendChild(gtagScript);
-    }
-
-    const inlineScript = document.createElement('script');
-    inlineScript.id = 'gtag-basel-inline';
-    inlineScript.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GTAG_ID}');
-    `;
-    document.head.appendChild(inlineScript);
-
-    return () => {
-      // Clean up when leaving the Basel page
-      const s1 = document.getElementById('gtag-basel-script');
-      const s2 = document.getElementById('gtag-basel-inline');
-      if (s1) s1.remove();
-      if (s2) s2.remove();
-    };
-  }, []);
+  const openCalendly = () => window.open(CALENDLY_URL, '_blank');
 
   useEffect(() => {
-    document.title = 'Online Paarberatung Basel | PaarWeg';
-    
+    document.title = 'Paarberatung Basel | PaarWeg – Paartherapie & Coaching';
+
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Professionelle Online Paarberatung für Paare in Basel. Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen.');
+    metaDescription.setAttribute('content', 'Professionelle Paarberatung in Basel und online. Jetzt kostenloses Kennenlerngespräch buchen und gemeinsam neue Wege finden.');
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -60,16 +28,14 @@ export default function BaselCouplesLandingPage() {
     }
     canonical.setAttribute('href', 'https://www.paarweg.com/paarberatung-basel');
 
-    // Open Graph tags
     const ogTags = [
-      { property: 'og:title', content: 'Online Paarberatung Basel | PaarWeg' },
-      { property: 'og:description', content: 'Professionelle Online Paarberatung für Paare in Basel. Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen.' },
+      { property: 'og:title', content: 'Paarberatung Basel – PaarWeg' },
+      { property: 'og:description', content: 'Professionelle Paarberatung in Basel. Kostenloses Kennenlerngespräch buchen.' },
       { property: 'og:url', content: 'https://www.paarweg.com/paarberatung-basel' },
       { property: 'og:type', content: 'website' },
       { property: 'og:image', content: 'https://www.paarweg.com/assets/paar_an_notebook-1.png' },
       { property: 'og:locale', content: 'de_CH' },
     ];
-
     ogTags.forEach(({ property, content }) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
@@ -79,378 +45,117 @@ export default function BaselCouplesLandingPage() {
       }
       tag.setAttribute('content', content);
     });
-  }, []);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handlePlay = () => setIsPlaying(true);
-    const handlePause = () => setIsPlaying(false);
-    const handleEnded = () => setIsPlaying(false);
-
-    video.addEventListener('play', handlePlay);
-    video.addEventListener('pause', handlePause);
-    video.addEventListener('ended', handleEnded);
-
-    return () => {
-      video.removeEventListener('play', handlePlay);
-      video.removeEventListener('pause', handlePause);
-      video.removeEventListener('ended', handleEnded);
+    // JSON-LD structured data
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Paarberatung Basel – PaarWeg",
+      "provider": {
+        "@type": "Person",
+        "name": "Roland Soder",
+      },
+      "areaServed": "Basel",
+      "serviceType": "Paarberatung",
+      "url": "https://www.paarweg.com/paarberatung-basel",
     };
-  }, []);
-
-  const togglePlayPause = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused || video.ended) {
-      if (video.ended) {
-        video.currentTime = 0;
-      }
-      video.play();
-    } else {
-      video.pause();
+    let scriptTag = document.querySelector('script[data-page="paarberatung-basel"]');
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.setAttribute('type', 'application/ld+json');
+      scriptTag.setAttribute('data-page', 'paarberatung-basel');
+      document.head.appendChild(scriptTag);
     }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-  };
+    scriptTag.textContent = JSON.stringify(structuredData);
+  }, []);
 
   return (
     <div className="w-full">
-      {/* Hero Section with Video */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-background via-muted/10 to-accent/5">
-        <div className="container mx-auto px-4 py-12 md:py-20 lg:py-24">
-          <div className="flex flex-col gap-8">
-            {/* Text Content */}
-            <div className="mx-auto max-w-4xl text-center">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Online Paarberatung Basel
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center gap-2 text-sm text-primary font-medium mb-4">
+                <MapPin className="h-4 w-4" />
+                Basel & Online
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Wieder zueinander finden
               </h1>
-              <p className="mb-4 text-xl text-muted-foreground sm:text-2xl">
-                Professionelle Unterstützung für Ihre Beziehung
-              </p>
-              <p className="mb-8 text-lg text-muted-foreground">
-                Flexibel, diskret und strukturiert – bei Konflikten, Distanz oder Kommunikationsproblemen. Online Paarberatung für Paare in Basel.
-              </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button asChild size="lg" className="text-base">
-                  <a
-                    href="https://calendly.com/paarweg-info"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Erstgespräch buchen
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-base">
-                  <a href="/">
-                    Mehr über PaarWeg
-                  </a>
-                </Button>
-              </div>
-            </div>
-
-            {/* Hero Video – portrait 4:5 (1080×1350) */}
-            <div className="mx-auto w-full" style={{ maxWidth: '540px' }}>
-              <div
-                className="relative overflow-hidden rounded-2xl shadow-2xl bg-muted"
-                style={{ aspectRatio: '4 / 5' }}
-              >
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  muted
-                  playsInline
-                  className="absolute inset-0 h-full w-full object-cover"
+              <MobileReadMore>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Professionelle Paarberatung in Basel und online. Ich begleite Paare auf ihrem Weg
+                  zu einer stärkeren, erfüllteren Beziehung.
+                </p>
+              </MobileReadMore>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  onClick={openCalendly}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
                 >
-                  <source src="/assets/PaarWeg_ad.mp4" type="video/mp4" />
-                </video>
-
-                {/* Video Controls Overlay */}
-                <div className="absolute inset-0 flex items-end justify-between p-4">
-                  {/* Play/Pause Button */}
-                  <button
-                    onClick={togglePlayPause}
-                    aria-label={isPlaying ? 'Video pausieren' : 'Video abspielen'}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-all hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60"
-                  >
-                    {isPlaying ? (
-                      <Pause className="h-5 w-5" />
-                    ) : (
-                      <Play className="h-5 w-5 translate-x-0.5" />
-                    )}
-                  </button>
-
-                  {/* Mute/Unmute Button */}
-                  <button
-                    onClick={toggleMute}
-                    aria-label={isMuted ? 'Ton einschalten' : 'Ton ausschalten'}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-all hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-white/60"
-                  >
-                    {isMuted ? (
-                      <VolumeX className="h-5 w-5" />
-                    ) : (
-                      <Volume2 className="h-5 w-5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* When Relationships Get Stuck */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-              Wenn die Beziehung feststeckt
-            </h2>
-            
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <MessageCircle className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="mb-3 text-xl font-semibold">Festgefahrene Gespräche</h3>
-                <p className="text-muted-foreground">
-                  Sie reden aneinander vorbei. Diskussionen drehen sich im Kreis. Was als Gespräch beginnt, endet im Streit oder Schweigen.
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <Heart className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="mb-3 text-xl font-semibold">Wachsende Distanz</h3>
-                <p className="text-muted-foreground">
-                  Die Nähe ist weg. Sie leben nebeneinander her, funktionieren im Alltag – aber die Verbindung fehlt.
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <Users2 className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="mb-3 text-xl font-semibold">Wiederkehrende Konflikte</h3>
-                <p className="text-muted-foreground">
-                  Bestimmte Themen lösen immer wieder Spannungen aus. Sie wissen beide, dass etwas nicht stimmt – finden aber allein keinen Weg heraus.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-12 rounded-2xl bg-muted/30 p-8 text-center">
-              <p className="text-lg text-muted-foreground">
-                Vielleicht erkennen Sie sich in einer dieser Situationen wieder. Vielleicht ist es auch etwas anderes, das Sie beschäftigt. 
-                Was auch immer es ist – Sie sind damit nicht allein. Und es gibt Wege die weiterführen.
-              </p>
-            </div>
-
-            <div className="mt-12 flex justify-center">
-              <Button asChild variant="outline" size="lg" className="text-base">
-                <a href="/">
-                  Mehr über PaarWeg
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How Online Counseling Works */}
-      <section className="bg-muted/20 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-              So funktioniert Online-Paarberatung bei PaarWeg
-            </h2>
-            
-            <div className="space-y-6">
-              <div className="flex gap-6 rounded-xl bg-background p-6 shadow-sm">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                  1
-                </div>
-                <div>
-                  <h3 className="mb-2 text-xl font-semibold">Ortsunabhängig & flexibel</h3>
-                  <p className="text-muted-foreground">
-                    Sie sind in Basel ansässig, müssen aber nirgendwo hinfahren. Die Sitzungen finden online per Videoanruf statt – 
-                    von dort, wo Sie sich wohlfühlen. Das spart Zeit und gibt Ihnen Flexibilität bei der Terminplanung.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 rounded-xl bg-background p-6 shadow-sm">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                  2
-                </div>
-                <div>
-                  <h3 className="mb-2 text-xl font-semibold">Vertraulich & geschützt</h3>
-                  <p className="text-muted-foreground">
-                    Alles, was Sie mir anvertrauen, bleibt unter uns. Sie können offen sprechen, ohne Sorge, dass etwas 
-                    nach außen dringt. Vertraulichkeit ist die Grundlage meiner Arbeit.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 rounded-xl bg-background p-6 shadow-sm">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                  3
-                </div>
-                <div>
-                  <h3 className="mb-2 text-xl font-semibold">Raum für beide Perspektiven</h3>
-                  <p className="text-muted-foreground">
-                    In der Paarberatung geht es nicht darum, wer recht hat. Es geht darum, einander wieder zu verstehen. 
-                    Beide Sichtweisen haben Platz – ohne Bewertung, ohne Druck.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-6 rounded-xl bg-background p-6 shadow-sm">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                  4
-                </div>
-                <div>
-                  <h3 className="mb-2 text-xl font-semibold">Konkrete Impulse für Ihren Alltag</h3>
-                  <p className="text-muted-foreground">
-                    Wir arbeiten nicht nur am Verstehen, sondern auch an konkreten Schritten. Kleine Veränderungen, die im 
-                    Alltag spürbar werden. Neue Wege der Kommunikation. Klarheit darüber, was Ihnen wichtig ist.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="text-base">
-                <a
-                  href="https://calendly.com/paarweg-info"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Erstgespräch buchen
+                  Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="text-base">
-                <a href="/">
-                  Mehr über PaarWeg
-                </a>
-              </Button>
+                </Button>
+              </div>
+            </div>
+            <div className="hidden lg:block">
+              <img
+                src="/assets/generated/basel-hero.dim_1200x600.jpg"
+                alt="Paarberatung Basel"
+                className="rounded-2xl shadow-xl w-full object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* PaarWeg Approach */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-              Die Arbeitsweise & Werte von PaarWeg
-            </h2>
-            
-            <div className="grid gap-8 md:grid-cols-2">
-              <div className="rounded-xl border-2 border-border bg-background p-6">
-                <h3 className="mb-3 text-xl font-semibold">Respektvoll & auf Augenhöhe</h3>
-                <p className="text-muted-foreground">
-                  Ich begegne Ihnen mit Respekt und Wertschätzung – für das, was Sie mitbringen, für Ihre Geschichte und für den Mut, 
-                  sich Unterstützung zu holen. Sie sind die Experten für Ihre Beziehung. Ich begleite Sie dabei, neue 
-                  Perspektiven zu entdecken und eigene Lösungen zu entwickeln.
-                </p>
-              </div>
+      {/* Video Section */}
+      <section className="py-12 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <video
+            src="/assets/PaarWeg_ad.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full rounded-2xl shadow-lg"
+          />
+        </div>
+      </section>
 
-              <div className="rounded-xl border-2 border-border bg-background p-6">
-                <h3 className="mb-3 text-xl font-semibold">Lösungsorientiert & reflektiert</h3>
-                <p className="text-muted-foreground">
-                  Wir schauen nicht nur auf Probleme, sondern vor allem auf Möglichkeiten. Was funktioniert bereits? 
-                  Was wollen Sie verändern? Welche Ressourcen haben Sie? Gemeinsam finden wir heraus, welche Schritte 
-                  für Sie richtig sind – passend zu Ihrer Situation.
-                </p>
+      {/* Benefits */}
+      <section className="py-16 bg-muted/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-foreground text-center mb-10">
+            Paarberatung in Basel
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              'Vor Ort in Basel oder online',
+              'Flexible Terminzeiten',
+              'Erfahrener Coach',
+              'Diskret und vertraulich',
+              'Für Paare in Basel und Umgebung',
+              'Einfache Buchung online',
+            ].map((benefit) => (
+              <div key={benefit} className="flex items-center gap-3 p-4 rounded-lg bg-card border border-border">
+                <CheckCircle className="h-5 w-5 text-primary shrink-0" />
+                <span className="text-sm text-foreground">{benefit}</span>
               </div>
-
-              <div className="rounded-xl border-2 border-border bg-background p-6">
-                <h3 className="mb-3 text-xl font-semibold">Klar & direkt</h3>
-                <p className="text-muted-foreground">
-                  Ich arbeite direkt und ehrlich. Wenn ich etwas beobachte, spreche ich es an – respektvoll, aber klar. 
-                  Manchmal braucht es einen Spiegel von außen, um Muster zu erkennen. Gleichzeitig entscheiden Sie, was 
-                  Sie damit machen. Kein Druck, keine vorgefertigten Lösungen.
-                </p>
-              </div>
-
-              <div className="rounded-xl border-2 border-border bg-background p-6">
-                <h3 className="mb-3 text-xl font-semibold">Professionell & erfahren</h3>
-                <p className="text-muted-foreground">
-                  Mit jahrelanger Erfahrung in Paarberatung und Coaching bringe ich fachliche Kompetenz 
-                  und bewährte Methoden mit. Aber wichtiger noch: echtes Interesse an Ihrer einzigartigen Situation und 
-                  Engagement, Sie auf Ihrem Weg zu unterstützen.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 rounded-2xl bg-primary/5 p-8">
-              <div className="flex gap-4">
-                <CheckCircle2 className="mt-1 h-8 w-8 shrink-0 text-primary" />
-                <div>
-                  <h3 className="mb-3 text-xl font-semibold">Mein Versprechen an Sie</h3>
-                  <p className="text-muted-foreground">
-                    Ich verspreche keine schnellen Wunder. Aber ich verspreche Ihnen einen geschützten Raum, in dem Sie gehört werden. 
-                    Einen Ort, an dem beide Perspektiven zählen. Und professionelle Begleitung auf dem Weg zu mehr Klarheit, 
-                    Nähe und gemeinsamer Entwicklung.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <Button asChild variant="outline" size="lg" className="text-base">
-                <a href="/">
-                  Mehr über PaarWeg
-                </a>
-              </Button>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-muted/20 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
-              Der erste Schritt ist oft der schwerste
-            </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              Aber er lohnt sich. Buchen Sie jetzt ein unverbindliches Erstgespräch – kostenlos, ohne Verpflichtung, 
-              und ganz bequem von Basel aus online.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="text-base">
-                <a
-                  href="https://calendly.com/paarweg-info"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Jetzt Erstgespräch buchen
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="text-base">
-                <a href="/kontakt">
-                  Kontakt aufnehmen
-                </a>
-              </Button>
-            </div>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Kostenlos · Unverbindlich · Online aus Basel
-            </p>
-          </div>
+      {/* Calendly */}
+      <section className="py-12 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
+            Jetzt Termin buchen
+          </h2>
+          <CalendlyInlineWidget url={CALENDLY_URL} />
         </div>
       </section>
     </div>

@@ -1,54 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Remove redundant cost phrases in ContactPage",
+  "title": "Update all Kennenlerntermin links/buttons to correct Calendly URL",
   "projectName": "PaarWeg",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "In ContactPage.tsx, within the 'Wichtig zu wissen' section, remove the phrase '– ganz ohne Kosten' (including the em dash) wherever it appears, leaving the surrounding sentence intact.",
+      "text": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-7"
         ],
         "quotes": [
-          "BEi Wichtig zu wissen kann dies \" – ganz ohne Kosten\" ganz weggelassen werden."
+          "Alle Links/Button die auf den Kennenlerntermin verweisen sollten hierhin verlinkt sein: https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
         ]
       },
       "acceptanceCriteria": [
-        "The string '– ganz ohne Kosten' no longer appears anywhere in the 'Wichtig zu wissen' section of ContactPage.tsx.",
-        "The rest of the sentence reads naturally without the removed phrase.",
-        "No other text in the section is altered."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "In ContactPage.tsx, within the 'Termin buchen' section, change the sentence 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)'.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "unter \"Termin buchen\" sollte der Satz: \"Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos) \" so angepasst werden: \"Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten) \""
-        ]
-      },
-      "acceptanceCriteria": [
-        "The parenthetical '– kostenlos' is removed from the Kennenlerngespräch description in the 'Termin buchen' section.",
-        "The sentence now reads '(30 Minuten)' without any cost qualifier inside the parentheses.",
-        "No other text in the 'Termin buchen' section is altered."
+        "Every button or link labeled with terms related to the introductory/free appointment (e.g., 'Kennenlerntermin', 'Erstgespräch', 'Gratisgespräch', 'Termin buchen', 'Jetzt buchen', 'Book a call', etc.) opens or navigates to https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "Calendly popup widgets (Calendly.initPopupWidget) triggered by these buttons use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "Calendly inline widgets (Calendly.initInlineWidget or data-url attributes) on ContactPage, ZurichCouplesLandingPage, BaselCouplesLandingPage, and SwissOnlineCouplesLandingPage use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "No other Calendly URLs remain hardcoded in the codebase for intro/booking CTAs",
+        "All pages compile without errors after the change"
       ]
     }
   ],
   "constraints": [
-    "Only modify ContactPage.tsx — no other files should be changed.",
-    "Do not alter any other text, layout, or functionality on the page."
+    "Do not change any other functionality, layout, or styling — only update the Calendly URLs",
+    "Do not modify files listed in frontend.immutablePaths"
   ],
   "nonGoals": [
-    "Changing any other pages or components.",
-    "Modifying backend logic or data models.",
-    "Updating SEO metadata or Open Graph tags."
+    "Adding new pages or components",
+    "Changing the visual design or copy of buttons/links",
+    "Backend changes"
   ],
   "imageRequirements": {
     "required": [],

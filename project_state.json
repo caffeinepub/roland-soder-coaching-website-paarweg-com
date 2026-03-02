@@ -1,31 +1,30 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Website project with contact page updates. Removing redundant cost references from text.",
+  "summary": "Website project (possibly 'Paarweg') where all links/buttons pointing to the introductory appointment ('Kennenlerntermin') should link to: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-in-contactpage-tsx-within-the-wichtig-zu-wissen-section-remove-the-phrase-ganz-ohne-kosten-including-the-em-dash-wherever-it-appears-leaving-the-surrounding-sentence-intact",
-      "title": "In ContactPage.tsx, within the 'Wichtig zu wissen' section, remove the phrase '– ganz ohne Kosten' (including the em dash) wherever it appears, leaving the surrounding sentence intact.",
+      "id": "feature-update-all-buttons-and-links-that-reference-the-introductory-appointment-kennenlerntermin-free-intro-call-booking-cta-across-all-pages-and-components-to-use-the-url-https-calendly-com-paarweg-info-paarweg-session-90-min-klon-this-includes-but-is-not-limited-to-homepage-tsx-contactpage-tsx-pricingpage-tsx-couplespage-tsx-menpage-tsx-womenpage-tsx-aboutpage-tsx-zurichcoupleslandingpage-tsx-baselcoupleslandingpage-tsx-swissonlinecoupleslandingpage-tsx-and-layout-tsx-any-calendly-popup-or-inline-widget-initialization-that-opens-the-intro-trial-session-should-also-use-this-url",
+      "title": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
-    },
-    {
-      "id": "feature-in-contactpage-tsx-within-the-termin-buchen-section-change-the-sentence-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten-kostenlos-to-buchen-sie-direkt-online-entweder-das-kostenlose-kennenlerngespr-ch-30-minuten",
-      "title": "In ContactPage.tsx, within the 'Termin buchen' section, change the sentence 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)'.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
     }
   ],
-  "new_feature_requests": [],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Update all links/buttons pointing to the 'Kennenlerntermin' (introductory appointment) to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
   "gameProjectType": "none",
-  "projectName": "PaarWeg",
+  "projectName": "Paarweg",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

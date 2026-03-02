@@ -1,110 +1,121 @@
-import { Outlet, Link, useLocation, useNavigate } from '@tanstack/react-router';
-import { Menu, Heart } from 'lucide-react';
+import { Link, useNavigate, useLocation, Outlet } from '@tanstack/react-router';
 import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+
+const CALENDLY_URL = 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon';
+
+const navLinks = [
+  { label: 'Startseite', path: '/' },
+  { label: 'Für Paare', path: '/paare' },
+  { label: 'Für Frauen', path: '/frauen' },
+  { label: 'Für Männer', path: '/maenner' },
+  { label: 'Über mich', path: '/ueber-mich' },
+  { label: 'Preise', path: '/preise' },
+  { label: 'Kontakt', path: '/kontakt' },
+];
 
 export default function Layout() {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Navigation items - /paarberatung-zuerich is intentionally not included (landing page only)
-  const navigation = [
-    { name: 'Startseite', href: '/' },
-    { name: 'Für Paare', href: '/paare' },
-    { name: 'Für Frauen', href: '/frauen' },
-    { name: 'Für Männer', href: '/maenner' },
-    { name: 'Über mich', href: '/ueber-mich' },
-    { name: 'Preise', href: '/preise' },
-    { name: 'Kontakt', href: '/kontakt' },
-  ];
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location.pathname]);
 
-  const isActive = (href: string) => {
-    return location.pathname === href;
-  };
-
-  // Handle navigation click with special logic for Kontakt page
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // If clicking Kontakt while already on /kontakt, reload the page
-    if (href === '/kontakt' && location.pathname === '/kontakt') {
+  const handleKontaktClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/kontakt') {
       e.preventDefault();
       window.location.reload();
     }
-    // For mobile menu, close it
-    if (mobileMenuOpen) {
-      setMobileMenuOpen(false);
-    }
   };
 
-  // Scroll to top on route change - instant scroll for mobile
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [location.pathname]);
-
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-24 md:h-28 items-center justify-between px-4 md:px-6">
-          <Link to="/" className="flex items-center space-x-3">
-            <img
-              src="/assets/PaarWeg Logo final (3).png"
-              alt="PaarWeg – Roland Soder Coaching & Beziehungsbegleitung"
-              className="h-16 w-auto md:h-18 lg:h-22"
-            />
-          </Link>
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 shrink-0">
+              <img
+                src="/assets/PaarWeg Logo final (1).png"
+                alt="PaarWeg Logo"
+                className="h-10 w-auto"
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center space-x-1 md:flex">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={`rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
-                  isActive(item.href)
-                    ? 'bg-accent text-accent-foreground'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={link.path === '/kontakt' ? handleKontaktClick : undefined}
+                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
+                  activeProps={{ className: 'px-3 py-2 text-sm font-medium text-foreground bg-muted rounded-md' }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Mobile Menu - Hamburger icon with terracotta color */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="h-12 w-12 hover:bg-accent"
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <Button
+                size="sm"
+                onClick={() => window.open(CALENDLY_URL, '_blank')}
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                <Menu className="h-7 w-7 text-primary" strokeWidth={2} />
-                <span className="sr-only">Menü öffnen</span>
+                Kennenlerngespräch buchen
               </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col space-y-4 pt-8">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className={`rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
-                      isActive(item.href)
-                        ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              className="lg:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Menü öffnen"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-t border-border bg-background">
+            <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    if (link.path === '/kontakt') handleKontaktClick(e);
+                  }}
+                  className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
+                  activeProps={{ className: 'px-3 py-2 text-sm font-medium text-foreground bg-muted rounded-md' }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-2 pb-1">
+                <Button
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    window.open(CALENDLY_URL, '_blank');
+                  }}
+                >
+                  Kennenlerngespräch buchen
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Main Content */}
@@ -113,58 +124,73 @@ export default function Layout() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-muted/30">
-        <div className="container mx-auto px-4 py-12 md:px-6">
-          <div className="grid gap-8 md:grid-cols-3">
+      <footer className="bg-muted/50 border-t border-border mt-auto">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Brand */}
             <div>
-              <div className="mb-4 flex items-center">
-                <img
-                  src="/assets/PaarWeg Logo final (3).png"
-                  alt="PaarWeg – Roland Soder Coaching & Beziehungsbegleitung"
-                  className="h-7 w-auto opacity-60"
-                />
-              </div>
-              <p className="text-sm text-muted-foreground text-left">
-                Begleitung für Paare auf dem Weg zu mehr Nähe, Verständnis und gemeinsamer Entwicklung.
+              <img
+                src="/assets/PaarWeg Logo final (1).png"
+                alt="PaarWeg Logo"
+                className="h-10 w-auto mb-3"
+              />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Professionelles Paar- und Einzelcoaching für nachhaltige Veränderung.
+              </p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Standort: Basel
               </p>
             </div>
+
+            {/* Navigation */}
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-left">Kontakt</h3>
-              <div className="space-y-1 text-sm text-left">
-                <p className="text-foreground">Tel: +41 79 770 39 25</p>
-                <p className="text-foreground break-all">E-Mail: info@paarweg.com</p>
-                <p className="text-foreground">
-                  <a
-                    href="https://wa.me/+41797703925"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
-                  >
-                    WhatsApp: +41 79 770 39 25
-                  </a>
-                </p>
-                <p className="mt-3 text-xs text-muted-foreground/70">
-                  Firmensitz: Basel
-                </p>
-              </div>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Navigation</h3>
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* Contact & Legal */}
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-left">Rechtliches</h3>
-              <nav className="flex flex-col space-y-2 text-sm text-left">
-                <Link to="/impressum" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Impressum & Datenschutz
-                </Link>
-              </nav>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Kontakt</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a href="mailto:info@paarweg.com" className="hover:text-foreground transition-colors">
+                    info@paarweg.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+41797703925" className="hover:text-foreground transition-colors">
+                    +41 79 770 39 25
+                  </a>
+                </li>
+                <li className="pt-2">
+                  <Link to="/rechtliches" className="hover:text-foreground transition-colors">
+                    Impressum & Datenschutz
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
-            <p className="flex items-center justify-center gap-1">
-              © {new Date().getFullYear()}. Built with <Heart className="h-4 w-4 fill-primary text-primary" /> using{' '}
+
+          <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+            <p>© {new Date().getFullYear()} PaarWeg – Roland Soder. Alle Rechte vorbehalten.</p>
+            <p>
+              Built with ❤️ using{' '}
               <a
-                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== 'undefined' ? window.location.hostname : 'paarweg')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium hover:text-foreground transition-colors"
+                className="underline hover:text-foreground transition-colors"
               >
                 caffeine.ai
               </a>

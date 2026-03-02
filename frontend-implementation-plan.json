@@ -1,37 +1,78 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove redundant cost phrases in ContactPage",
+  "title": "Update all Kennenlerntermin links/buttons to correct Calendly URL",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the phrase '– ganz ohne Kosten' from the 'Wichtig zu wissen' section in ContactPage.tsx",
+      "summary": "Update all introductory appointment ('Kennenlerntermin') buttons, links, and Calendly widget initializations across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
       "acceptanceCriteria": [
-        "The string '– ganz ohne Kosten' no longer appears anywhere in the 'Wichtig zu wissen' section of ContactPage.tsx.",
-        "The rest of the sentence reads naturally without the removed phrase.",
-        "No other text in the section is altered."
+        "Every button or link labeled with terms related to the introductory/free appointment (e.g., 'Kennenlerntermin', 'Erstgespräch', 'Gratisgespräch', 'Termin buchen', 'Jetzt buchen', 'Book a call', etc.) opens or navigates to https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "Calendly popup widgets (Calendly.initPopupWidget) triggered by these buttons use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "Calendly inline widgets (Calendly.initInlineWidget or data-url attributes) on ContactPage, ZurichCouplesLandingPage, BaselCouplesLandingPage, and SwissOnlineCouplesLandingPage use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+        "No other Calendly URLs remain hardcoded in the codebase for intro/booking CTAs",
+        "All pages compile without errors after the change"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ContactPage.tsx",
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "In the 'Wichtig zu wissen' section, locate and remove all occurrences of the phrase '– ganz ohne Kosten' (including the em dash and surrounding spaces). Ensure the surrounding sentence remains grammatically correct and natural after the removal."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Remove redundant '– kostenlos' from the Kennenlerngespräch description in the 'Termin buchen' section",
-      "acceptanceCriteria": [
-        "The parenthetical '– kostenlos' is removed from the Kennenlerngespräch description in the 'Termin buchen' section.",
-        "The sentence now reads '(30 Minuten)' without any cost qualifier inside the parentheses.",
-        "No other text in the 'Termin buchen' section is altered."
-      ],
-      "file_operations": [
+          "description": "Update any Calendly booking buttons or links in the hero section and feature cards to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all occurrences of old Calendly URLs with the new one."
+        },
         {
           "path": "frontend/src/pages/ContactPage.tsx",
           "operation": "modify",
-          "description": "In the 'Termin buchen' section, change the text 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten – kostenlos)' to 'Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)' by removing '– kostenlos' from inside the parentheses."
+          "description": "Update the Calendly booking section (inline widget or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter. If using buttons with Calendly.initPopupWidget, update the url parameter."
+        },
+        {
+          "path": "frontend/src/pages/PricingPage.tsx",
+          "operation": "modify",
+          "description": "Update any 'Kennenlerntermin' or free intro call booking buttons/links to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
+        },
+        {
+          "path": "frontend/src/pages/CouplesPage.tsx",
+          "operation": "modify",
+          "description": "Update any booking CTA buttons or Calendly links in the hero section or content to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
+        },
+        {
+          "path": "frontend/src/pages/MenPage.tsx",
+          "operation": "modify",
+          "description": "Update any booking CTA buttons or Calendly links targeting men to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
+        },
+        {
+          "path": "frontend/src/pages/WomenPage.tsx",
+          "operation": "modify",
+          "description": "Update the Calendly booking CTA button to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initPopupWidget, update the url parameter."
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Update any booking or contact CTA buttons/links to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
+        },
+        {
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Update the Calendly booking widget (inline widget initialization or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
+        },
+        {
+          "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Update the Calendly booking widget (inline widget initialization or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
+        },
+        {
+          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
+          "operation": "modify",
+          "description": "Update the embedded Calendly booking widget (inline widget initialization) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Update any booking CTA buttons in the header navigation (desktop or mobile) or footer to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
+        },
+        {
+          "path": "frontend/src/components/CalendlyInlineWidget.tsx",
+          "operation": "modify",
+          "description": "If this component contains Calendly widget initialization logic, update any hardcoded Calendly URLs to use https://calendly.com/paarweg-info/paarweg-session-90-min-klon as the default or prop value. Ensure the component passes the correct URL to Calendly.initInlineWidget."
         }
       ]
     }

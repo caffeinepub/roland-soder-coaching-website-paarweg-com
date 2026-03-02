@@ -3,11 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Mail, Phone, Calendar, CheckCircle2, MessageCircle } from 'lucide-react';
+import CalendlyInlineWidget from '@/components/CalendlyInlineWidget';
+
+const CALENDLY_URL = 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon';
 
 export default function ContactPage() {
   useEffect(() => {
     document.title = 'Kontakt & Terminbuchung – Online Paarcoaching & Beziehungsbegleitung | PaarWeg Roland Soder';
-    
+
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
@@ -24,13 +27,11 @@ export default function ContactPage() {
     }
     canonical.setAttribute('href', 'https://www.paarweg.com/kontakt');
 
-    // Open Graph tags
     const ogTags = [
       { property: 'og:title', content: 'Kontakt & Terminbuchung – Online Paarcoaching & Beziehungsbegleitung | PaarWeg' },
       { property: 'og:description', content: 'Kostenloses Kennenlerngespräch (30 Minuten) für Paarcoaching und Beziehungsbegleitung. Online-Termine für maximale Flexibilität.' },
       { property: 'og:url', content: 'https://www.paarweg.com/kontakt' },
     ];
-
     ogTags.forEach(({ property, content }) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
@@ -52,8 +53,8 @@ export default function ContactPage() {
               Kontakt & Terminbuchung
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl break-words">
-              Ich freue mich auf Ihre Nachricht. Gemeinsam finden wir heraus, 
-              wie ich Sie auf Ihrem Weg begleiten kann. Der erste Schritt ist oft der schwerste – 
+              Ich freue mich auf Ihre Nachricht. Gemeinsam finden wir heraus,
+              wie ich Sie auf Ihrem Weg begleiten kann. Der erste Schritt ist oft der schwerste –
               aber er lohnt sich.
             </p>
           </div>
@@ -129,13 +130,13 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground text-left break-words">
-                  Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten) 
-                  oder eine Coaching-Session (90 Minuten – 190 CHF) über meinen Buchungslink. 
+                  Buchen Sie direkt online entweder das kostenlose Kennenlerngespräch (30 Minuten)
+                  oder eine Coaching-Session (90 Minuten – 190 CHF) über meinen Buchungslink.
                   Schnell, unkompliziert und transparent.
                 </p>
                 <Button asChild size="lg" className="w-full shadow-sm">
                   <a
-                    href="https://calendly.com/paarweg-info"
+                    href={CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -143,11 +144,23 @@ export default function ContactPage() {
                   </a>
                 </Button>
                 <p className="text-sm text-muted-foreground text-left break-words">
-                  Die Gespräche finden online per Video-Call statt. 
+                  Die Gespräche finden online per Video-Call statt.
                   Sie erhalten nach der Buchung alle Details per E-Mail.
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Calendly Inline Widget Section */}
+      <section className="py-12 bg-muted/20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="mb-8 text-left md:text-center text-3xl font-bold tracking-tight sm:text-4xl break-words">
+              Direkt einen Termin buchen
+            </h2>
+            <CalendlyInlineWidget url={CALENDLY_URL} />
           </div>
         </div>
       </section>
@@ -159,7 +172,7 @@ export default function ContactPage() {
             <h2 className="mb-12 text-left md:text-center text-3xl font-bold tracking-tight sm:text-4xl break-words">
               Wie läuft das kostenlose Kennenlerngespräch ab?
             </h2>
-            
+
             <div className="space-y-6">
               <Card className="border border-border/60 shadow-sm">
                 <CardContent className="pt-6">
@@ -170,7 +183,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="mb-2 font-semibold text-left">Terminbuchung</h3>
                       <p className="text-sm text-muted-foreground text-left break-words">
-                        Sie buchen einen Termin über den Buchungslink oder schreiben mir eine E-Mail, rufen mich an 
+                        Sie buchen einen Termin über den Buchungslink oder schreiben mir eine E-Mail, rufen mich an
                         oder kontaktieren mich per WhatsApp. Ich melde mich zeitnah bei Ihnen, um einen passenden Termin zu finden.
                       </p>
                     </div>
@@ -187,8 +200,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="mb-2 font-semibold text-left">Vorbereitung</h3>
                       <p className="text-sm text-muted-foreground text-left break-words">
-                        Sie erhalten einen Link zum Video-Call. Sorgen Sie bitte für eine ruhige, ungestörte Umgebung 
-                        und prüfen Sie, sofern möglich, vorab kurz die Technik, damit wir entspannt starten können. 
+                        Sie erhalten einen Link zum Video-Call. Sorgen Sie bitte für eine ruhige, ungestörte Umgebung
+                        und prüfen Sie, sofern möglich, vorab kurz die Technik, damit wir entspannt starten können.
                         Es gibt keine Hausaufgaben – kommen Sie einfach so, wie Sie sind.
                       </p>
                     </div>
@@ -205,7 +218,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="mb-2 font-semibold text-left">Das Gespräch</h3>
                       <p className="text-sm text-muted-foreground text-left break-words">
-                        Im kostenlosen Kennenlerngespräch (30 Minuten) klären wir Ihr Anliegen, besprechen meine Arbeitsweise 
+                        Im kostenlosen Kennenlerngespräch (30 Minuten) klären wir Ihr Anliegen, besprechen meine Arbeitsweise
                         und schauen, ob die Chemie stimmt. Sie haben Raum für alle Ihre Fragen.
                       </p>
                     </div>
@@ -222,8 +235,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="mb-2 font-semibold text-left">Entscheidung</h3>
                       <p className="text-sm text-muted-foreground text-left break-words">
-                        Nach dem Gespräch entscheiden Sie in Ruhe, ob Sie mit mir arbeiten möchten. 
-                        Es gibt keinen Druck, keine Verpflichtung. Wenn es passt, vereinbaren wir weitere Termine. 
+                        Nach dem Gespräch entscheiden Sie in Ruhe, ob Sie mit mir arbeiten möchten.
+                        Es gibt keinen Druck, keine Verpflichtung. Wenn es passt, vereinbaren wir weitere Termine.
                         Wenn nicht, ist das auch völlig in Ordnung.
                       </p>
                     </div>
@@ -238,7 +251,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="mb-2 font-semibold text-left">Wichtig zu wissen</h3>
                   <p className="text-sm text-muted-foreground text-left break-words">
-                    Das kostenlose Kennenlerngespräch dauert 30 Minuten und dient dem gegenseitigen Kennenlernen. 
+                    Das kostenlose Kennenlerngespräch dauert 30 Minuten und dient dem gegenseitigen Kennenlernen.
                     Sie gehen keine langfristige Verpflichtung ein. Alles, was Sie mir erzählen, bleibt vertraulich.
                   </p>
                 </div>
@@ -255,15 +268,15 @@ export default function ContactPage() {
             <h2 className="mb-12 text-left md:text-center text-3xl font-bold tracking-tight sm:text-4xl break-words">
               Häufige Fragen
             </h2>
-            
+
             <Accordion type="single" collapsible className="w-full space-y-4">
               <AccordionItem value="item-1" className="border border-border/60 rounded-xl px-6 shadow-sm bg-card">
                 <AccordionTrigger className="text-left hover:no-underline">
                   Wie lange dauert eine Sitzung?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Das kostenlose Kennenlerngespräch dauert 30 Minuten und ist für Sie kostenlos. 
-                  Reguläre Coaching-Sessions dauern 90 Minuten und kosten 190 CHF. 
+                  Das kostenlose Kennenlerngespräch dauert 30 Minuten und ist für Sie kostenlos.
+                  Reguläre Coaching-Sessions dauern 90 Minuten und kosten 190 CHF.
                   Die Dauer kann je nach Bedarf angepasst werden.
                 </AccordionContent>
               </AccordionItem>
@@ -273,8 +286,8 @@ export default function ContactPage() {
                   Wie läuft das Online-Coaching ab?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Wir treffen uns per Video-Call über eine sichere Plattform. 
-                  Sie benötigen lediglich einen Computer, Tablet oder Smartphone mit Kamera und Mikrofon 
+                  Wir treffen uns per Video-Call über eine sichere Plattform.
+                  Sie benötigen lediglich einen Computer, Tablet oder Smartphone mit Kamera und Mikrofon
                   sowie eine stabile Internetverbindung. Den Link zum Video-Call erhalten Sie nach der Terminbuchung.
                 </AccordionContent>
               </AccordionItem>
@@ -284,7 +297,7 @@ export default function ContactPage() {
                   Kann ich einen Termin absagen oder verschieben?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Ja, Sie können Termine bis zu 12 Stunden vor dem vereinbarten Zeitpunkt kostenfrei absagen 
+                  Ja, Sie können Termine bis zu 12 Stunden vor dem vereinbarten Zeitpunkt kostenfrei absagen
                   oder verschieben. Bei kurzfristigeren Absagen wird die volle Sitzungsgebühr fällig.
                 </AccordionContent>
               </AccordionItem>
@@ -294,7 +307,7 @@ export default function ContactPage() {
                   Ist das Gespräch vertraulich?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Ja, absolut. Alles, was Sie mir erzählen, unterliegt der Schweigepflicht. 
+                  Ja, absolut. Alles, was Sie mir erzählen, unterliegt der Schweigepflicht.
                   Ihre Privatsphäre und Ihr Vertrauen haben höchste Priorität.
                 </AccordionContent>
               </AccordionItem>
@@ -304,7 +317,7 @@ export default function ContactPage() {
                   Muss ich mich langfristig verpflichten?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Nein, es gibt keine langfristige Verpflichtung. Nach dem kostenlosen Kennenlerngespräch entscheiden Sie, 
+                  Nein, es gibt keine langfristige Verpflichtung. Nach dem kostenlosen Kennenlerngespräch entscheiden Sie,
                   ob und wie Sie weitermachen möchten. Sie buchen jede Sitzung einzeln und können jederzeit pausieren oder aufhören.
                 </AccordionContent>
               </AccordionItem>
@@ -314,8 +327,8 @@ export default function ContactPage() {
                   Übernimmt die Krankenkasse die Kosten?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Coaching ist keine Psychotherapie und wird in der Regel nicht von der Krankenkasse übernommen. 
-                  Die Kosten tragen Sie selbst. Dafür sind Sie zeitlich flexibel und können sofort starten, 
+                  Coaching ist keine Psychotherapie und wird in der Regel nicht von der Krankenkasse übernommen.
+                  Die Kosten tragen Sie selbst. Dafür sind Sie zeitlich flexibel und können sofort starten,
                   ohne auf einen Therapieplatz warten zu müssen.
                 </AccordionContent>
               </AccordionItem>
@@ -325,9 +338,9 @@ export default function ContactPage() {
                   Was ist der Unterschied zwischen Coaching und Therapie?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-left break-words">
-                  Coaching richtet sich an Menschen, die keine psychische Erkrankung haben, 
-                  aber Unterstützung in einer herausfordernden Lebensphase suchen. 
-                  Es geht um Entwicklung, Klärung und konkrete Lösungen. 
+                  Coaching richtet sich an Menschen, die keine psychische Erkrankung haben,
+                  aber Unterstützung in einer herausfordernden Lebensphase suchen.
+                  Es geht um Entwicklung, Klärung und konkrete Lösungen.
                   Bei psychischen Erkrankungen empfehle ich eine Psychotherapie.
                 </AccordionContent>
               </AccordionItem>
@@ -344,13 +357,13 @@ export default function ContactPage() {
               Bereit für den ersten Schritt?
             </h2>
             <p className="mb-8 text-lg text-muted-foreground break-words">
-              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch oder kontaktieren Sie mich direkt. 
+              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch oder kontaktieren Sie mich direkt.
               Ich freue mich darauf, Sie kennenzulernen.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="shadow-md">
                 <a
-                  href="https://calendly.com/paarweg-info"
+                  href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

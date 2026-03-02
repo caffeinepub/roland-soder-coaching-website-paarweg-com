@@ -4,10 +4,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { CheckCircle2, Calendar, Clock, ArrowRight, Sparkles } from 'lucide-react';
 import { useEffect } from 'react';
 
+const CALENDLY_URL = 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon';
+
 export default function PricingPage() {
   useEffect(() => {
     document.title = 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg Roland Soder';
-    
+
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
@@ -24,13 +26,11 @@ export default function PricingPage() {
     }
     canonical.setAttribute('href', 'https://www.paarweg.com/preise');
 
-    // Open Graph tags
     const ogTags = [
       { property: 'og:title', content: 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg' },
       { property: 'og:description', content: 'Transparente Preise für Paarberatung und Coaching. Kostenloses Kennenlerngespräch (30 Min), Coaching-Sitzungen 190 CHF. Online-Termine verfügbar.' },
       { property: 'og:url', content: 'https://www.paarweg.com/preise' },
     ];
-
     ogTags.forEach(({ property, content }) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
@@ -41,13 +41,11 @@ export default function PricingPage() {
       tag.setAttribute('content', content);
     });
 
-    // Twitter Card tags
     const twitterTags = [
       { name: 'twitter:card', content: 'summary' },
       { name: 'twitter:title', content: 'Preise – Paarberatung Kosten & kostenloses Kennenlerngespräch buchen | PaarWeg' },
       { name: 'twitter:description', content: 'Transparente Preise für Paarberatung und Coaching. Kostenloses Kennenlerngespräch (30 Min), Coaching-Sitzungen 190 CHF.' },
     ];
-
     twitterTags.forEach(({ name, content }) => {
       let tag = document.querySelector(`meta[name="${name}"]`);
       if (!tag) {
@@ -59,7 +57,6 @@ export default function PricingPage() {
     });
   }, []);
 
-  // FAQ data structure - easily editable (first item removed)
   const faqItems = [
     {
       question: "Gibt es Ermäßigungen oder Pakete?",
@@ -93,7 +90,7 @@ export default function PricingPage() {
               Transparente Preise
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">
-              Klarheit von Anfang an. Keine versteckten Kosten, keine Überraschungen. 
+              Klarheit von Anfang an. Keine versteckten Kosten, keine Überraschungen.
               Investieren Sie in Ihre Beziehung mit einem fairen und transparenten Preismodell.
             </p>
           </div>
@@ -110,7 +107,7 @@ export default function PricingPage() {
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <Calendar className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle className="text-3xl">Kostenloses Kennenlerngespräch</CardTitle>
+                <CardTitle className="text-3xl">Kennenlerngespräch</CardTitle>
                 <p className="text-sm text-muted-foreground mt-2">
                   Lernen Sie mich kennen und klären Sie Ihr Anliegen
                 </p>
@@ -158,7 +155,7 @@ export default function PricingPage() {
 
                 <Button asChild size="lg" className="w-full mt-6">
                   <a
-                    href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+                    href={CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -227,7 +224,7 @@ export default function PricingPage() {
 
                 <Button asChild size="lg" className="w-full mt-6">
                   <a
-                    href="https://calendly.com/paarweg-info/erstgesprach-60-min-klon"
+                    href={CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -250,17 +247,17 @@ export default function PricingPage() {
             </h2>
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-                Coaching und Paarbegleitung sind eine Investition in Ihre Beziehung und in sich selbst. 
+                Coaching und Paarbegleitung sind eine Investition in Ihre Beziehung und in sich selbst.
                 Eine Investition in Klarheit, Verbindung und gemeinsames Wachstum.
               </p>
               <p>
-                Sie erhalten einen geschützten Raum, in dem beide Perspektiven Platz haben. 
-                Professionelle Begleitung durch einen erfahrenen systemischen Coach. 
+                Sie erhalten einen geschützten Raum, in dem beide Perspektiven Platz haben.
+                Professionelle Begleitung durch einen erfahrenen systemischen Coach.
                 Und die Möglichkeit, Ihre Beziehung bewusst zu gestalten – mit Empathie, Klarheit und Respekt.
               </p>
               <p className="font-medium text-foreground">
-                Die Preise sind transparent und fair. Es gibt keine versteckten Kosten, 
-                keine Paketbindung, keine Mindestlaufzeit. Sie entscheiden nach jeder Sitzung, 
+                Die Preise sind transparent und fair. Es gibt keine versteckten Kosten,
+                keine Paketbindung, keine Mindestlaufzeit. Sie entscheiden nach jeder Sitzung,
                 ob und wie Sie weitermachen möchten.
               </p>
             </div>
@@ -280,8 +277,8 @@ export default function PricingPage() {
                 Flexible Online-Termine
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                Alle Sitzungen finden online statt – Sie benötigen lediglich einen Computer, 
-                ein Notebook oder ein Tablet mit Kamera. Das ermöglicht maximale Flexibilität: 
+                Alle Sitzungen finden online statt – Sie benötigen lediglich einen Computer,
+                ein Notebook oder ein Tablet mit Kamera. Das ermöglicht maximale Flexibilität:
                 Sie können von zu Hause aus teilnehmen, ohne Anfahrt, zu Zeiten, die für Sie passen.
               </p>
               <p className="text-muted-foreground">
@@ -299,7 +296,7 @@ export default function PricingPage() {
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
               Buchung und Bezahlung
             </h2>
-            
+
             <div className="space-y-6">
               <Card className="border-2">
                 <CardContent className="pt-6">
@@ -310,7 +307,7 @@ export default function PricingPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Kostenloses Kennenlerngespräch buchen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Buchen Sie Ihr kostenloses Kennenlerngespräch direkt über den Buchungslink oder kontaktieren Sie mich per E-Mail, Telefon oder WhatsApp. 
+                        Buchen Sie Ihr kostenloses Kennenlerngespräch direkt über den Buchungslink oder kontaktieren Sie mich per E-Mail, Telefon oder WhatsApp.
                         Sie erhalten eine Bestätigung mit allen Details zum Video-Call.
                       </p>
                     </div>
@@ -327,7 +324,7 @@ export default function PricingPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Kostenloses Kennenlerngespräch durchführen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Im kostenlosen Kennenlerngespräch (30 Minuten) lernen wir uns kennen, klären Ihr Anliegen und besprechen, 
+                        Im kostenlosen Kennenlerngespräch (30 Minuten) lernen wir uns kennen, klären Ihr Anliegen und besprechen,
                         wie ich Sie unterstützen kann.
                       </p>
                     </div>
@@ -344,8 +341,8 @@ export default function PricingPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Weitere Sitzungen vereinbaren</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie sich für eine Zusammenarbeit entscheiden, vereinbaren wir gemeinsam 
-                        die nächsten Termine. Sie können flexibel entscheiden, wie oft und in welchem Rhythmus 
+                        Wenn Sie sich für eine Zusammenarbeit entscheiden, vereinbaren wir gemeinsam
+                        die nächsten Termine. Sie können flexibel entscheiden, wie oft und in welchem Rhythmus
                         Sie Sitzungen wahrnehmen möchten.
                       </p>
                     </div>
@@ -362,7 +359,7 @@ export default function PricingPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Bezahlung</h3>
                       <p className="text-sm text-muted-foreground">
-                        Die Bezahlung erfolgt per Rechnung oder Zahlungslink nach der Sitzung, je nach Vereinbarung. 
+                        Die Bezahlung erfolgt per Rechnung oder Zahlungslink nach der Sitzung, je nach Vereinbarung.
                         Keine Vorauszahlung erforderlich.
                       </p>
                     </div>
@@ -379,19 +376,20 @@ export default function PricingPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-              Häufige Fragen
+              Häufige Fragen zu den Preisen
             </h2>
-            <Accordion type="single" collapsible className="space-y-4">
+
+            <Accordion type="single" collapsible className="w-full space-y-4">
               {faqItems.map((item, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="border-2 rounded-lg px-6"
+                  className="border border-border/60 rounded-xl px-6 shadow-sm bg-card"
                 >
-                  <AccordionTrigger className="text-left font-semibold hover:no-underline py-5">
+                  <AccordionTrigger className="text-left hover:no-underline">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-5">
+                  <AccordionContent className="text-muted-foreground text-left">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -402,23 +400,23 @@ export default function PricingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary/5 py-20 md:py-28">
+      <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-3xl text-center space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl">
               Bereit für den ersten Schritt?
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch und erfahren Sie, 
-              wie ich Sie und Ihre Beziehung unterstützen kann.
+            <p className="mb-8 text-lg text-muted-foreground">
+              Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch.
+              Ich freue mich darauf, Sie kennenzulernen.
             </p>
-            <Button asChild size="lg" className="mt-4">
+            <Button asChild size="lg" className="shadow-md">
               <a
-                href="https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+                href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Kennenlerngespräch buchen
+                Kostenloses Kennenlerngespräch buchen
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
