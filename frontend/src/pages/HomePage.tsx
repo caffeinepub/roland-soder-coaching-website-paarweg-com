@@ -5,12 +5,10 @@ import { Heart, Lightbulb, TrendingUp, ArrowRight, Monitor } from 'lucide-react'
 import { useEffect } from 'react';
 import MobileReadMore from '@/components/MobileReadMore';
 
-const CALENDLY_URL = 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon';
-
 export default function HomePage() {
   useEffect(() => {
     document.title = 'PaarWeg – Paarcoaching & Beziehungsbegleitung für Paare, Frauen und Männer | Roland Soder';
-
+    
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
@@ -27,6 +25,7 @@ export default function HomePage() {
     }
     canonical.setAttribute('href', 'https://www.paarweg.com/');
 
+    // Open Graph tags
     const ogTags = [
       { property: 'og:title', content: 'PaarWeg – Paarcoaching & Beziehungsbegleitung | Roland Soder' },
       { property: 'og:description', content: 'Professionelles Paarcoaching, Beziehungsbegleitung und Coaching für Paare – online. Roland Soder begleitet Sie zu mehr Nähe, Klarheit und gemeinsamer Entwicklung.' },
@@ -35,6 +34,7 @@ export default function HomePage() {
       { property: 'og:image', content: 'https://www.paarweg.com/assets/PaarWeg Logo final (3).png' },
       { property: 'og:locale', content: 'de_DE' },
     ];
+
     ogTags.forEach(({ property, content }) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
@@ -45,12 +45,14 @@ export default function HomePage() {
       tag.setAttribute('content', content);
     });
 
+    // Twitter Card tags
     const twitterTags = [
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'PaarWeg – Paarcoaching & Beziehungsbegleitung | Roland Soder' },
       { name: 'twitter:description', content: 'Professionelles Paarcoaching, Beziehungsbegleitung und Coaching für Paare – online. Roland Soder begleitet Sie zu mehr Nähe, Klarheit und gemeinsamer Entwicklung.' },
       { name: 'twitter:image', content: 'https://www.paarweg.com/assets/PaarWeg Logo final (3).png' },
     ];
+
     twitterTags.forEach(({ name, content }) => {
       let tag = document.querySelector(`meta[name="${name}"]`);
       if (!tag) {
@@ -61,6 +63,7 @@ export default function HomePage() {
       tag.setAttribute('content', content);
     });
 
+    // Structured data (JSON-LD)
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -75,7 +78,26 @@ export default function HomePage() {
         "addressLocality": "Basel",
         "addressCountry": "CH"
       },
-      "description": "Professionelles Paarcoaching, Beziehungsbegleitung und Coaching für Paare – online.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.5584,
+        "longitude": 7.5733
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [],
+      "priceRange": "€€",
+      "description": "Professionelles Paarcoaching, Beziehungsbegleitung und Coaching für Paare – online. Roland Soder begleitet Sie zu mehr Nähe, Klarheit und gemeinsamer Entwicklung.",
       "areaServed": ["Basel", "Schweiz", "Deutschland"],
       "serviceType": ["Paarcoaching", "Beziehungsbegleitung", "Coaching für Paare", "Systemische Beratung", "Online Coaching Paar"]
     };
@@ -91,7 +113,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      {/* Logo and Welcome Section */}
+      {/* Logo and Welcome Section - Substantially Enlarged */}
       <section className="bg-gradient-to-b from-background via-muted/10 to-background py-24 md:py-36 lg:py-48">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-6xl text-center space-y-14 md:space-y-20 lg:space-y-24">
@@ -122,20 +144,20 @@ export default function HomePage() {
                 <MobileReadMore collapsedHeight="250px">
                   <div className="space-y-4 text-lg text-muted-foreground md:text-xl">
                     <p>
-                      Wenn die Nähe verloren gegangen ist. Wenn Gespräche zu Streit werden oder in Schweigen enden.
+                      Wenn die Nähe verloren gegangen ist. Wenn Gespräche zu Streit werden oder in Schweigen enden. 
                       Wenn Sie sich fremd geworden sind, obwohl Sie nebeneinander leben.
                     </p>
                     <p>
-                      Oder wenn Ihre Beziehung stabil ist und Sie spüren: Da ist mehr möglich.
+                      Oder wenn Ihre Beziehung stabil ist und Sie spüren: Da ist mehr möglich. 
                       Mehr Tiefe. Mehr Verbindung. Neue Impulse für gemeinsames Wachstum.
                     </p>
                     <p>
-                      Vielleicht läuft es gut – und Sie möchten es bewusst so halten. Frische Perspektiven gewinnen.
+                      Vielleicht läuft es gut – und Sie möchten es bewusst so halten. Frische Perspektiven gewinnen. 
                       Sich gegenseitig noch besser verstehen. Ihre Beziehung als Entwicklungsraum nutzen.
                     </p>
                     <p className="font-medium text-foreground">
-                      Ob in der Krise, auf dem Weg zu mehr oder in einer gesunden Beziehung, die neue Inspiration sucht –
-                      es ist Zeit innezuhalten. Nicht um aufzugeben, sondern um bewusst weiterzugehen.
+                      Ob in der Krise, auf dem Weg zu mehr oder in einer gesunden Beziehung, die neue Inspiration sucht – 
+                      es ist Zeit innezuhalten. Nicht um aufzugeben, sondern um bewusst weiterzugehen. 
                       Gemeinsam. Mit Raum für beide Perspektiven.
                     </p>
                   </div>
@@ -144,7 +166,7 @@ export default function HomePage() {
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="text-base">
                   <a
-                    href={CALENDLY_URL}
+                    href="https://calendly.com/paarweg-info"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -178,7 +200,7 @@ export default function HomePage() {
                 Flexibel und ortsunabhängig – alle Sitzungen finden online statt
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl">
-                Alle Coaching- und Beziehungsbegleitungs-Sitzungen finden online statt – Sie benötigen lediglich einen Computer,
+                Alle Coaching- und Beziehungsbegleitungs-Sitzungen finden online statt – Sie benötigen lediglich einen Computer, 
                 ein Notebook oder ein Tablet mit Kamera. Das ermöglicht volle Flexibilität – ortsunabhängig und persönlich.
               </p>
             </div>
@@ -196,18 +218,18 @@ export default function HomePage() {
             <MobileReadMore collapsedHeight="180px">
               <div className="space-y-6 text-lg text-muted-foreground">
                 <p>
-                  Eine Beziehung ist kein Zustand, den man erreicht – sie ist ein lebendiger Prozess.
+                  Eine Beziehung ist kein Zustand, den man erreicht – sie ist ein lebendiger Prozess. 
                   Sie verändert sich mit uns, fordert uns heraus, lädt uns ein zu wachsen.
                 </p>
                 <p>
-                  Manche Paare kommen in der Krise. Andere kommen, weil sie in einer stabilen Beziehung leben
-                  und neue Impulse suchen – mehr Tiefe, frische Perspektiven, bewusste Weiterentwicklung.
-                  Wieder andere wollen nicht warten, bis es schwierig wird, sondern präventiv gestalten,
+                  Manche Paare kommen in der Krise. Andere kommen, weil sie in einer stabilen Beziehung leben 
+                  und neue Impulse suchen – mehr Tiefe, frische Perspektiven, bewusste Weiterentwicklung. 
+                  Wieder andere wollen nicht warten, bis es schwierig wird, sondern präventiv gestalten, 
                   was zwischen ihnen ist.
                 </p>
                 <p className="font-medium text-foreground">
-                  Coaching und Beziehungsbegleitung sind keine Reparatur. Sie sind eine Investition.
-                  In Verbindung. In Klarheit. In ein gemeinsames Leben, das nicht nur funktioniert,
+                  Coaching und Beziehungsbegleitung sind keine Reparatur. Sie sind eine Investition. 
+                  In Verbindung. In Klarheit. In ein gemeinsames Leben, das nicht nur funktioniert, 
                   sondern erfüllt.
                 </p>
               </div>
@@ -226,20 +248,20 @@ export default function HomePage() {
             <MobileReadMore collapsedHeight="200px">
               <div className="space-y-6 text-lg text-muted-foreground">
                 <p>
-                  Jede Beziehung durchläuft Phasen der Distanz. Momente, in denen Worte fehlen oder zu viel gesagt wird.
+                  Jede Beziehung durchläuft Phasen der Distanz. Momente, in denen Worte fehlen oder zu viel gesagt wird. 
                   Zeiten, in denen man sich fragt: Wie sind wir hier gelandet?
                 </p>
                 <p>
-                  Das ist keine Ausnahme. Das ist Realität. Beziehungen sind lebendig – sie verändern sich,
-                  fordern heraus, bringen uns an Grenzen. Die Frage ist nicht, ob Krisen kommen.
+                  Das ist keine Ausnahme. Das ist Realität. Beziehungen sind lebendig – sie verändern sich, 
+                  fordern heraus, bringen uns an Grenzen. Die Frage ist nicht, ob Krisen kommen. 
                   Die Frage ist: Wie gehen wir damit um?
                 </p>
                 <p>
-                  Und auch in guten Zeiten gilt: Beziehungen brauchen Aufmerksamkeit. Reflexion.
+                  Und auch in guten Zeiten gilt: Beziehungen brauchen Aufmerksamkeit. Reflexion. 
                   Den Mut, immer wieder neu hinzuschauen und gemeinsam zu wachsen.
                 </p>
                 <p className="font-medium text-foreground">
-                  Schweigen ist eine Antwort. Rückzug ist eine Antwort. Aber es gibt auch eine andere:
+                  Schweigen ist eine Antwort. Rückzug ist eine Antwort. Aber es gibt auch eine andere: 
                   Hinschauen. Gemeinsam. Mit der Bereitschaft, etwas zu verändern oder zu vertiefen.
                 </p>
               </div>
@@ -268,8 +290,8 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-3 text-xl font-semibold">Klarheit</h3>
                 <p className="text-muted-foreground">
-                  Verstehen, was wirklich ist. Nicht was sein sollte, nicht was war – sondern was jetzt ist.
-                  Klarheit über eigene Bedürfnisse, über Muster, über das, was zwischen Ihnen steht.
+                  Verstehen, was wirklich ist. Nicht was sein sollte, nicht was war – sondern was jetzt ist. 
+                  Klarheit über eigene Bedürfnisse, über Muster, über das, was zwischen Ihnen steht. 
                   Ohne Klarheit gibt es keine Veränderung.
                 </p>
               </CardContent>
@@ -282,8 +304,8 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-3 text-xl font-semibold">Verbindung</h3>
                 <p className="text-muted-foreground">
-                  Wieder zueinander finden. Sich gesehen fühlen. Einander wirklich begegnen –
-                  nicht nur nebeneinander existieren. Verbindung entsteht nicht durch Worte allein,
+                  Wieder zueinander finden. Sich gesehen fühlen. Einander wirklich begegnen – 
+                  nicht nur nebeneinander existieren. Verbindung entsteht nicht durch Worte allein, 
                   sondern durch echte Präsenz und den Mut, verletzlich zu sein.
                 </p>
               </CardContent>
@@ -296,8 +318,8 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-3 text-xl font-semibold">Entwicklung</h3>
                 <p className="text-muted-foreground">
-                  Wachsen – als Paar und als Einzelne. Entwicklung bedeutet nicht Perfektion.
-                  Es bedeutet Bewegung. Den Mut, alte Muster zu hinterfragen und neue Wege zu gehen.
+                  Wachsen – als Paar und als Einzelne. Entwicklung bedeutet nicht Perfektion. 
+                  Es bedeutet Bewegung. Den Mut, alte Muster zu hinterfragen und neue Wege zu gehen. 
                   Gemeinsam, ohne sich selbst aufzugeben.
                 </p>
               </CardContent>
@@ -314,7 +336,7 @@ export default function HomePage() {
               Individuelle Perspektiven
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Jede Perspektive ist wichtig. Erfahren Sie mehr über die spezifischen Themen,
+              Jede Perspektive ist wichtig. Erfahren Sie mehr über die spezifischen Themen, 
               die Paare, Frauen und Männer in Beziehungen bewegen.
             </p>
           </div>
@@ -333,8 +355,8 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <h3 className="mb-4 text-2xl font-semibold">Für Paare</h3>
                 <p className="mb-6 text-muted-foreground">
-                  Wenn Sie gemeinsam wachsen möchten. Wenn Sie neue Perspektiven suchen,
-                  tiefere Verbindung aufbauen oder präventiv in Ihre Beziehung investieren wollen.
+                  Wenn Sie gemeinsam wachsen möchten. Wenn Sie neue Perspektiven suchen, 
+                  tiefere Verbindung aufbauen oder präventiv in Ihre Beziehung investieren wollen. 
                   Für Paare in jeder Phase – von der Krise bis zur bewussten Weiterentwicklung.
                 </p>
                 <Button asChild variant="outline" className="w-full">
@@ -359,9 +381,8 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <h3 className="mb-4 text-2xl font-semibold">Für Frauen</h3>
                 <p className="mb-6 text-muted-foreground">
-                  Wenn Sie als Frau Klarheit suchen – über sich selbst, über Ihre Beziehung,
-                  über das, was Sie wirklich wollen. Raum für Ihre Perspektive, Ihre Bedürfnisse,
-                  Ihre Entwicklung.
+                  Wenn Sie als Frau Klarheit suchen – über sich, über Ihre Beziehung, über das, was Sie wirklich brauchen. 
+                  Coaching für Frauen, die sich selbst besser verstehen und ihre Beziehung bewusst gestalten möchten.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/frauen">
@@ -385,8 +406,8 @@ export default function HomePage() {
               <CardContent className="p-8">
                 <h3 className="mb-4 text-2xl font-semibold">Für Männer</h3>
                 <p className="mb-6 text-muted-foreground">
-                  Wenn Sie als Mann spüren, dass etwas nicht stimmt – aber nicht wissen, wie Sie es ansprechen sollen.
-                  Raum für Ihre Sicht, Ihre Stärken, Ihre Entwicklung. Ohne Urteile.
+                  Wenn Sie als Mann Orientierung suchen – in der Beziehung, in sich selbst, im Umgang mit dem, 
+                  was Sie bewegt. Coaching für Männer, die bereit sind, hinzuschauen und Verantwortung zu übernehmen.
                 </p>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/maenner">
@@ -400,27 +421,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 py-20 md:py-28">
+      {/* CTA Section */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl text-center space-y-8">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Bereit für den nächsten Schritt?
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Bereit für den ersten Schritt?
             </h2>
-            <p className="text-lg text-muted-foreground md:text-xl">
-              Buchen Sie ein kostenloses Kennenlerngespräch. Wir klären gemeinsam,
-              ob und wie ich Sie auf Ihrem Weg begleiten kann.
+            <p className="text-lg text-muted-foreground">
+              Ein unverbindliches Kennenlerngespräch – um zu spüren, ob der Weg gemeinsam passt. 
+              Kein Druck. Keine Verpflichtung. Nur ein offenes Gespräch.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="text-base">
                 <a
-                  href={CALENDLY_URL}
+                  href="https://calendly.com/paarweg-info"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="text-base">
+                <Link to="/kontakt">
+                  Kontakt aufnehmen
+                </Link>
               </Button>
             </div>
           </div>

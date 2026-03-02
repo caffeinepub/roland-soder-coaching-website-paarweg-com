@@ -1,78 +1,33 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update all Kennenlerntermin links/buttons to correct Calendly URL",
+  "title": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Update all introductory appointment ('Kennenlerntermin') buttons, links, and Calendly widget initializations across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+      "summary": "Apply horizontal centering to the topmost (hero) section of SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage in desktop view, matching the centering style used in lower sections on these pages.",
       "acceptanceCriteria": [
-        "Every button or link labeled with terms related to the introductory/free appointment (e.g., 'Kennenlerntermin', 'Erstgespräch', 'Gratisgespräch', 'Termin buchen', 'Jetzt buchen', 'Book a call', etc.) opens or navigates to https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "Calendly popup widgets (Calendly.initPopupWidget) triggered by these buttons use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "Calendly inline widgets (Calendly.initInlineWidget or data-url attributes) on ContactPage, ZurichCouplesLandingPage, BaselCouplesLandingPage, and SwissOnlineCouplesLandingPage use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "No other Calendly URLs remain hardcoded in the codebase for intro/booking CTAs",
-        "All pages compile without errors after the change"
+        "On desktop viewport widths (≥ 1024px), the topmost section of SwissOnlineCouplesLandingPage is horizontally centered.",
+        "On desktop viewport widths (≥ 1024px), the topmost section of BaselCouplesLandingPage is horizontally centered.",
+        "On desktop viewport widths (≥ 1024px), the topmost section of ZurichCouplesLandingPage is horizontally centered.",
+        "The centering style matches the layout style used in the lower sections of these same pages.",
+        "Mobile layout is not affected by this change."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/HomePage.tsx",
+          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Update any Calendly booking buttons or links in the hero section and feature cards to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all occurrences of old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/pages/ContactPage.tsx",
-          "operation": "modify",
-          "description": "Update the Calendly booking section (inline widget or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter. If using buttons with Calendly.initPopupWidget, update the url parameter."
-        },
-        {
-          "path": "frontend/src/pages/PricingPage.tsx",
-          "operation": "modify",
-          "description": "Update any 'Kennenlerntermin' or free intro call booking buttons/links to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/pages/CouplesPage.tsx",
-          "operation": "modify",
-          "description": "Update any booking CTA buttons or Calendly links in the hero section or content to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/pages/MenPage.tsx",
-          "operation": "modify",
-          "description": "Update any booking CTA buttons or Calendly links targeting men to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/pages/WomenPage.tsx",
-          "operation": "modify",
-          "description": "Update the Calendly booking CTA button to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initPopupWidget, update the url parameter."
-        },
-        {
-          "path": "frontend/src/pages/AboutPage.tsx",
-          "operation": "modify",
-          "description": "Update any booking or contact CTA buttons/links to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
-          "operation": "modify",
-          "description": "Update the Calendly booking widget (inline widget initialization or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
+          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
         },
         {
           "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Update the Calendly booking widget (inline widget initialization or CTA buttons) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
+          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
         },
         {
-          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
+          "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Update the embedded Calendly booking widget (inline widget initialization) to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. If using Calendly.initInlineWidget, update the url parameter in the options object."
-        },
-        {
-          "path": "frontend/src/components/Layout.tsx",
-          "operation": "modify",
-          "description": "Update any booking CTA buttons in the header navigation (desktop or mobile) or footer to use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon. Replace all old Calendly URLs with the new one."
-        },
-        {
-          "path": "frontend/src/components/CalendlyInlineWidget.tsx",
-          "operation": "modify",
-          "description": "If this component contains Calendly widget initialization logic, update any hardcoded Calendly URLs to use https://calendly.com/paarweg-info/paarweg-session-90-min-klon as the default or prop value. Ensure the component passes the correct URL to Calendly.initInlineWidget."
+          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
         }
       ]
     }

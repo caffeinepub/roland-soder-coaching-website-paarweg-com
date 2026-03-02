@@ -2,20 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-all-buttons-and-links-that-reference-the-introductory-appointment-kennenlerntermin-free-intro-call-booking-cta-across-all-pages-and-components-to-use-the-url-https-calendly-com-paarweg-info-paarweg-session-90-min-klon-this-includes-but-is-not-limited-to-homepage-tsx-contactpage-tsx-pricingpage-tsx-couplespage-tsx-menpage-tsx-womenpage-tsx-aboutpage-tsx-zurichcoupleslandingpage-tsx-baselcoupleslandingpage-tsx-swissonlinecoupleslandingpage-tsx-and-layout-tsx-any-calendly-popup-or-inline-widget-initialization-that-opens-the-intro-trial-session-should-also-use-this-url",
-      "featureTitle": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
+      "featureId": "feature-on-the-swissonlinecoupleslandingpage-baselcoupleslandingpage-and-zurichcoupleslandingpage-ensure-the-topmost-section-hero-header-section-is-horizontally-centered-in-desktop-view-consistent-with-the-centering-applied-to-lower-sections-on-these-pages",
+      "featureTitle": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
       "files": [
-        "frontend/src/components/CalendlyInlineWidget.tsx",
-        "frontend/src/components/Layout.tsx",
-        "frontend/src/pages/AboutPage.tsx",
         "frontend/src/pages/BaselCouplesLandingPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/CouplesPage.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/pages/MenPage.tsx",
-        "frontend/src/pages/PricingPage.tsx",
         "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-        "frontend/src/pages/WomenPage.tsx",
         "frontend/src/pages/ZurichCouplesLandingPage.tsx"
       ],
       "components": [

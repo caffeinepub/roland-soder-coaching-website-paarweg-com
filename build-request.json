@@ -1,38 +1,37 @@
 {
   "kind": "build_request",
-  "title": "Update all Kennenlerntermin links/buttons to correct Calendly URL",
-  "projectName": "PaarWeg",
+  "title": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
+      "text": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-7"
+          "msg-4"
         ],
         "quotes": [
-          "Alle Links/Button die auf den Kennenlerntermin verweisen sollten hierhin verlinkt sein: https://calendly.com/paarweg-info/paarweg-session-90-min-klon"
+          "Auf der Schweiz, Basel und Zürich Seite muss der oberste Abschnitt ebenfalls zentriert sein in der Desktop ansicht"
         ]
       },
       "acceptanceCriteria": [
-        "Every button or link labeled with terms related to the introductory/free appointment (e.g., 'Kennenlerntermin', 'Erstgespräch', 'Gratisgespräch', 'Termin buchen', 'Jetzt buchen', 'Book a call', etc.) opens or navigates to https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "Calendly popup widgets (Calendly.initPopupWidget) triggered by these buttons use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "Calendly inline widgets (Calendly.initInlineWidget or data-url attributes) on ContactPage, ZurichCouplesLandingPage, BaselCouplesLandingPage, and SwissOnlineCouplesLandingPage use the URL https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
-        "No other Calendly URLs remain hardcoded in the codebase for intro/booking CTAs",
-        "All pages compile without errors after the change"
+        "On desktop viewport widths (≥ 1024px), the topmost section of SwissOnlineCouplesLandingPage is horizontally centered.",
+        "On desktop viewport widths (≥ 1024px), the topmost section of BaselCouplesLandingPage is horizontally centered.",
+        "On desktop viewport widths (≥ 1024px), the topmost section of ZurichCouplesLandingPage is horizontally centered.",
+        "The centering style matches the layout style used in the lower sections of these same pages.",
+        "Mobile layout is not affected by this change."
       ]
     }
   ],
   "constraints": [
-    "Do not change any other functionality, layout, or styling — only update the Calendly URLs",
-    "Do not modify files listed in frontend.immutablePaths"
+    "Do not change the mobile layout of any page.",
+    "Do not alter the content or structure of the top sections — only apply centering styles."
   ],
   "nonGoals": [
-    "Adding new pages or components",
-    "Changing the visual design or copy of buttons/links",
-    "Backend changes"
+    "Centering sections on any other pages (HomePage, AboutPage, CouplesPage, etc.)",
+    "Changes to lower sections on the Schweiz, Basel, or Zürich pages",
+    "Any backend changes"
   ],
   "imageRequirements": {
     "required": [],

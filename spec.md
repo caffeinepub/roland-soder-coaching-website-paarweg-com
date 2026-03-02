@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Update all Kennenlerntermin (introductory appointment) buttons and links across the entire application to use the correct Calendly URL: `https://calendly.com/paarweg-info/paarweg-session-90-min-klon`.
+**Goal:** Horizontally center the top/hero section on the Schweiz, Basel, and Zürich landing pages in desktop view, matching the centering already applied to the lower sections of those pages.
 
 **Planned changes:**
-- Replace all existing Calendly URLs used for intro/booking CTAs in HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx with `https://calendly.com/paarweg-info/paarweg-session-90-min-klon`
-- Update any Calendly popup widget initializations (`Calendly.initPopupWidget`) to use the new URL
-- Update any Calendly inline widget initializations or `data-url` attributes on booking/contact pages to use the new URL
+- Apply horizontal centering styles to the topmost (hero/header) section of `SwissOnlineCouplesLandingPage` for desktop viewports (≥ 1024px)
+- Apply horizontal centering styles to the topmost (hero/header) section of `BaselCouplesLandingPage` for desktop viewports (≥ 1024px)
+- Apply horizontal centering styles to the topmost (hero/header) section of `ZurichCouplesLandingPage` for desktop viewports (≥ 1024px)
+- Leave mobile layout unchanged on all three pages
 
-**User-visible outcome:** All booking and introductory appointment buttons/links across the site now open the correct Calendly session at the updated URL.
+**User-visible outcome:** On desktop, the top section of the Schweiz, Basel, and Zürich landing pages is centered consistently with the rest of the page content.

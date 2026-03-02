@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-03-02T15:16:26.037Z",
+  "generatedAt": "2026-03-02T18:50:45.791Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,35 +12,17 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
+        "summary": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/pages/PricingPage.tsx",
-          "frontend/src/pages/CouplesPage.tsx",
-          "frontend/src/pages/MenPage.tsx",
-          "frontend/src/pages/WomenPage.tsx",
-          "frontend/src/pages/AboutPage.tsx",
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx",
-          "frontend/src/pages/BaselCouplesLandingPage.tsx",
           "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/components/CalendlyInlineWidget.tsx"
+          "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/pages/PricingPage.tsx",
-          "frontend/src/pages/CouplesPage.tsx",
-          "frontend/src/pages/MenPage.tsx",
-          "frontend/src/pages/WomenPage.tsx",
-          "frontend/src/pages/AboutPage.tsx",
-          "frontend/src/pages/ZurichCouplesLandingPage.tsx",
-          "frontend/src/pages/BaselCouplesLandingPage.tsx",
           "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/components/CalendlyInlineWidget.tsx"
+          "frontend/src/pages/BaselCouplesLandingPage.tsx",
+          "frontend/src/pages/ZurichCouplesLandingPage.tsx"
         ]
       }
     ]
@@ -50,17 +32,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/CalendlyInlineWidget.tsx",
-    "frontend/src/components/Layout.tsx",
-    "frontend/src/pages/AboutPage.tsx",
     "frontend/src/pages/BaselCouplesLandingPage.tsx",
-    "frontend/src/pages/ContactPage.tsx",
-    "frontend/src/pages/CouplesPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/src/pages/MenPage.tsx",
-    "frontend/src/pages/PricingPage.tsx",
     "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-    "frontend/src/pages/WomenPage.tsx",
     "frontend/src/pages/ZurichCouplesLandingPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",

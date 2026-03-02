@@ -1,24 +1,27 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-02T15:16:26.032Z",
-  "summary": "The diff implements REQ-1 comprehensively. All specified files (HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, Layout.tsx) define CALENDLY_URL as 'https://calendly.com/paarweg-info/paarweg-session-90-min-klon' and use it for all booking CTAs. Calendly inline widgets via CalendlyInlineWidget component also use this URL. No missing requirements or hallucinated features were identified.",
-  "missing_requirements": [],
+  "generatedAt": "2026-03-02T18:50:45.789Z",
+  "summary": "The diff shows modifications to the three target landing pages (BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, ZurichCouplesLandingPage.tsx) and supporting files, but the file contents are truncated and do not reveal the actual JSX/CSS changes to the top section. The project_state.json marks REQ-1 as 'pending', suggesting the centering implementation may not have been applied. There is no visible evidence of centering styles being added to the hero/top sections of any of the three pages.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
+      "reason": "The diff for all three page files is truncated and does not show any centering styles applied to the top section. The project_state.json explicitly marks the related feature request (AR-2) as 'pending', indicating the centering was not implemented. No CSS or Tailwind class evidence of desktop-only centering is visible in the diff.",
+      "evidence": [
+        "frontend/src/pages/BaselCouplesLandingPage.tsx",
+        "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
+        "frontend/src/pages/ZurichCouplesLandingPage.tsx",
+        "project_state.json"
+      ]
+    }
+  ],
   "hallucinated_features": [],
-  "confidence": 0.92,
+  "confidence": 0.6,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/CalendlyInlineWidget.tsx",
-    "frontend/src/components/Layout.tsx",
-    "frontend/src/pages/AboutPage.tsx",
     "frontend/src/pages/BaselCouplesLandingPage.tsx",
-    "frontend/src/pages/ContactPage.tsx",
-    "frontend/src/pages/CouplesPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/src/pages/MenPage.tsx",
-    "frontend/src/pages/PricingPage.tsx",
     "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-    "frontend/src/pages/WomenPage.tsx",
     "frontend/src/pages/ZurichCouplesLandingPage.tsx",
     "project_state.json"
   ]

@@ -1,14 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Website project (possibly 'Paarweg') where all links/buttons pointing to the introductory appointment ('Kennenlerntermin') should link to: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+  "summary": "Web project with location-specific pages (Schweiz, Basel, Zürich). Working on layout fixes including centering sections in desktop view.",
   "architectural_notes": [],
   "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-update-all-buttons-and-links-that-reference-the-introductory-appointment-kennenlerntermin-free-intro-call-booking-cta-across-all-pages-and-components-to-use-the-url-https-calendly-com-paarweg-info-paarweg-session-90-min-klon-this-includes-but-is-not-limited-to-homepage-tsx-contactpage-tsx-pricingpage-tsx-couplespage-tsx-menpage-tsx-womenpage-tsx-aboutpage-tsx-zurichcoupleslandingpage-tsx-baselcoupleslandingpage-tsx-swissonlinecoupleslandingpage-tsx-and-layout-tsx-any-calendly-popup-or-inline-widget-initialization-that-opens-the-intro-trial-session-should-also-use-this-url",
-      "title": "Update all buttons and links that reference the introductory appointment ('Kennenlerntermin' / free intro call / booking CTA) across all pages and components to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon. This includes but is not limited to: HomePage.tsx, ContactPage.tsx, PricingPage.tsx, CouplesPage.tsx, MenPage.tsx, WomenPage.tsx, AboutPage.tsx, ZurichCouplesLandingPage.tsx, BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, and Layout.tsx. Any Calendly popup or inline widget initialization that opens the intro/trial session should also use this URL.",
+      "id": "feature-on-the-swissonlinecoupleslandingpage-baselcoupleslandingpage-and-zurichcoupleslandingpage-ensure-the-topmost-section-hero-header-section-is-horizontally-centered-in-desktop-view-consistent-with-the-centering-applied-to-lower-sections-on-these-pages",
+      "title": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
       "reqIds": [
         "REQ-1"
       ],
@@ -18,13 +18,13 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update all links/buttons pointing to the 'Kennenlerntermin' (introductory appointment) to use the URL: https://calendly.com/paarweg-info/paarweg-session-90-min-klon",
+      "summary": "Center the top section on Schweiz, Basel, and Zürich pages in desktop view",
       "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Paarweg",
+  "projectName": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
