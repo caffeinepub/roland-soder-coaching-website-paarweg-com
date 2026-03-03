@@ -120,13 +120,16 @@ export default function ZurichCouplesLandingPage() {
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">Paarberatung Zürich</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-5">
-              Wieder zueinander finden
+              Klarheit für Ihre Partnerschaft gewinnen
             </h1>
             <p className="text-lg text-muted-foreground mb-4">
-              Viele Paare stehen irgendwann an einem Punkt, wo Gespräche eskalieren, Schweigen überwiegt oder die Verbindung verloren gegangen scheint.
+              Viele Paare stehen irgendwann an einem Punkt, an dem Gespräche eskalieren, Schweigen überwiegt oder die Verbindung unsicher geworden ist.
+            </p>
+            <p className="text-lg text-muted-foreground mb-4">
+              In dieser Phase geht es nicht immer darum, etwas „wiederherzustellen", sondern darum, Klarheit zu gewinnen.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Als erfahrener Paarberatungscoach begleite ich Sie dabei, wieder eine tragfähige Verbindung aufzubauen – respektvoll, lösungsorientiert und auf Augenhöhe.
+              Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung für Ihren weiteren Weg zu treffen – respektvoll, strukturiert und auf Augenhöhe.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button size="lg" className="text-base px-8" asChild>
@@ -254,7 +257,6 @@ export default function ZurichCouplesLandingPage() {
               'Erfahrener Coach mit fundierter Ausbildung',
               'Wertschätzender, neutraler Umgang mit beiden Partnern',
               'Klare Struktur und lösungsorientiertes Vorgehen',
-              'Flexible Termine – auch online möglich',
               'Kostenloses Kennenlerngespräch ohne Verpflichtung',
               'Diskretion und professionelle Schweigepflicht',
             ].map((item, i) => (

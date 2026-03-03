@@ -1,37 +1,57 @@
 {
   "kind": "build_request",
-  "title": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
+  "title": "Update 'wieder zueinander finden' section text on Basel and Zürich landing pages",
+  "projectName": "PaarWeg",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
+      "text": "On the Basel couples landing page (BaselCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the following content. Heading: 'Klarheit fuer Ihre Partnerschaft gewinnen'. Body paragraph 1: 'Viele Paare stehen irgendwann an einem Punkt, an dem Gespraeche eskalieren, Schweigen ueberwiegt oder die Verbindung unsicher geworden ist.' Body paragraph 2: 'In dieser Phase geht es nicht immer darum, etwas wiederherzustellen, sondern darum, Klarheit zu gewinnen.' Body paragraph 3: 'Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung fuer Ihren weiteren Weg zu treffen - respektvoll, strukturiert und auf Augenhoehe.' Use the original German special characters (umlauts, guillemets) as provided by the user in the actual file content.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Auf der Schweiz, Basel und Zürich Seite muss der oberste Abschnitt ebenfalls zentriert sein in der Desktop ansicht"
+          "Den oberen Text (Abschnitt: wieder zueinander finden) auf der Basel und Zuerich Seite moechte ich folgendermassen (inklusive Ueberschrift) abaendern",
+          "Klarheit fuer Ihre Partnerschaft gewinnen"
         ]
       },
       "acceptanceCriteria": [
-        "On desktop viewport widths (≥ 1024px), the topmost section of SwissOnlineCouplesLandingPage is horizontally centered.",
-        "On desktop viewport widths (≥ 1024px), the topmost section of BaselCouplesLandingPage is horizontally centered.",
-        "On desktop viewport widths (≥ 1024px), the topmost section of ZurichCouplesLandingPage is horizontally centered.",
-        "The centering style matches the layout style used in the lower sections of these same pages.",
-        "Mobile layout is not affected by this change."
+        "The section heading on the Basel page reads exactly 'Klarheit fuer Ihre Partnerschaft gewinnen' (with correct German umlaut)",
+        "The body text on the Basel page matches the three specified paragraphs",
+        "The typo 'Entscheidungj' from the user message is corrected to 'Entscheidung' in the final rendered text",
+        "No other sections on the Basel page are modified"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "On the Zuerich couples landing page (ZurichCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the identical content described in REQ-1.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Den oberen Text (Abschnitt: wieder zueinander finden) auf der Basel und Zuerich Seite moechte ich folgendermassen (inklusive Ueberschrift) abaendern"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The section heading on the Zuerich page reads exactly 'Klarheit fuer Ihre Partnerschaft gewinnen' (with correct German umlaut)",
+        "The body text on the Zuerich page matches the three specified paragraphs",
+        "The typo 'Entscheidungj' is corrected to 'Entscheidung' in the final rendered text",
+        "No other sections on the Zuerich page are modified"
       ]
     }
   ],
   "constraints": [
-    "Do not change the mobile layout of any page.",
-    "Do not alter the content or structure of the top sections — only apply centering styles."
+    "Only modify the specified upper text section on the Basel and Zuerich pages, do not alter any other sections or pages",
+    "Do not change layout, styling, or component structure, only the text content"
   ],
   "nonGoals": [
-    "Centering sections on any other pages (HomePage, AboutPage, CouplesPage, etc.)",
-    "Changes to lower sections on the Schweiz, Basel, or Zürich pages",
-    "Any backend changes"
+    "Updating the SwissOnlineCouplesLandingPage or any other page",
+    "Changing section structure, styling, or surrounding UI elements",
+    "Backend changes"
   ],
   "imageRequirements": {
     "required": [],

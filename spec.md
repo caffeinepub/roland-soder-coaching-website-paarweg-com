@@ -1,12 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Horizontally center the top/hero section on the Schweiz, Basel, and Zürich landing pages in desktop view, matching the centering already applied to the lower sections of those pages.
+**Goal:** Update the text content of the upper "wieder zueinander finden" section on the Basel and Zürich couples landing pages.
 
 **Planned changes:**
-- Apply horizontal centering styles to the topmost (hero/header) section of `SwissOnlineCouplesLandingPage` for desktop viewports (≥ 1024px)
-- Apply horizontal centering styles to the topmost (hero/header) section of `BaselCouplesLandingPage` for desktop viewports (≥ 1024px)
-- Apply horizontal centering styles to the topmost (hero/header) section of `ZurichCouplesLandingPage` for desktop viewports (≥ 1024px)
-- Leave mobile layout unchanged on all three pages
+- On `BaselCouplesLandingPage.tsx`, replace the heading and body text of the upper "wieder zueinander finden" section with the new heading "Klarheit für Ihre Partnerschaft gewinnen" and three new body paragraphs
+- On `ZurichCouplesLandingPage.tsx`, apply the identical heading and body text changes as above
 
-**User-visible outcome:** On desktop, the top section of the Schweiz, Basel, and Zürich landing pages is centered consistently with the rest of the page content.
+**User-visible outcome:** Visitors to the Basel and Zürich landing pages will see the updated section heading and three new body paragraphs describing how the coach helps couples gain clarity about their partnership.

@@ -1,27 +1,33 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-03-02T18:50:45.789Z",
-  "summary": "The diff shows modifications to the three target landing pages (BaselCouplesLandingPage.tsx, SwissOnlineCouplesLandingPage.tsx, ZurichCouplesLandingPage.tsx) and supporting files, but the file contents are truncated and do not reveal the actual JSX/CSS changes to the top section. The project_state.json marks REQ-1 as 'pending', suggesting the centering implementation may not have been applied. There is no visible evidence of centering styles being added to the hero/top sections of any of the three pages.",
+  "generatedAt": "2026-03-03T07:03:00.888Z",
+  "summary": "The diff shows modifications to BaselCouplesLandingPage.tsx and ZurichCouplesLandingPage.tsx, but the actual content of the 'wieder zueinander finden' section text changes is not visible in the truncated diff. The truncated portions show only boilerplate/setup code (imports, SEO meta tags, Google Tag scripts, video event listeners) and do not include the JSX render section where the heading and body paragraphs would appear. It is therefore impossible to confirm whether the required text replacements were actually implemented. The project_state.json still lists AR-2 and AR-3 as 'pending', which further suggests the changes may not have been applied.",
   "missing_requirements": [
     {
       "id": "REQ-1",
-      "requirement": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
-      "reason": "The diff for all three page files is truncated and does not show any centering styles applied to the top section. The project_state.json explicitly marks the related feature request (AR-2) as 'pending', indicating the centering was not implemented. No CSS or Tailwind class evidence of desktop-only centering is visible in the diff.",
+      "requirement": "On the Basel couples landing page, replace the heading and body text of the upper 'wieder zueinander finden' section with the specified content (heading: 'Klarheit fuer Ihre Partnerschaft gewinnen', three specified body paragraphs with correct German umlauts).",
+      "reason": "The diff for BaselCouplesLandingPage.tsx is truncated before the JSX render/return section where the heading and paragraph text would appear. The project_state.json shows AR-2 (REQ-1) still as 'pending'. There is no visible evidence that the text was changed.",
       "evidence": [
         "frontend/src/pages/BaselCouplesLandingPage.tsx",
-        "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
+        "project_state.json"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "On the Zuerich couples landing page, replace the heading and body text of the upper 'wieder zueinander finden' section with the identical content as REQ-1.",
+      "reason": "The diff for ZurichCouplesLandingPage.tsx is truncated before the JSX render/return section where the heading and paragraph text would appear. The project_state.json shows AR-3 (REQ-2) still as 'pending'. There is no visible evidence that the text was changed.",
+      "evidence": [
         "frontend/src/pages/ZurichCouplesLandingPage.tsx",
         "project_state.json"
       ]
     }
   ],
   "hallucinated_features": [],
-  "confidence": 0.6,
+  "confidence": 0.4,
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/src/pages/BaselCouplesLandingPage.tsx",
-    "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
     "frontend/src/pages/ZurichCouplesLandingPage.tsx",
     "project_state.json"
   ]

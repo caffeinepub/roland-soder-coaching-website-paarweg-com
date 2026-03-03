@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-on-the-swissonlinecoupleslandingpage-baselcoupleslandingpage-and-zurichcoupleslandingpage-ensure-the-topmost-section-hero-header-section-is-horizontally-centered-in-desktop-view-consistent-with-the-centering-applied-to-lower-sections-on-these-pages",
-      "featureTitle": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
+      "featureId": "feature-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-replace-the-heading-and-body-text-of-the-upper-wieder-zueinander-finden-section-with-the-following-content-heading-klarheit-fuer-ihre-partnerschaft-gewinnen-body-paragraph-1-viele-paare-stehen-irgendwann-an-einem-punkt-an-dem-gespraeche-eskalieren-schweigen-ueberwiegt-oder-die-verbindung-unsicher-geworden-ist-body-paragraph-2-in-dieser-phase-geht-es-nicht-immer-darum-etwas-wiederherzustellen-sondern-darum-klarheit-zu-gewinnen-body-paragraph-3-als-erfahrener-paarberatungscoach-begleite-ich-sie-dabei-ihre-situation-offen-zu-betrachten-muster-zu-verstehen-und-eine-bewusste-entscheidung-fuer-ihren-weiteren-weg-zu-treffen-respektvoll-strukturiert-und-auf-augenhoehe-use-the-original-german-special-characters-umlauts-guillemets-as-provided-by-the-user-in-the-actual-file-content",
+      "featureTitle": "On the Basel couples landing page (BaselCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the following content. Heading: 'Klarheit fuer Ihre Partnerschaft gewinnen'. Body paragraph 1: 'Viele Paare stehen irgendwann an einem Punkt, an dem Gespraeche eskalieren, Schweigen ueberwiegt oder die Verbindung unsicher geworden ist.' Body paragraph 2: 'In dieser Phase geht es nicht immer darum, etwas wiederherzustellen, sondern darum, Klarheit zu gewinnen.' Body paragraph 3: 'Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung fuer Ihren weiteren Weg zu treffen - respektvoll, strukturiert und auf Augenhoehe.' Use the original German special characters (umlauts, guillemets) as provided by the user in the actual file content.",
       "files": [
-        "frontend/src/pages/BaselCouplesLandingPage.tsx",
-        "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+        "frontend/src/pages/BaselCouplesLandingPage.tsx"
       ],
       "components": [
         "blob-storage@4.0.0",
@@ -20,6 +18,26 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-on-the-zuerich-couples-landing-page-zurichcoupleslandingpage-tsx-replace-the-heading-and-body-text-of-the-upper-wieder-zueinander-finden-section-with-the-identical-content-described-in-req-1",
+      "featureTitle": "On the Zuerich couples landing page (ZurichCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the identical content described in REQ-1.",
+      "files": [
+        "frontend/src/pages/ZurichCouplesLandingPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "authorization@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
       ],
       "confidence": "high"
     }

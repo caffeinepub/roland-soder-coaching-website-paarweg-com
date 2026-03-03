@@ -1,16 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Web project with location-specific pages (Schweiz, Basel, Zürich). Working on layout fixes including centering sections in desktop view.",
+  "summary": "Website project for a couples coaching/counseling service with pages for Basel and Zürich. Content updates are being made to the site's text sections.",
   "architectural_notes": [],
   "known_issues": [],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-on-the-swissonlinecoupleslandingpage-baselcoupleslandingpage-and-zurichcoupleslandingpage-ensure-the-topmost-section-hero-header-section-is-horizontally-centered-in-desktop-view-consistent-with-the-centering-applied-to-lower-sections-on-these-pages",
-      "title": "On the SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage, ensure the topmost section (hero/header section) is horizontally centered in desktop view, consistent with the centering applied to lower sections on these pages.",
+      "id": "feature-on-the-basel-couples-landing-page-baselcoupleslandingpage-tsx-replace-the-heading-and-body-text-of-the-upper-wieder-zueinander-finden-section-with-the-following-content-heading-klarheit-fuer-ihre-partnerschaft-gewinnen-body-paragraph-1-viele-paare-stehen-irgendwann-an-einem-punkt-an-dem-gespraeche-eskalieren-schweigen-ueberwiegt-oder-die-verbindung-unsicher-geworden-ist-body-paragraph-2-in-dieser-phase-geht-es-nicht-immer-darum-etwas-wiederherzustellen-sondern-darum-klarheit-zu-gewinnen-body-paragraph-3-als-erfahrener-paarberatungscoach-begleite-ich-sie-dabei-ihre-situation-offen-zu-betrachten-muster-zu-verstehen-und-eine-bewusste-entscheidung-fuer-ihren-weiteren-weg-zu-treffen-respektvoll-strukturiert-und-auf-augenhoehe-use-the-original-german-special-characters-umlauts-guillemets-as-provided-by-the-user-in-the-actual-file-content",
+      "title": "On the Basel couples landing page (BaselCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the following content. Heading: 'Klarheit fuer Ihre Partnerschaft gewinnen'. Body paragraph 1: 'Viele Paare stehen irgendwann an einem Punkt, an dem Gespraeche eskalieren, Schweigen ueberwiegt oder die Verbindung unsicher geworden ist.' Body paragraph 2: 'In dieser Phase geht es nicht immer darum, etwas wiederherzustellen, sondern darum, Klarheit zu gewinnen.' Body paragraph 3: 'Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung fuer Ihren weiteren Weg zu treffen - respektvoll, strukturiert und auf Augenhoehe.' Use the original German special characters (umlauts, guillemets) as provided by the user in the actual file content.",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-zuerich-couples-landing-page-zurichcoupleslandingpage-tsx-replace-the-heading-and-body-text-of-the-upper-wieder-zueinander-finden-section-with-the-identical-content-described-in-req-1",
+      "title": "On the Zuerich couples landing page (ZurichCouplesLandingPage.tsx), replace the heading and body text of the upper 'wieder zueinander finden' section with the identical content described in REQ-1.",
+      "reqIds": [
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,13 +26,13 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Center the top section on Schweiz, Basel, and Zürich pages in desktop view",
+      "summary": "Update the upper text section (heading + body) on Basel and Zürich pages: new heading 'Klarheit für Ihre Partnerschaft gewinnen' with updated body text about couples coaching.",
       "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
+  "projectName": "PaarWeg",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

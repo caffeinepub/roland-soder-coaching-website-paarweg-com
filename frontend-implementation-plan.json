@@ -1,33 +1,39 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Center top section on Schweiz, Basel, and Zürich landing pages (desktop view)",
+  "title": "Update 'wieder zueinander finden' section text on Basel and Zürich landing pages",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Apply horizontal centering to the topmost (hero) section of SwissOnlineCouplesLandingPage, BaselCouplesLandingPage, and ZurichCouplesLandingPage in desktop view, matching the centering style used in lower sections on these pages.",
+      "summary": "Replace the heading and body text of the upper 'wieder zueinander finden' section on the Basel couples landing page with new content about gaining clarity for partnerships",
       "acceptanceCriteria": [
-        "On desktop viewport widths (≥ 1024px), the topmost section of SwissOnlineCouplesLandingPage is horizontally centered.",
-        "On desktop viewport widths (≥ 1024px), the topmost section of BaselCouplesLandingPage is horizontally centered.",
-        "On desktop viewport widths (≥ 1024px), the topmost section of ZurichCouplesLandingPage is horizontally centered.",
-        "The centering style matches the layout style used in the lower sections of these same pages.",
-        "Mobile layout is not affected by this change."
+        "The section heading on the Basel page reads exactly 'Klarheit fuer Ihre Partnerschaft gewinnen' (with correct German umlaut)",
+        "The body text on the Basel page matches the three specified paragraphs",
+        "The typo 'Entscheidungj' from the user message is corrected to 'Entscheidung' in the final rendered text",
+        "No other sections on the Basel page are modified"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/SwissOnlineCouplesLandingPage.tsx",
-          "operation": "modify",
-          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
-        },
-        {
           "path": "frontend/src/pages/BaselCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
-        },
+          "description": "Update the upper 'wieder zueinander finden' section by replacing the heading with 'Klarheit fuer Ihre Partnerschaft gewinnen' and replacing the body text with three new paragraphs: (1) 'Viele Paare stehen irgendwann an einem Punkt, an dem Gespraeche eskalieren, Schweigen ueberwiegt oder die Verbindung unsicher geworden ist.' (2) 'In dieser Phase geht es nicht immer darum, etwas wiederherzustellen, sondern darum, Klarheit zu gewinnen.' (3) 'Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung fuer Ihren weiteren Weg zu treffen - respektvoll, strukturiert und auf Augenhoehe.' Preserve the original component structure, styling, and layout. Use proper German special characters (ä, ö, ü) in the actual implementation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Replace the heading and body text of the upper 'wieder zueinander finden' section on the Zürich couples landing page with identical content as Basel page",
+      "acceptanceCriteria": [
+        "The section heading on the Zuerich page reads exactly 'Klarheit fuer Ihre Partnerschaft gewinnen' (with correct German umlaut)",
+        "The body text on the Zuerich page matches the three specified paragraphs",
+        "The typo 'Entscheidungj' is corrected to 'Entscheidung' in the final rendered text",
+        "No other sections on the Zuerich page are modified"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/pages/ZurichCouplesLandingPage.tsx",
           "operation": "modify",
-          "description": "Add responsive centering classes (e.g., `max-w-7xl mx-auto px-4 lg:px-8`) to the topmost hero section container in desktop view (≥ 1024px), ensuring the centering matches the style applied to lower sections on this page. Do not alter the mobile layout or change the content/structure of the section."
+          "description": "Update the upper 'wieder zueinander finden' section by replacing the heading with 'Klarheit fuer Ihre Partnerschaft gewinnen' and replacing the body text with the same three paragraphs as in REQ-1: (1) 'Viele Paare stehen irgendwann an einem Punkt, an dem Gespraeche eskalieren, Schweigen ueberwiegt oder die Verbindung unsicher geworden ist.' (2) 'In dieser Phase geht es nicht immer darum, etwas wiederherzustellen, sondern darum, Klarheit zu gewinnen.' (3) 'Als erfahrener Paarberatungscoach begleite ich Sie dabei, Ihre Situation offen zu betrachten, Muster zu verstehen und eine bewusste Entscheidung fuer Ihren weiteren Weg zu treffen - respektvoll, strukturiert und auf Augenhoehe.' Preserve the original component structure, styling, and layout. Use proper German special characters (ä, ö, ü) in the actual implementation."
         }
       ]
     }
