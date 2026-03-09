@@ -1,9 +1,15 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { useComputedThemeHexColors } from '@/hooks/useComputedThemeHexColors';
-import { Copy, Check, Palette } from 'lucide-react';
-import { useState } from 'react';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useComputedThemeHexColors } from "@/hooks/useComputedThemeHexColors";
+import { Check, Copy, Palette } from "lucide-react";
+import { useState } from "react";
 
 /**
  * Admin-only UI section that displays runtime-computed HEX color values
@@ -16,24 +22,24 @@ export default function ThemeHexCodesSection() {
 
   const copyToClipboard = async (text: string, field: string) => {
     try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
+      if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(text);
       } else {
         // Fallback for older browsers
-        const textArea = document.createElement('textarea');
+        const textArea = document.createElement("textarea");
         textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-9999px';
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
         document.body.appendChild(textArea);
         textArea.select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         document.body.removeChild(textArea);
       }
-      
+
       setCopiedField(field);
       setTimeout(() => setCopiedField(null), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error("Failed to copy:", err);
     }
   };
 
@@ -55,7 +61,7 @@ export default function ThemeHexCodesSection() {
             <div
               className="h-12 w-12 shrink-0 rounded-md border-2 border-border shadow-sm"
               style={{
-                backgroundColor: colors.background || 'transparent',
+                backgroundColor: colors.background || "transparent",
               }}
             />
             <div>
@@ -74,10 +80,12 @@ export default function ThemeHexCodesSection() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => copyToClipboard(colors.background!, 'background')}
+                  onClick={() =>
+                    copyToClipboard(colors.background!, "background")
+                  }
                   className="h-8 w-8 p-0"
                 >
-                  {copiedField === 'background' ? (
+                  {copiedField === "background" ? (
                     <Check className="h-4 w-4 text-green-600" />
                   ) : (
                     <Copy className="h-4 w-4" />
@@ -96,7 +104,7 @@ export default function ThemeHexCodesSection() {
             <div
               className="h-12 w-12 shrink-0 rounded-md border-2 border-border shadow-sm"
               style={{
-                backgroundColor: colors.primaryButton || 'transparent',
+                backgroundColor: colors.primaryButton || "transparent",
               }}
             />
             <div>
@@ -115,10 +123,12 @@ export default function ThemeHexCodesSection() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => copyToClipboard(colors.primaryButton!, 'primaryButton')}
+                  onClick={() =>
+                    copyToClipboard(colors.primaryButton!, "primaryButton")
+                  }
                   className="h-8 w-8 p-0"
                 >
-                  {copiedField === 'primaryButton' ? (
+                  {copiedField === "primaryButton" ? (
                     <Check className="h-4 w-4 text-green-600" />
                   ) : (
                     <Copy className="h-4 w-4" />

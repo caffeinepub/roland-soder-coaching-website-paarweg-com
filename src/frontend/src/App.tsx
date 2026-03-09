@@ -1,23 +1,30 @@
-import { RouterProvider, createRouter, createRoute, createRootRoute } from '@tanstack/react-router';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from 'next-themes';
-import { Toaster } from '@/components/ui/sonner';
-import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import CouplesPage from './pages/CouplesPage';
-import WomenPage from './pages/WomenPage';
-import MenPage from './pages/MenPage';
-import AboutPage from './pages/AboutPage';
-import PricingPage from './pages/PricingPage';
-import ContactPage from './pages/ContactPage';
-import LegalPage from './pages/LegalPage';
-import CSRGeneratorPage from './pages/CSRGeneratorPage';
-import TechnicalStatusPage from './pages/TechnicalStatusPage';
-import DomainVerificationPage from './pages/DomainVerificationPage';
-import SitemapPage from './pages/SitemapPage';
-import ZurichCouplesLandingPage from './pages/ZurichCouplesLandingPage';
-import BaselCouplesLandingPage from './pages/BaselCouplesLandingPage';
-import SwissOnlineCouplesLandingPage from './pages/SwissOnlineCouplesLandingPage';
+import { Toaster } from "@/components/ui/sonner";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
+import { ThemeProvider } from "next-themes";
+import Layout from "./components/Layout";
+import AboutPage from "./pages/AboutPage";
+import BaselCouplesLandingPage from "./pages/BaselCouplesLandingPage";
+import BookingCoachingPage from "./pages/BookingCoachingPage";
+import BookingKennenlernPage from "./pages/BookingKennenlernPage";
+import CSRGeneratorPage from "./pages/CSRGeneratorPage";
+import ContactPage from "./pages/ContactPage";
+import CouplesPage from "./pages/CouplesPage";
+import DomainVerificationPage from "./pages/DomainVerificationPage";
+import HomePage from "./pages/HomePage";
+import LegalPage from "./pages/LegalPage";
+import MenPage from "./pages/MenPage";
+import PricingPage from "./pages/PricingPage";
+import SitemapPage from "./pages/SitemapPage";
+import SwissOnlineCouplesLandingPage from "./pages/SwissOnlineCouplesLandingPage";
+import TechnicalStatusPage from "./pages/TechnicalStatusPage";
+import WomenPage from "./pages/WomenPage";
+import ZurichCouplesLandingPage from "./pages/ZurichCouplesLandingPage";
 
 const queryClient = new QueryClient();
 
@@ -27,94 +34,107 @@ const rootRoute = createRootRoute({
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: "/",
   component: HomePage,
 });
 
 const couplesRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/paare',
+  path: "/paare",
   component: CouplesPage,
 });
 
 const womenRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/frauen',
+  path: "/frauen",
   component: WomenPage,
 });
 
 const menRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/maenner',
+  path: "/maenner",
   component: MenPage,
 });
 
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/ueber-mich',
+  path: "/ueber-mich",
   component: AboutPage,
 });
 
 const pricingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/preise',
+  path: "/preise",
   component: PricingPage,
 });
 
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/kontakt',
+  path: "/kontakt",
   component: ContactPage,
 });
 
 const legalRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/rechtliches',
+  path: "/rechtliches",
   component: LegalPage,
 });
 
 const sitemapRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/sitemap',
+  path: "/sitemap",
   component: SitemapPage,
 });
 
 // Zurich landing page route - intentionally not linked in navigation menu
 const zurichCouplesLandingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/paarberatung-zuerich',
+  path: "/paarberatung-zuerich",
   component: ZurichCouplesLandingPage,
 });
 
 // Basel landing page route - intentionally not linked in navigation menu
 const baselCouplesLandingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/paarberatung-basel',
+  path: "/paarberatung-basel",
   component: BaselCouplesLandingPage,
 });
 
 // Swiss Online landing page route - intentionally not linked in navigation menu
 const swissOnlineCouplesLandingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/online-paarberatung-schweiz',
+  path: "/online-paarberatung-schweiz",
   component: SwissOnlineCouplesLandingPage,
+});
+
+// Booking pages - intentionally not linked in navigation menu
+const bookingKennenlernRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/kennenlerngespräch",
+  component: BookingKennenlernPage,
+});
+
+const bookingCoachingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/coaching-sitzung",
+  component: BookingCoachingPage,
 });
 
 const csrGeneratorRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/admin/csr-generator',
+  path: "/admin/csr-generator",
   component: CSRGeneratorPage,
 });
 
 const technicalStatusRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/admin/technical-status',
+  path: "/admin/technical-status",
   component: TechnicalStatusPage,
 });
 
 const domainVerificationRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/admin/domain-verification',
+  path: "/admin/domain-verification",
   component: DomainVerificationPage,
 });
 
@@ -131,6 +151,8 @@ const routeTree = rootRoute.addChildren([
   zurichCouplesLandingRoute,
   baselCouplesLandingRoute,
   swissOnlineCouplesLandingRoute,
+  bookingKennenlernRoute,
+  bookingCoachingRoute,
   csrGeneratorRoute,
   technicalStatusRoute,
   domainVerificationRoute,

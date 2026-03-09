@@ -1,21 +1,45 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Copy, Download, FileKey, AlertCircle, CheckCircle2, ExternalLink, AlertTriangle, RefreshCw } from 'lucide-react';
-import { toast } from 'sonner';
-import { useGenerateCSR, useGetCSRMetadata } from '@/hooks/useQueries';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useGenerateCSR, useGetCSRMetadata } from "@/hooks/useQueries";
+import {
+  AlertCircle,
+  AlertTriangle,
+  CheckCircle2,
+  Copy,
+  Download,
+  ExternalLink,
+  FileKey,
+  RefreshCw,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function CSRGeneratorPage() {
-  const [csrData, setCsrData] = useState<{ csr: string; publicKey: string } | null>(null);
+  const [csrData, setCsrData] = useState<{
+    csr: string;
+    publicKey: string;
+  } | null>(null);
   const [dnsWarning, setDnsWarning] = useState(false);
   const { data: metadata, isLoading: metadataLoading } = useGetCSRMetadata();
   const generateCSRMutation = useGenerateCSR();
 
   // Auto-generate CSR on page load
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally run only when metadata first loads
   useEffect(() => {
     if (metadata && !csrData && !generateCSRMutation.isPending) {
       handleGenerateCSR();
@@ -26,9 +50,12 @@ export default function CSRGeneratorPage() {
   useEffect(() => {
     const checkDNS = async () => {
       try {
-        const response = await fetch('https://www.paarweg.com', { method: 'HEAD', mode: 'no-cors' });
+        await fetch("https://www.paarweg.com", {
+          method: "HEAD",
+          mode: "no-cors",
+        });
         setDnsWarning(false);
-      } catch (error) {
+      } catch (_error) {
         // DNS forwarding might not be available
         setDnsWarning(true);
       }
@@ -40,13 +67,14 @@ export default function CSRGeneratorPage() {
     try {
       const result = await generateCSRMutation.mutateAsync();
       setCsrData(result);
-      toast.success('Neuer CSR erfolgreich generiert', {
-        description: 'Ein komplett neuer CSR und Public Key wurden erstellt.',
+      toast.success("Neuer CSR erfolgreich generiert", {
+        description: "Ein komplett neuer CSR und Public Key wurden erstellt.",
       });
-    } catch (err) {
-      console.error('Error generating CSR:', err);
-      toast.error('Fehler bei der CSR-Generierung', {
-        description: 'Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.',
+    } catch (_err) {
+      console.error("Error generating CSR:", _err);
+      toast.error("Fehler bei der CSR-Generierung", {
+        description:
+          "Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.",
       });
     }
   };
@@ -55,15 +83,15 @@ export default function CSRGeneratorPage() {
     try {
       await navigator.clipboard.writeText(text);
       toast.success(`${label} in die Zwischenablage kopiert`);
-    } catch (err) {
-      toast.error('Fehler beim Kopieren');
+    } catch (_err) {
+      toast.error("Fehler beim Kopieren");
     }
   };
 
   const downloadFile = (content: string, filename: string) => {
-    const blob = new Blob([content], { type: 'text/plain' });
+    const blob = new Blob([content], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
     link.download = filename;
     document.body.appendChild(link);
@@ -79,7 +107,9 @@ export default function CSRGeneratorPage() {
         <div className="text-center">
           <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           <p className="text-muted-foreground">
-            {metadataLoading ? 'Lade CSR-Konfiguration...' : 'Generiere neuen CSR...'}
+            {metadataLoading
+              ? "Lade CSR-Konfiguration..."
+              : "Generiere neuen CSR..."}
           </p>
         </div>
       </div>
@@ -101,7 +131,8 @@ export default function CSRGeneratorPage() {
               SSL Certificate Signing Request Generator
             </h1>
             <p className="text-lg text-muted-foreground">
-              Generieren Sie einen neuen, gültigen CSR für www.paarweg.com zur Verwendung bei united-domains.de
+              Generieren Sie einen neuen, gültigen CSR für www.paarweg.com zur
+              Verwendung bei united-domains.de
             </p>
           </div>
         </div>
@@ -116,7 +147,10 @@ export default function CSRGeneratorPage() {
               <Alert className="border-yellow-200 bg-yellow-50 text-yellow-900 dark:border-yellow-800 dark:bg-yellow-950 dark:text-yellow-100">
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Hinweis:</strong> DNS-Forwarding (CNAME-Auflösung) für www.paarweg.com ist möglicherweise noch nicht verfügbar. Der CSR und Public Key werden dennoch angezeigt und können verwendet werden.
+                  <strong>Hinweis:</strong> DNS-Forwarding (CNAME-Auflösung) für
+                  www.paarweg.com ist möglicherweise noch nicht verfügbar. Der
+                  CSR und Public Key werden dennoch angezeigt und können
+                  verwendet werden.
                 </AlertDescription>
               </Alert>
             )}
@@ -127,46 +161,83 @@ export default function CSRGeneratorPage() {
                 <CardHeader>
                   <CardTitle>CSR-Konfiguration für www.paarweg.com</CardTitle>
                   <CardDescription>
-                    Die folgenden Informationen werden für die CSR-Generierung verwendet (RFC 2986 konform)
+                    Die folgenden Informationen werden für die CSR-Generierung
+                    verwendet (RFC 2986 konform)
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Country (C)</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">{metadata.country}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Country (C)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        {metadata.country}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">State/Province (ST)</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">{metadata.state}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        State/Province (ST)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        {metadata.state}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Locality (L)</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">{metadata.city}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Locality (L)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        {metadata.city}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Organization (O)</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">{metadata.company}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Organization (O)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        {metadata.company}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Organizational Unit (OU)</Label>
-                      <p className="mt-1 font-mono text-sm text-muted-foreground">(nicht angegeben)</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Organizational Unit (OU)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm text-muted-foreground">
+                        (nicht angegeben)
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Common Name (CN)</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold text-primary">{metadata.commonName}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Common Name (CN)
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold text-primary">
+                        {metadata.commonName}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Email Address</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">{metadata.email}</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Email Address
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        {metadata.email}
+                      </p>
                     </div>
                     <div>
-                      <Label className="text-sm font-medium text-muted-foreground">Key Size</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">2048-bit RSA</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Key Size
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        2048-bit RSA
+                      </p>
                     </div>
                     <div className="sm:col-span-2">
-                      <Label className="text-sm font-medium text-muted-foreground">Encoding Format</Label>
-                      <p className="mt-1 font-mono text-sm font-semibold">Base64 PEM (RFC 2986 konform)</p>
+                      <Label className="text-sm font-medium text-muted-foreground">
+                        Encoding Format
+                      </Label>
+                      <p className="mt-1 font-mono text-sm font-semibold">
+                        Base64 PEM (RFC 2986 konform)
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -200,7 +271,8 @@ export default function CSRGeneratorPage() {
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  {generateCSRMutation.error?.message || 'Fehler bei der CSR-Generierung. Bitte versuchen Sie es erneut.'}
+                  {generateCSRMutation.error?.message ||
+                    "Fehler bei der CSR-Generierung. Bitte versuchen Sie es erneut."}
                 </AlertDescription>
               </Alert>
             )}
@@ -210,7 +282,9 @@ export default function CSRGeneratorPage() {
               <Alert className="border-green-200 bg-green-50 text-green-900 dark:border-green-800 dark:bg-green-950 dark:text-green-100">
                 <CheckCircle2 className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Neuer CSR erfolgreich generiert!</strong> Sie können den CSR-Text und Public Key nun bei united-domains.de hochladen. Dieser CSR ist komplett neu und RFC 2986 konform.
+                  <strong>Neuer CSR erfolgreich generiert!</strong> Sie können
+                  den CSR-Text und Public Key nun bei united-domains.de
+                  hochladen. Dieser CSR ist komplett neu und RFC 2986 konform.
                 </AlertDescription>
               </Alert>
             )}
@@ -225,7 +299,10 @@ export default function CSRGeneratorPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Kopieren Sie den CSR‑Text in das Feld „Zertifikatsanforderung" im Bereich SSL/TLS bei united-domains.de, speichern Sie und starten Sie die Zertifikatserstellung.
+                      Kopieren Sie den CSR‑Text in das Feld
+                      „Zertifikatsanforderung" im Bereich SSL/TLS bei
+                      united-domains.de, speichern Sie und starten Sie die
+                      Zertifikatserstellung.
                     </p>
                   </CardContent>
                 </Card>
@@ -241,7 +318,7 @@ export default function CSRGeneratorPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => copyToClipboard(csrData.csr, 'CSR')}
+                          onClick={() => copyToClipboard(csrData.csr, "CSR")}
                         >
                           <Copy className="mr-2 h-4 w-4" />
                           Kopieren
@@ -249,7 +326,9 @@ export default function CSRGeneratorPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => downloadFile(csrData.csr, 'paarweg_csr.pem')}
+                          onClick={() =>
+                            downloadFile(csrData.csr, "paarweg_csr.pem")
+                          }
                         >
                           <Download className="mr-2 h-4 w-4" />
                           Download
@@ -257,7 +336,9 @@ export default function CSRGeneratorPage() {
                       </div>
                     </CardTitle>
                     <CardDescription>
-                      Base64 PEM-encoded CSR für <strong>www.paarweg.com</strong> (2048-bit RSA, RFC 2986 konform)
+                      Base64 PEM-encoded CSR für{" "}
+                      <strong>www.paarweg.com</strong> (2048-bit RSA, RFC 2986
+                      konform)
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -280,7 +361,9 @@ export default function CSRGeneratorPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => copyToClipboard(csrData.publicKey, 'Public Key')}
+                          onClick={() =>
+                            copyToClipboard(csrData.publicKey, "Public Key")
+                          }
                         >
                           <Copy className="mr-2 h-4 w-4" />
                           Kopieren
@@ -288,7 +371,12 @@ export default function CSRGeneratorPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => downloadFile(csrData.publicKey, 'paarweg_public_key.pem')}
+                          onClick={() =>
+                            downloadFile(
+                              csrData.publicKey,
+                              "paarweg_public_key.pem",
+                            )
+                          }
                         >
                           <Download className="mr-2 h-4 w-4" />
                           Download
@@ -313,10 +401,12 @@ export default function CSRGeneratorPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileKey className="h-5 w-5 text-primary" />
-                      Schritt-für-Schritt-Anleitung: CSR bei united-domains.de hochladen
+                      Schritt-für-Schritt-Anleitung: CSR bei united-domains.de
+                      hochladen
                     </CardTitle>
                     <CardDescription>
-                      Folgen Sie diesen Schritten, um Ihr SSL-Zertifikat für www.paarweg.com zu beantragen
+                      Folgen Sie diesen Schritten, um Ihr SSL-Zertifikat für
+                      www.paarweg.com zu beantragen
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -327,12 +417,16 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               1
                             </div>
-                            <span className="font-semibold">Bei united-domains.de anmelden</span>
+                            <span className="font-semibold">
+                              Bei united-domains.de anmelden
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
                           <div className="space-y-2 text-sm text-muted-foreground">
-                            <p>Öffnen Sie Ihren Browser und navigieren Sie zu:</p>
+                            <p>
+                              Öffnen Sie Ihren Browser und navigieren Sie zu:
+                            </p>
                             <a
                               href="https://www.united-domains.de"
                               target="_blank"
@@ -342,7 +436,9 @@ export default function CSRGeneratorPage() {
                               www.united-domains.de
                               <ExternalLink className="h-3 w-3" />
                             </a>
-                            <p className="pt-2">Melden Sie sich mit Ihren Zugangsdaten an.</p>
+                            <p className="pt-2">
+                              Melden Sie sich mit Ihren Zugangsdaten an.
+                            </p>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -353,15 +449,24 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               2
                             </div>
-                            <span className="font-semibold">Domain-Verwaltung öffnen</span>
+                            <span className="font-semibold">
+                              Domain-Verwaltung öffnen
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
                           <div className="space-y-2 text-sm text-muted-foreground">
                             <p>Nach der Anmeldung:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
-                              <li>Klicken Sie auf <strong>"Domain-Verwaltung"</strong> im Hauptmenü</li>
-                              <li>Wählen Sie die Domain <strong>paarweg.com</strong> aus</li>
+                              <li>
+                                Klicken Sie auf{" "}
+                                <strong>"Domain-Verwaltung"</strong> im
+                                Hauptmenü
+                              </li>
+                              <li>
+                                Wählen Sie die Domain{" "}
+                                <strong>paarweg.com</strong> aus
+                              </li>
                             </ul>
                           </div>
                         </AccordionContent>
@@ -373,15 +478,25 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               3
                             </div>
-                            <span className="font-semibold">SSL/TLS-Bereich aufrufen</span>
+                            <span className="font-semibold">
+                              SSL/TLS-Bereich aufrufen
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
                           <div className="space-y-2 text-sm text-muted-foreground">
                             <p>In der Domain-Verwaltung:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
-                              <li>Navigieren Sie zum Bereich <strong>"SSL/TLS"</strong> oder <strong>"Sicherheit"</strong></li>
-                              <li>Dieser Bereich befindet sich meist in der linken Seitenleiste oder im Hauptmenü der Domain-Einstellungen</li>
+                              <li>
+                                Navigieren Sie zum Bereich{" "}
+                                <strong>"SSL/TLS"</strong> oder{" "}
+                                <strong>"Sicherheit"</strong>
+                              </li>
+                              <li>
+                                Dieser Bereich befindet sich meist in der linken
+                                Seitenleiste oder im Hauptmenü der
+                                Domain-Einstellungen
+                              </li>
                             </ul>
                           </div>
                         </AccordionContent>
@@ -393,15 +508,24 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               4
                             </div>
-                            <span className="font-semibold">Eigenes Zertifikat verwenden / CSR einreichen</span>
+                            <span className="font-semibold">
+                              Eigenes Zertifikat verwenden / CSR einreichen
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
                           <div className="space-y-2 text-sm text-muted-foreground">
                             <p>Im SSL/TLS-Bereich:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
-                              <li>Suchen Sie nach der Option <strong>"Eigenes Zertifikat verwenden"</strong> oder <strong>"CSR einreichen"</strong></li>
-                              <li>Klicken Sie auf diese Option, um das CSR-Formular zu öffnen</li>
+                              <li>
+                                Suchen Sie nach der Option{" "}
+                                <strong>"Eigenes Zertifikat verwenden"</strong>{" "}
+                                oder <strong>"CSR einreichen"</strong>
+                              </li>
+                              <li>
+                                Klicken Sie auf diese Option, um das
+                                CSR-Formular zu öffnen
+                              </li>
                             </ul>
                           </div>
                         </AccordionContent>
@@ -413,7 +537,9 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               5
                             </div>
-                            <span className="font-semibold">CSR-Text einfügen</span>
+                            <span className="font-semibold">
+                              CSR-Text einfügen
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
@@ -421,15 +547,28 @@ export default function CSRGeneratorPage() {
                             <p>Im CSR-Formular:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
                               <li>
-                                Kopieren Sie den kompletten <strong>CSR-Text</strong> von oben (inklusive{' '}
-                                <code className="rounded bg-muted px-1 py-0.5 text-xs">-----BEGIN CERTIFICATE REQUEST-----</code> und{' '}
-                                <code className="rounded bg-muted px-1 py-0.5 text-xs">-----END CERTIFICATE REQUEST-----</code>)
+                                Kopieren Sie den kompletten{" "}
+                                <strong>CSR-Text</strong> von oben (inklusive{" "}
+                                <code className="rounded bg-muted px-1 py-0.5 text-xs">
+                                  -----BEGIN CERTIFICATE REQUEST-----
+                                </code>{" "}
+                                und{" "}
+                                <code className="rounded bg-muted px-1 py-0.5 text-xs">
+                                  -----END CERTIFICATE REQUEST-----
+                                </code>
+                                )
                               </li>
-                              <li>Fügen Sie den CSR-Text in das dafür vorgesehene Textfeld ein</li>
                               <li>
-                                Alternativ können Sie die heruntergeladene{' '}
-                                <code className="rounded bg-muted px-1 py-0.5 text-xs">paarweg_csr.pem</code> Datei hochladen, falls eine
-                                Upload-Option verfügbar ist
+                                Fügen Sie den CSR-Text in das dafür vorgesehene
+                                Textfeld ein
+                              </li>
+                              <li>
+                                Alternativ können Sie die heruntergeladene{" "}
+                                <code className="rounded bg-muted px-1 py-0.5 text-xs">
+                                  paarweg_csr.pem
+                                </code>{" "}
+                                Datei hochladen, falls eine Upload-Option
+                                verfügbar ist
                               </li>
                             </ul>
                           </div>
@@ -442,19 +581,27 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               6
                             </div>
-                            <span className="font-semibold">Abschließen und bestätigen</span>
+                            <span className="font-semibold">
+                              Abschließen und bestätigen
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
                           <div className="space-y-2 text-sm text-muted-foreground">
                             <p>Nachdem Sie den CSR eingefügt haben:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
-                              <li>Überprüfen Sie alle Angaben auf Richtigkeit</li>
                               <li>
-                                Klicken Sie auf <strong>"Absenden"</strong>, <strong>"Bestätigen"</strong> oder{' '}
+                                Überprüfen Sie alle Angaben auf Richtigkeit
+                              </li>
+                              <li>
+                                Klicken Sie auf <strong>"Absenden"</strong>,{" "}
+                                <strong>"Bestätigen"</strong> oder{" "}
                                 <strong>"Zertifikat beantragen"</strong>
                               </li>
-                              <li>United-domains.de wird nun Ihr SSL-Zertifikat für www.paarweg.com ausstellen</li>
+                              <li>
+                                United-domains.de wird nun Ihr SSL-Zertifikat
+                                für www.paarweg.com ausstellen
+                              </li>
                             </ul>
                           </div>
                         </AccordionContent>
@@ -466,7 +613,9 @@ export default function CSRGeneratorPage() {
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                               7
                             </div>
-                            <span className="font-semibold">Wartezeit und Aktivierung</span>
+                            <span className="font-semibold">
+                              Wartezeit und Aktivierung
+                            </span>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="pl-11 pt-2">
@@ -474,16 +623,24 @@ export default function CSRGeneratorPage() {
                             <p>Nach der Einreichung:</p>
                             <ul className="list-inside list-disc space-y-1 pl-2">
                               <li>
-                                Die Ausstellung des Zertifikats dauert in der Regel <strong>30–60 Minuten</strong>
-                              </li>
-                              <li>Sie erhalten eine Bestätigungs-E-Mail, sobald das Zertifikat bereit ist</li>
-                              <li>
-                                Nach der Aktivierung ist Ihre Domain <strong>www.paarweg.com</strong> über HTTPS erreichbar
+                                Die Ausstellung des Zertifikats dauert in der
+                                Regel <strong>30–60 Minuten</strong>
                               </li>
                               <li>
-                                Testen Sie die HTTPS-Verbindung, indem Sie{' '}
-                                <code className="rounded bg-muted px-1 py-0.5 text-xs">https://www.paarweg.com</code> in Ihrem Browser
-                                aufrufen
+                                Sie erhalten eine Bestätigungs-E-Mail, sobald
+                                das Zertifikat bereit ist
+                              </li>
+                              <li>
+                                Nach der Aktivierung ist Ihre Domain{" "}
+                                <strong>www.paarweg.com</strong> über HTTPS
+                                erreichbar
+                              </li>
+                              <li>
+                                Testen Sie die HTTPS-Verbindung, indem Sie{" "}
+                                <code className="rounded bg-muted px-1 py-0.5 text-xs">
+                                  https://www.paarweg.com
+                                </code>{" "}
+                                in Ihrem Browser aufrufen
                               </li>
                             </ul>
                           </div>
@@ -499,8 +656,11 @@ export default function CSRGeneratorPage() {
             <Alert>
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
-                <strong>Sicherheitshinweis:</strong> Der private Schlüssel wird lokal in Ihrem Browser generiert und niemals an das
-                Backend übertragen. Jeder Klick auf "Neuen CSR Generieren" erstellt ein komplett neues Schlüsselpaar. Bewahren Sie den privaten Schlüssel sicher auf und teilen Sie ihn niemals mit Dritten.
+                <strong>Sicherheitshinweis:</strong> Der private Schlüssel wird
+                lokal in Ihrem Browser generiert und niemals an das Backend
+                übertragen. Jeder Klick auf "Neuen CSR Generieren" erstellt ein
+                komplett neues Schlüsselpaar. Bewahren Sie den privaten
+                Schlüssel sicher auf und teilen Sie ihn niemals mit Dritten.
               </AlertDescription>
             </Alert>
 
@@ -523,19 +683,24 @@ export default function CSRGeneratorPage() {
                   • <strong>E-Mail:</strong> info@paarweg.com
                 </p>
                 <p>
-                  • <strong>Verschlüsselung:</strong> 2048-bit RSA (Standard für SSL-Zertifikate)
+                  • <strong>Verschlüsselung:</strong> 2048-bit RSA (Standard für
+                  SSL-Zertifikate)
                 </p>
                 <p>
-                  • <strong>Format:</strong> Base64 PEM-encoded (RFC 2986 konform, kompatibel mit allen Zertifizierungsstellen)
+                  • <strong>Format:</strong> Base64 PEM-encoded (RFC 2986
+                  konform, kompatibel mit allen Zertifizierungsstellen)
                 </p>
                 <p>
-                  • <strong>Gültigkeit:</strong> Der CSR ist unbegrenzt gültig, bis ein Zertifikat ausgestellt wird
+                  • <strong>Gültigkeit:</strong> Der CSR ist unbegrenzt gültig,
+                  bis ein Zertifikat ausgestellt wird
                 </p>
                 <p>
-                  • <strong>Generierung:</strong> Client-seitig mit Web Crypto API für maximale Sicherheit
+                  • <strong>Generierung:</strong> Client-seitig mit Web Crypto
+                  API für maximale Sicherheit
                 </p>
                 <p>
-                  • <strong>Validierung:</strong> Formatierung mit korrekten Headern, Footern und Zeilenumbrüchen für United Domains
+                  • <strong>Validierung:</strong> Formatierung mit korrekten
+                  Headern, Footern und Zeilenumbrüchen für United Domains
                 </p>
               </CardContent>
             </Card>

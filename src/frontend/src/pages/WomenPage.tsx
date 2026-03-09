@@ -1,45 +1,57 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Heart, Eye, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { useEffect } from 'react';
-import MobileReadMore from '@/components/MobileReadMore';
+import MobileReadMore from "@/components/MobileReadMore";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, CheckCircle2, Eye, Heart, Sparkles } from "lucide-react";
+import { useEffect } from "react";
 
 export default function WomenPage() {
   useEffect(() => {
-    document.title = 'Coaching für Frauen in Beziehungen – Raum für Sie | PaarWeg';
-    
+    document.title =
+      "Coaching für Frauen in Beziehungen – Raum für Sie | PaarWeg";
+
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
+      metaDescription = document.createElement("meta");
+      metaDescription.setAttribute("name", "description");
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Coaching für Frauen in Beziehungen – wenn Sie sich erschöpft, unsichtbar oder unverstanden fühlen. Raum für Ihre Perspektive, Ihre Bedürfnisse, Ihre Entwicklung.');
+    metaDescription.setAttribute(
+      "content",
+      "Coaching für Frauen in Beziehungen – wenn Sie sich erschöpft, unsichtbar oder unverstanden fühlen. Raum für Ihre Perspektive, Ihre Bedürfnisse, Ihre Entwicklung.",
+    );
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://www.paarweg.com/frauen');
+    canonical.setAttribute("href", "https://www.paarweg.com/frauen");
 
     // Open Graph tags
     const ogTags = [
-      { property: 'og:title', content: 'Coaching für Frauen in Beziehungen | PaarWeg' },
-      { property: 'og:description', content: 'Coaching für Frauen in Beziehungen – wenn Sie sich erschöpft, unsichtbar oder unverstanden fühlen. Raum für Ihre Perspektive, Ihre Bedürfnisse, Ihre Entwicklung.' },
-      { property: 'og:url', content: 'https://www.paarweg.com/frauen' },
+      {
+        property: "og:title",
+        content: "Coaching für Frauen in Beziehungen | PaarWeg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Coaching für Frauen in Beziehungen – wenn Sie sich erschöpft, unsichtbar oder unverstanden fühlen. Raum für Ihre Perspektive, Ihre Bedürfnisse, Ihre Entwicklung.",
+      },
+      { property: "og:url", content: "https://www.paarweg.com/frauen" },
     ];
 
-    ogTags.forEach(({ property, content }) => {
+    for (const { property, content } of ogTags) {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
-        tag = document.createElement('meta');
-        tag.setAttribute('property', property);
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
         document.head.appendChild(tag);
       }
-      tag.setAttribute('content', content);
-    });
+      tag.setAttribute("content", content);
+    }
   }, []);
 
   return (
@@ -56,39 +68,40 @@ export default function WomenPage() {
                 <MobileReadMore collapsedHeight="200px">
                   <div className="space-y-4 text-lg text-muted-foreground md:text-xl">
                     <p>
-                      Wenn Sie sich erschöpft fühlen vom Versuch, alles richtig zu machen. 
-                      Wenn Sie sich unsichtbar fühlen in Ihrer Beziehung. Wenn Sie sich nach Leichtigkeit sehnen, 
-                      nach echtem Gesehen-Werden, nach einem Raum, in dem Sie einfach sein dürfen.
+                      Wenn Sie das Gefühl haben, immer wieder dieselben
+                      Gespräche zu führen – und nichts ändert sich. Wenn Sie
+                      sich erschöpft fühlen vom Erklären, vom Kämpfen, vom
+                      Hoffen. Wenn Sie sich fragen, ob Sie zu viel wollen oder
+                      zu wenig bekommen.
                     </p>
                     <p>
-                      Wenn Sie spüren, dass Sie mehr geben als Sie bekommen. Wenn Sie sich fragen, 
-                      ob Ihre Bedürfnisse überhaupt noch zählen. Wenn Sie nicht mehr wissen, 
-                      wer Sie eigentlich sind – jenseits von Partnerin, Mutter, Tochter, Kollegin.
+                      Wenn Sie spüren, dass Sie sich selbst verloren haben – in
+                      der Beziehung, in der Rolle, in den Erwartungen. Wenn Sie
+                      nicht mehr wissen, was Sie wollen. Wenn Sie Klarheit
+                      brauchen – über sich selbst, über Ihre Beziehung, über
+                      das, was Sie wirklich brauchen.
                     </p>
                     <p className="font-medium text-foreground">
-                      Hier ist Raum für Sie. Für Ihre Perspektive. Für Ihre Bedürfnisse. 
-                      Für die Frage: Was brauche ich wirklich?
+                      Hier ist Raum für Sie. Für Ihre Perspektive. Für Ihre
+                      Bedürfnisse. Für die Frage: Was brauche ich, um in dieser
+                      Beziehung ich selbst zu sein?
                     </p>
                   </div>
                 </MobileReadMore>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="text-base">
-                  <a
-                    href="https://calendly.com/paarweg-info"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Erstgespräch buchen
+                  <Link to="/kennenlerngespräch">
+                    Kennenlerngespräch buchen
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>
             <div className="relative">
               <img
                 src="/assets/Frau_nachdenklich.png"
-                alt="Nachdenkliche Frau am Fenster - Coaching für Frauen in Beziehungsfragen"
+                alt="Nachdenkliche Frau – Coaching für Frauen in Beziehungsfragen"
                 className="rounded-2xl object-cover shadow-2xl w-full"
                 loading="lazy"
               />
@@ -104,24 +117,8 @@ export default function WomenPage() {
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
               Typische Themen im Coaching für Frauen
             </h2>
-            
-            <div className="grid gap-6 md:grid-cols-2">
-              <Card className="border-2">
-                <CardContent className="pt-6">
-                  <div className="mb-3 flex items-start gap-3">
-                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
-                    <div>
-                      <h3 className="mb-2 font-semibold">Unsichtbarkeit</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Wenn Sie das Gefühl haben, dass Ihre Bedürfnisse nicht zählen. 
-                        Wenn Sie sich zurückstellen, um Konflikte zu vermeiden. 
-                        Wenn Sie sich fragen, ob Sie überhaupt noch gesehen werden.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
 
+            <div className="grid gap-6 md:grid-cols-2">
               <Card className="border-2">
                 <CardContent className="pt-6">
                   <div className="mb-3 flex items-start gap-3">
@@ -129,23 +126,10 @@ export default function WomenPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Erschöpfung</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie mehr geben als Sie bekommen. Wenn Sie sich verantwortlich fühlen für alles – 
-                        für die Beziehung, für die Stimmung, für das Funktionieren des Alltags.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-2">
-                <CardContent className="pt-6">
-                  <div className="mb-3 flex items-start gap-3">
-                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
-                    <div>
-                      <h3 className="mb-2 font-semibold">Kommunikation</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, wie Sie ansprechen sollen, was Sie bewegt. 
-                        Wenn Sie Angst haben, zu viel zu fordern. Wenn Sie sich nicht gehört fühlen.
+                        Wenn Sie das Gefühl haben, immer wieder dieselben
+                        Gespräche zu führen – und nichts ändert sich. Wenn Sie
+                        sich erschöpft fühlen vom Erklären, vom Kämpfen, vom
+                        Hoffen.
                       </p>
                     </div>
                   </div>
@@ -159,9 +143,9 @@ export default function WomenPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Selbstverlust</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht mehr wissen, wer Sie eigentlich sind. 
-                        Wenn Sie sich nur noch über Ihre Rollen definieren. 
-                        Wenn Sie sich fragen, was Sie selbst eigentlich wollen.
+                        Wenn Sie spüren, dass Sie sich selbst verloren haben –
+                        in der Beziehung, in der Rolle, in den Erwartungen. Wenn
+                        Sie nicht mehr wissen, was Sie wollen.
                       </p>
                     </div>
                   </div>
@@ -173,11 +157,11 @@ export default function WomenPage() {
                   <div className="mb-3 flex items-start gap-3">
                     <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                     <div>
-                      <h3 className="mb-2 font-semibold">Entscheidungen</h3>
+                      <h3 className="mb-2 font-semibold">Kommunikation</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, ob Sie bleiben oder gehen sollen. 
-                        Wenn Sie sich fragen, ob es noch Hoffnung gibt. 
-                        Wenn Sie Klarheit brauchen, um eine Entscheidung treffen zu können.
+                        Wenn Gespräche immer wieder eskalieren oder im Schweigen
+                        enden. Wenn Sie nicht gehört werden. Wenn Sie nicht
+                        wissen, wie Sie ansprechen sollen, was Sie bewegt.
                       </p>
                     </div>
                   </div>
@@ -191,9 +175,43 @@ export default function WomenPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Grenzen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, wie Sie Grenzen setzen können. 
-                        Wenn Sie sich schuldig fühlen, wenn Sie Nein sagen. 
-                        Wenn Sie lernen möchten, für sich einzustehen.
+                        Wenn Sie Schwierigkeiten haben, Grenzen zu setzen. Wenn
+                        Sie sich schuldig fühlen, wenn Sie Nein sagen. Wenn Sie
+                        sich fragen, ob Ihre Bedürfnisse berechtigt sind.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Entscheidungen</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie nicht wissen, ob Sie bleiben oder gehen sollen.
+                        Wenn Sie Klarheit brauchen, um eine Entscheidung treffen
+                        zu können. Wenn Sie sich fragen, ob es noch Hoffnung
+                        gibt.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2">
+                <CardContent className="pt-6">
+                  <div className="mb-3 flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
+                    <div>
+                      <h3 className="mb-2 font-semibold">Nähe</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Wenn Sie sich nach echter Verbindung sehnen, aber nicht
+                        wissen, wie Sie sie herstellen können. Wenn Intimität
+                        fehlt – emotional oder körperlich. Wenn Sie sich fremd
+                        geworden sind.
                       </p>
                     </div>
                   </div>
@@ -214,27 +232,31 @@ export default function WomenPage() {
             <MobileReadMore collapsedHeight="220px">
               <div className="space-y-6 text-lg text-muted-foreground">
                 <p>
-                  Im Coaching für Frauen geht es nicht darum, Ihnen zu sagen, was Sie tun sollen. 
-                  Es geht darum, einen Raum zu schaffen, in dem Sie selbst herausfinden können, was Sie brauchen. 
-                  In dem Sie Ihre eigene Stimme wiederfinden. In dem Sie lernen, für sich einzustehen – 
-                  ohne sich schuldig zu fühlen.
+                  Im Coaching für Frauen geht es darum, einen Raum zu schaffen,
+                  in dem Sie wirklich gehört werden. In dem Ihre Perspektive
+                  zählt. In dem Sie nicht erklären oder rechtfertigen müssen,
+                  was Sie fühlen. In dem Sie herausfinden können, was Sie
+                  wirklich brauchen.
                 </p>
                 <p>
-                  Ich höre zu. Ich stelle Fragen. Ich benenne, was ich sehe – auch wenn es unangenehm ist. 
-                  Ich fordere Sie heraus, ohne Sie zu überfordern. Ich bin nicht hier, um Ihnen zu sagen, 
-                  dass alles gut wird. Ich bin hier, um Sie dabei zu unterstützen, Klarheit zu gewinnen 
-                  und Entscheidungen zu treffen, die zu Ihnen passen.
+                  Ich höre zu. Ich stelle Fragen. Ich benenne, was ich sehe –
+                  auch wenn es unangenehm ist. Ich helfe Ihnen dabei, Ihre
+                  eigenen Muster zu erkennen – nicht um Sie zu kritisieren,
+                  sondern um Ihnen mehr Wahlmöglichkeiten zu geben. Mehr
+                  Freiheit. Mehr Klarheit.
                 </p>
                 <p>
-                  Wir schauen auf Ihre Bedürfnisse, auf Ihre Muster, auf das, was Sie zurückhält. 
-                  Wir entwickeln Strategien, wie Sie für sich einstehen können – in Ihrer Beziehung, 
-                  aber auch darüber hinaus. Und wir klären, was Sie wirklich wollen – 
-                  nicht was Sie wollen sollten, sondern was Sie wirklich wollen.
+                  Wir schauen auf Ihre Bedürfnisse, auf Ihre Grenzen, auf das,
+                  was Sie zurückhält. Wir entwickeln konkrete Strategien, wie
+                  Sie anders reagieren können – in Konflikten, in schwierigen
+                  Momenten, in der Alltagsroutine. Und wir klären, was Sie
+                  wirklich wollen – nicht was Sie wollen sollten.
                 </p>
                 <p className="font-medium text-foreground">
-                  Coaching ist keine Therapie. Es ist ein Prozess der Selbstklärung. 
-                  Ein Raum, in dem Sie sich selbst wieder begegnen können. 
-                  Ein Weg zu mehr Klarheit, Selbstbestimmung und innerer Stärke.
+                  Coaching ist keine Therapie. Es ist ein Prozess der
+                  Selbstklärung. Ein Raum, in dem Sie sich selbst wieder
+                  begegnen können. Ein Weg zu mehr Klarheit, Orientierung und
+                  innerer Stärke.
                 </p>
               </div>
             </MobileReadMore>
@@ -250,7 +272,8 @@ export default function WomenPage() {
               Was Frauen im Coaching finden
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Drei zentrale Werte, die den Weg zu mehr Selbstbestimmung ebnen
+              Drei zentrale Werte, die den Weg zu mehr Klarheit und Verbindung
+              ebnen
             </p>
           </div>
 
@@ -260,10 +283,11 @@ export default function WomenPage() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <Eye className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">Klarheit</h3>
+                <h3 className="mb-3 text-xl font-semibold">Sichtbarkeit</h3>
                 <p className="text-muted-foreground">
-                  Verstehen, was Sie wirklich brauchen. Nicht was Sie brauchen sollten, 
-                  sondern was Sie wirklich brauchen. Klarheit über Ihre Bedürfnisse, Ihre Grenzen, Ihre Werte.
+                  Gehört werden. Gesehen werden. Nicht mehr erklären müssen, was
+                  Sie fühlen. Sichtbarkeit beginnt damit, dass Sie sich selbst
+                  wieder sehen – klar und ohne Selbstkritik.
                 </p>
               </CardContent>
             </Card>
@@ -273,10 +297,11 @@ export default function WomenPage() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <Heart className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">Selbstfürsorge</h3>
+                <h3 className="mb-3 text-xl font-semibold">Verbindung</h3>
                 <p className="text-muted-foreground">
-                  Lernen, für sich selbst zu sorgen – ohne sich schuldig zu fühlen. 
-                  Grenzen setzen. Nein sagen. Sich selbst ernst nehmen. Sich selbst wichtig nehmen.
+                  Wieder echte Nähe herstellen. Sich wirklich begegnen – nicht
+                  nur nebeneinander existieren. Verbindung entsteht durch
+                  Präsenz, durch Ehrlichkeit, durch den Mut, sich zu zeigen.
                 </p>
               </CardContent>
             </Card>
@@ -286,10 +311,11 @@ export default function WomenPage() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <Sparkles className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">Selbstbestimmung</h3>
+                <h3 className="mb-3 text-xl font-semibold">Entwicklung</h3>
                 <p className="text-muted-foreground">
-                  Entscheidungen treffen, die zu Ihnen passen. Ihre eigene Stimme wiederfinden. 
-                  Ihr Leben gestalten – nicht nur reagieren, sondern aktiv gestalten.
+                  Wachsen – als Frau und als Partnerin. Entwicklung bedeutet
+                  Bewegung. Den Mut, alte Muster zu hinterfragen und neue Wege
+                  zu gehen. Für sich selbst, ohne sich aufzugeben.
                 </p>
               </CardContent>
             </Card>
@@ -310,12 +336,14 @@ export default function WomenPage() {
                 </div>
                 <blockquote className="space-y-4 text-center">
                   <p className="text-lg italic text-muted-foreground md:text-xl">
-                    „Ich habe gelernt, dass meine Bedürfnisse genauso wichtig sind wie die meines Partners. 
-                    Dass ich nicht egoistisch bin, wenn ich für mich einstehe. 
-                    Dass ich nicht alles alleine tragen muss. Das hat alles verändert."
+                    „Ich hatte das Gefühl, immer wieder gegen eine Wand zu
+                    reden. Das Coaching hat mir geholfen zu verstehen, was ich
+                    wirklich brauche – und wie ich es so kommunizieren kann,
+                    dass mein Partner es auch hören kann. Das hat alles
+                    verändert."
                   </p>
                   <footer className="text-sm font-medium text-foreground">
-                    — Frau, 42 Jahre
+                    — Nicole, 42 Jahre
                   </footer>
                 </blockquote>
               </CardContent>
@@ -332,19 +360,15 @@ export default function WomenPage() {
               Bereit für den nächsten Schritt?
             </h2>
             <p className="text-lg text-muted-foreground md:text-xl">
-              Buchen Sie ein unverbindliches Erstgespräch. Wir klären gemeinsam, 
-              ob und wie ich Sie auf Ihrem Weg begleiten kann.
+              Buchen Sie ein kostenloses Kennenlerngespräch. Wir klären
+              gemeinsam, ob und wie ich Sie auf Ihrem Weg begleiten kann.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="text-base">
-                <a
-                  href="https://calendly.com/paarweg-info"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Erstgespräch buchen
+                <Link to="/kennenlerngespräch">
+                  Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

@@ -1,45 +1,57 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Shield, Compass, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { useEffect } from 'react';
-import MobileReadMore from '@/components/MobileReadMore';
+import MobileReadMore from "@/components/MobileReadMore";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, CheckCircle2, Compass, Shield, Users } from "lucide-react";
+import { useEffect } from "react";
 
 export default function MenPage() {
   useEffect(() => {
-    document.title = 'Coaching für Männer in Beziehungen – Raum für Klarheit | PaarWeg';
-    
+    document.title =
+      "Coaching für Männer in Beziehungen – Raum für Klarheit | PaarWeg";
+
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
+      metaDescription = document.createElement("meta");
+      metaDescription.setAttribute("name", "description");
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.');
+    metaDescription.setAttribute(
+      "content",
+      "Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.",
+    );
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', 'https://www.paarweg.com/maenner');
+    canonical.setAttribute("href", "https://www.paarweg.com/maenner");
 
     // Open Graph tags
     const ogTags = [
-      { property: 'og:title', content: 'Coaching für Männer in Beziehungen | PaarWeg' },
-      { property: 'og:description', content: 'Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.' },
-      { property: 'og:url', content: 'https://www.paarweg.com/maenner' },
+      {
+        property: "og:title",
+        content: "Coaching für Männer in Beziehungen | PaarWeg",
+      },
+      {
+        property: "og:description",
+        content:
+          "Coaching für Männer in Beziehungen – wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. Raum für Klarheit, Orientierung und echte Verbindung.",
+      },
+      { property: "og:url", content: "https://www.paarweg.com/maenner" },
     ];
 
-    ogTags.forEach(({ property, content }) => {
+    for (const { property, content } of ogTags) {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
-        tag = document.createElement('meta');
-        tag.setAttribute('property', property);
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
         document.head.appendChild(tag);
       }
-      tag.setAttribute('content', content);
-    });
+      tag.setAttribute("content", content);
+    }
   }, []);
 
   return (
@@ -56,32 +68,33 @@ export default function MenPage() {
                 <MobileReadMore collapsedHeight="200px">
                   <div className="space-y-4 text-lg text-muted-foreground md:text-xl">
                     <p>
-                      Wenn Sie spüren, dass etwas nicht stimmt, aber nicht wissen, wie Sie es ansprechen sollen. 
-                      Wenn Sie sich hilflos fühlen, weil nichts, was Sie tun, richtig zu sein scheint. 
-                      Wenn Sie sich nach echter Verbindung sehnen, aber nicht wissen, wie Sie sie erreichen.
+                      Wenn Sie spüren, dass etwas nicht stimmt, aber nicht
+                      wissen, wie Sie es ansprechen sollen. Wenn Sie sich
+                      zurückziehen, weil Gespräche immer wieder eskalieren. Wenn
+                      Sie sich fragen, ob Sie überhaupt noch der richtige
+                      Partner sind.
                     </p>
                     <p>
-                      Wenn Sie das Gefühl haben, dass Ihre Partnerin Sie nicht versteht. 
-                      Wenn Sie sich zurückziehen, weil Sie nicht wissen, was Sie sagen sollen. 
-                      Wenn Sie sich fragen, ob Sie überhaupt noch der Richtige sind.
+                      Wenn Sie sich wünschen, dass es besser wird – aber nicht
+                      wissen, wie. Wenn Sie Verantwortung übernehmen wollen,
+                      aber nicht wissen, wo Sie anfangen sollen. Wenn Sie
+                      Klarheit brauchen – über sich selbst, über Ihre Beziehung,
+                      über das, was Sie wirklich wollen.
                     </p>
                     <p className="font-medium text-foreground">
-                      Hier ist Raum für Ihre Perspektive. Für Ihre Fragen. Für die Suche nach Klarheit – 
-                      ohne Vorwürfe, ohne Druck, ohne Erwartungen.
+                      Hier ist Raum für Sie. Ohne Urteile. Ohne Vorwürfe. Für
+                      die Frage: Was brauche ich, um ein guter Partner zu sein –
+                      und ein guter Mensch?
                     </p>
                   </div>
                 </MobileReadMore>
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="text-base">
-                  <a
-                    href="https://calendly.com/paarweg-info"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Erstgespräch buchen
+                  <Link to="/kennenlerngespräch">
+                    Kennenlerngespräch buchen
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -104,17 +117,18 @@ export default function MenPage() {
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tight sm:text-4xl">
               Typische Themen im Coaching für Männer
             </h2>
-            
+
             <div className="grid gap-6 md:grid-cols-2">
               <Card className="border-2">
                 <CardContent className="pt-6">
                   <div className="mb-3 flex items-start gap-3">
                     <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                     <div>
-                      <h3 className="mb-2 font-semibold">Hilflosigkeit</h3>
+                      <h3 className="mb-2 font-semibold">Kommunikation</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, was Sie tun sollen. Wenn nichts, was Sie versuchen, zu funktionieren scheint. 
-                        Wenn Sie das Gefühl haben, dass Sie es nur noch schlimmer machen.
+                        Wenn Gespräche immer wieder eskalieren oder im Schweigen
+                        enden. Wenn Sie nicht wissen, wie Sie ansprechen sollen,
+                        was Sie bewegt. Wenn Sie sich missverstanden fühlen.
                       </p>
                     </div>
                   </div>
@@ -128,8 +142,10 @@ export default function MenPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Rückzug</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie sich zurückziehen, weil Sie nicht wissen, was Sie sagen sollen. 
-                        Wenn Sie Konflikten aus dem Weg gehen, weil Sie nicht wissen, wie Sie damit umgehen sollen.
+                        Wenn Sie sich zurückziehen, weil Sie nicht wissen, wie
+                        Sie reagieren sollen. Wenn Sie Konflikte vermeiden, weil
+                        Sie Angst haben, es schlimmer zu machen. Wenn Sie sich
+                        emotional abschneiden.
                       </p>
                     </div>
                   </div>
@@ -141,11 +157,12 @@ export default function MenPage() {
                   <div className="mb-3 flex items-start gap-3">
                     <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                     <div>
-                      <h3 className="mb-2 font-semibold">Kommunikation</h3>
+                      <h3 className="mb-2 font-semibold">Verantwortung</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, wie Sie ansprechen sollen, was Sie bewegt. 
-                        Wenn Sie das Gefühl haben, dass Ihre Partnerin Sie nicht versteht. 
-                        Wenn Gespräche zu Streit werden.
+                        Wenn Sie Verantwortung übernehmen wollen, aber nicht
+                        wissen, wie. Wenn Sie sich fragen, was Sie anders machen
+                        könnten. Wenn Sie bereit sind hinzuschauen – auch bei
+                        sich selbst.
                       </p>
                     </div>
                   </div>
@@ -157,11 +174,11 @@ export default function MenPage() {
                   <div className="mb-3 flex items-start gap-3">
                     <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                     <div>
-                      <h3 className="mb-2 font-semibold">Erwartungen</h3>
+                      <h3 className="mb-2 font-semibold">Identität</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie das Gefühl haben, dass Sie nie genug sind. 
-                        Wenn Sie sich fragen, was Ihre Partnerin eigentlich von Ihnen will. 
-                        Wenn Sie nicht wissen, wie Sie es richtig machen sollen.
+                        Wenn Sie sich fragen, wer Sie eigentlich sind – jenseits
+                        von Partner, Vater, Versorger. Wenn Sie sich verloren
+                        fühlen. Wenn Sie nicht mehr wissen, was Sie wollen.
                       </p>
                     </div>
                   </div>
@@ -175,9 +192,10 @@ export default function MenPage() {
                     <div>
                       <h3 className="mb-2 font-semibold">Entscheidungen</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie nicht wissen, ob Sie bleiben oder gehen sollen. 
-                        Wenn Sie sich fragen, ob es noch Hoffnung gibt. 
-                        Wenn Sie Klarheit brauchen, um eine Entscheidung treffen zu können.
+                        Wenn Sie nicht wissen, ob Sie bleiben oder gehen sollen.
+                        Wenn Sie Klarheit brauchen, um eine Entscheidung treffen
+                        zu können. Wenn Sie sich fragen, ob es noch Hoffnung
+                        gibt.
                       </p>
                     </div>
                   </div>
@@ -189,10 +207,12 @@ export default function MenPage() {
                   <div className="mb-3 flex items-start gap-3">
                     <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-primary" />
                     <div>
-                      <h3 className="mb-2 font-semibold">Verbindung</h3>
+                      <h3 className="mb-2 font-semibold">Nähe</h3>
                       <p className="text-sm text-muted-foreground">
-                        Wenn Sie sich nach echter Nähe sehnen, aber nicht wissen, wie Sie sie erreichen. 
-                        Wenn Sie sich fremd geworden sind. Wenn Sie nicht wissen, wie Sie wieder zueinander finden.
+                        Wenn Sie sich nach echter Verbindung sehnen, aber nicht
+                        wissen, wie Sie sie herstellen können. Wenn Intimität
+                        fehlt – emotional oder körperlich. Wenn Sie sich fremd
+                        geworden sind.
                       </p>
                     </div>
                   </div>
@@ -213,27 +233,33 @@ export default function MenPage() {
             <MobileReadMore collapsedHeight="220px">
               <div className="space-y-6 text-lg text-muted-foreground">
                 <p>
-                  Im Coaching für Männer geht es nicht darum, Ihnen zu sagen, was Sie falsch machen. 
-                  Es geht darum, einen Raum zu schaffen, in dem Sie selbst herausfinden können, was Sie brauchen. 
-                  In dem Sie Klarheit gewinnen. In dem Sie verstehen, was zwischen Ihnen und Ihrer Partnerin steht – 
-                  und was Sie tun können, um das zu verändern.
+                  Im Coaching für Männer geht es nicht darum, Ihnen zu sagen,
+                  was Sie falsch gemacht haben. Es geht darum, einen Raum zu
+                  schaffen, in dem Sie ehrlich hinschauen können – ohne Urteile,
+                  ohne Vorwürfe. In dem Sie verstehen können, was in Ihnen
+                  vorgeht. In dem Sie Klarheit gewinnen können über das, was Sie
+                  wirklich wollen.
                 </p>
                 <p>
-                  Ich höre zu. Ich stelle Fragen. Ich benenne, was ich sehe – auch wenn es unangenehm ist. 
-                  Ich fordere Sie heraus, ohne Sie zu verurteilen. Ich bin nicht hier, um Ihnen zu sagen, 
-                  dass Sie schuld sind. Ich bin hier, um Sie dabei zu unterstützen, Verantwortung zu übernehmen – 
-                  für sich selbst und für die Beziehung.
+                  Ich höre zu. Ich stelle Fragen. Ich benenne, was ich sehe –
+                  auch wenn es unangenehm ist. Ich fordere Sie heraus, ohne Sie
+                  zu überfordern. Ich bin nicht hier, um Ihnen zu sagen, dass
+                  Sie der Schuldige sind. Ich bin hier, um Sie dabei zu
+                  unterstützen, Verantwortung zu übernehmen – für sich selbst
+                  und für Ihre Beziehung.
                 </p>
                 <p>
-                  Wir schauen auf Ihre Bedürfnisse, auf Ihre Muster, auf das, was Sie zurückhält. 
-                  Wir entwickeln Strategien, wie Sie für sich einstehen können – ohne sich zurückzuziehen. 
-                  Wie Sie kommunizieren können – ohne dass es zu Streit wird. 
-                  Wie Sie Nähe herstellen können – ohne sich zu verlieren.
+                  Wir schauen auf Ihre Muster, auf Ihre Bedürfnisse, auf das,
+                  was Sie zurückhält. Wir entwickeln konkrete Strategien, wie
+                  Sie anders reagieren können – in Konflikten, in schwierigen
+                  Momenten, in der Alltagsroutine. Und wir klären, was Sie
+                  wirklich wollen – nicht was Sie wollen sollten.
                 </p>
                 <p className="font-medium text-foreground">
-                  Coaching ist keine Therapie. Es ist ein Prozess der Selbstklärung. 
-                  Ein Raum, in dem Sie sich selbst wieder begegnen können. 
-                  Ein Weg zu mehr Klarheit, Orientierung und innerer Stärke.
+                  Coaching ist keine Therapie. Es ist ein Prozess der
+                  Selbstklärung. Ein Raum, in dem Sie sich selbst wieder
+                  begegnen können. Ein Weg zu mehr Klarheit, Orientierung und
+                  innerer Stärke.
                 </p>
               </div>
             </MobileReadMore>
@@ -249,7 +275,8 @@ export default function MenPage() {
               Was Männer im Coaching finden
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Drei zentrale Werte, die den Weg zu mehr Klarheit ebnen
+              Drei zentrale Werte, die den Weg zu mehr Klarheit und Verbindung
+              ebnen
             </p>
           </div>
 
@@ -259,10 +286,11 @@ export default function MenPage() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <Compass className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">Klarheit</h3>
+                <h3 className="mb-3 text-xl font-semibold">Orientierung</h3>
                 <p className="text-muted-foreground">
-                  Verstehen, was wirklich los ist. Nicht was sein sollte, sondern was ist. 
-                  Klarheit über Ihre Bedürfnisse, über Ihre Muster, über das, was Sie wirklich wollen.
+                  Verstehen, was wirklich los ist – in der Beziehung und in sich
+                  selbst. Klarheit über eigene Bedürfnisse, über Muster, über
+                  das, was Sie wirklich wollen.
                 </p>
               </CardContent>
             </Card>
@@ -272,10 +300,11 @@ export default function MenPage() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
                   <Shield className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">Orientierung</h3>
+                <h3 className="mb-3 text-xl font-semibold">Stärke</h3>
                 <p className="text-muted-foreground">
-                  Wissen, was Sie tun können. Konkrete Strategien entwickeln. 
-                  Handlungsfähigkeit zurückgewinnen. Nicht mehr hilflos sein, sondern aktiv gestalten.
+                  Nicht die Stärke, die alles kontrolliert – sondern die Stärke,
+                  die ehrlich hinschaut. Die Verantwortung übernimmt. Die
+                  verletzlich sein kann, ohne sich zu verlieren.
                 </p>
               </CardContent>
             </Card>
@@ -287,8 +316,9 @@ export default function MenPage() {
                 </div>
                 <h3 className="mb-3 text-xl font-semibold">Verbindung</h3>
                 <p className="text-muted-foreground">
-                  Lernen, wie Sie Nähe herstellen können. Wie Sie kommunizieren können, ohne dass es zu Streit wird. 
-                  Wie Sie für sich einstehen können, ohne sich zurückzuziehen.
+                  Wieder echte Nähe herstellen. Sich wirklich begegnen – nicht
+                  nur nebeneinander existieren. Verbindung entsteht durch
+                  Präsenz, durch Ehrlichkeit, durch den Mut, sich zu zeigen.
                 </p>
               </CardContent>
             </Card>
@@ -309,12 +339,14 @@ export default function MenPage() {
                 </div>
                 <blockquote className="space-y-4 text-center">
                   <p className="text-lg italic text-muted-foreground md:text-xl">
-                    „Ich habe gelernt, dass Rückzug keine Lösung ist. Dass ich nicht hilflos bin. 
-                    Dass ich etwas tun kann – auch wenn es unangenehm ist. 
-                    Das hat unsere Beziehung gerettet."
+                    „Ich dachte, ich müsste das alleine lösen. Dass es ein
+                    Zeichen von Schwäche ist, Hilfe zu suchen. Das Coaching hat
+                    mir gezeigt, dass das Gegenteil wahr ist. Dass es Mut
+                    braucht, ehrlich hinzuschauen. Und dass dieser Mut alles
+                    verändert."
                   </p>
                   <footer className="text-sm font-medium text-foreground">
-                    — Mann, 45 Jahre
+                    — Stephan, 45 Jahre
                   </footer>
                 </blockquote>
               </CardContent>
@@ -331,19 +363,15 @@ export default function MenPage() {
               Bereit für den nächsten Schritt?
             </h2>
             <p className="text-lg text-muted-foreground md:text-xl">
-              Buchen Sie ein unverbindliches Erstgespräch. Wir klären gemeinsam, 
-              ob und wie ich Sie auf Ihrem Weg begleiten kann.
+              Buchen Sie ein kostenloses Kennenlerngespräch. Wir klären
+              gemeinsam, ob und wie ich Sie auf Ihrem Weg begleiten kann.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="text-base">
-                <a
-                  href="https://calendly.com/paarweg-info"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Erstgespräch buchen
+                <Link to="/kennenlerngespräch">
+                  Kennenlerngespräch buchen
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

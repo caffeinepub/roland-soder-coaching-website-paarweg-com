@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { normalizeColorToHex } from '@/utils/color';
+import { normalizeColorToHex } from "@/utils/color";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Hook that derives HEX color values at runtime by reading computed styles
@@ -15,23 +15,23 @@ export function useComputedThemeHexColors() {
     primaryButton: null,
   });
 
-  const computeColors = () => {
+  const computeColors = useCallback(() => {
     // Create temporary probe elements to read computed styles
-    const probeContainer = document.createElement('div');
-    probeContainer.style.position = 'absolute';
-    probeContainer.style.visibility = 'hidden';
-    probeContainer.style.pointerEvents = 'none';
-    probeContainer.style.top = '-9999px';
-    probeContainer.style.left = '-9999px';
+    const probeContainer = document.createElement("div");
+    probeContainer.style.position = "absolute";
+    probeContainer.style.visibility = "hidden";
+    probeContainer.style.pointerEvents = "none";
+    probeContainer.style.top = "-9999px";
+    probeContainer.style.left = "-9999px";
 
     // Probe for background color
-    const bgProbe = document.createElement('div');
-    bgProbe.className = 'bg-background';
+    const bgProbe = document.createElement("div");
+    bgProbe.className = "bg-background";
     probeContainer.appendChild(bgProbe);
 
     // Probe for primary button color
-    const buttonProbe = document.createElement('button');
-    buttonProbe.className = 'bg-primary';
+    const buttonProbe = document.createElement("button");
+    buttonProbe.className = "bg-primary";
     probeContainer.appendChild(buttonProbe);
 
     document.body.appendChild(probeContainer);
@@ -50,7 +50,7 @@ export function useComputedThemeHexColors() {
       background: bgColor,
       primaryButton: buttonColor,
     });
-  };
+  }, []);
 
   useEffect(() => {
     // Initial computation
@@ -58,25 +58,25 @@ export function useComputedThemeHexColors() {
 
     // Watch for theme changes (dark mode toggle)
     const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
+      for (const mutation of mutations) {
         if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'class'
+          mutation.type === "attributes" &&
+          mutation.attributeName === "class"
         ) {
           computeColors();
         }
-      });
+      }
     });
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ["class"],
     });
 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [computeColors]);
 
   return colors;
 }

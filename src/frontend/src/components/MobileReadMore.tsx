@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { featureFlags } from '@/config/featureFlags';
+import { Button } from "@/components/ui/button";
+import { featureFlags } from "@/config/featureFlags";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 interface MobileReadMoreProps {
   children: React.ReactNode;
@@ -9,13 +9,14 @@ interface MobileReadMoreProps {
   id?: string;
 }
 
-export default function MobileReadMore({ 
-  children, 
-  collapsedHeight = '200px',
-  id 
+export default function MobileReadMore({
+  children,
+  collapsedHeight = "200px",
+  id,
 }: MobileReadMoreProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const contentId = id || `mobile-read-more-${Math.random().toString(36).substr(2, 9)}`;
+  const contentId =
+    id || `mobile-read-more-${Math.random().toString(36).substr(2, 9)}`;
 
   // If compacting is disabled, render content fully expanded without any collapse UI
   if (!featureFlags.enableMobileReadMoreCompacting) {
@@ -30,10 +31,10 @@ export default function MobileReadMore({
         id={contentId}
         className={`
           overflow-hidden transition-all duration-300 ease-in-out
-          ${isExpanded ? 'max-h-none' : 'md:max-h-none'}
+          ${isExpanded ? "max-h-none" : "md:max-h-none"}
         `}
         style={{
-          maxHeight: isExpanded ? 'none' : `min(${collapsedHeight}, 100%)`,
+          maxHeight: isExpanded ? "none" : `min(${collapsedHeight}, 100%)`,
         }}
         aria-expanded={isExpanded}
       >
@@ -42,7 +43,7 @@ export default function MobileReadMore({
 
       {/* Gradient fade effect when collapsed - mobile only */}
       {!isExpanded && (
-        <div 
+        <div
           className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none md:hidden"
           aria-hidden="true"
         />

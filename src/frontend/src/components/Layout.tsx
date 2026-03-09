@@ -1,23 +1,23 @@
-import { Outlet, Link, useLocation, useNavigate } from '@tanstack/react-router';
-import { Menu, Heart } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Link, Outlet, useLocation, useNavigate } from "@tanstack/react-router";
+import { Heart, Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Layout() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const _navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Navigation items - /paarberatung-zuerich is intentionally not included (landing page only)
   const navigation = [
-    { name: 'Startseite', href: '/' },
-    { name: 'Für Paare', href: '/paare' },
-    { name: 'Für Frauen', href: '/frauen' },
-    { name: 'Für Männer', href: '/maenner' },
-    { name: 'Über mich', href: '/ueber-mich' },
-    { name: 'Preise', href: '/preise' },
-    { name: 'Kontakt', href: '/kontakt' },
+    { name: "Startseite", href: "/" },
+    { name: "Für Paare", href: "/paare" },
+    { name: "Für Frauen", href: "/frauen" },
+    { name: "Für Männer", href: "/maenner" },
+    { name: "Über mich", href: "/ueber-mich" },
+    { name: "Preise", href: "/preise" },
+    { name: "Kontakt", href: "/kontakt" },
   ];
 
   const isActive = (href: string) => {
@@ -25,9 +25,12 @@ export default function Layout() {
   };
 
   // Handle navigation click with special logic for Kontakt page
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     // If clicking Kontakt while already on /kontakt, reload the page
-    if (href === '/kontakt' && location.pathname === '/kontakt') {
+    if (href === "/kontakt" && location.pathname === "/kontakt") {
       e.preventDefault();
       window.location.reload();
     }
@@ -38,8 +41,9 @@ export default function Layout() {
   };
 
   // Scroll to top on route change - instant scroll for mobile
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally use location.pathname only
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname]);
 
   return (
@@ -64,8 +68,8 @@ export default function Layout() {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
                   isActive(item.href)
-                    ? 'bg-accent text-accent-foreground'
-                    : 'text-muted-foreground'
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground"
                 }`}
               >
                 {item.name}
@@ -76,9 +80,9 @@ export default function Layout() {
           {/* Mobile Menu - Hamburger icon with terracotta color */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="h-12 w-12 hover:bg-accent"
               >
                 <Menu className="h-7 w-7 text-primary" strokeWidth={2} />
@@ -94,8 +98,8 @@ export default function Layout() {
                     onClick={(e) => handleNavClick(e, item.href)}
                     className={`rounded-md px-4 py-3 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
                       isActive(item.href)
-                        ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground'
+                        ? "bg-accent text-accent-foreground"
+                        : "text-muted-foreground"
                     }`}
                   >
                     {item.name}
@@ -125,14 +129,17 @@ export default function Layout() {
                 />
               </div>
               <p className="text-sm text-muted-foreground text-left">
-                Begleitung für Paare auf dem Weg zu mehr Nähe, Verständnis und gemeinsamer Entwicklung.
+                Begleitung für Paare auf dem Weg zu mehr Nähe, Verständnis und
+                gemeinsamer Entwicklung.
               </p>
             </div>
             <div>
               <h3 className="mb-4 text-lg font-semibold text-left">Kontakt</h3>
               <div className="space-y-1 text-sm text-left">
                 <p className="text-foreground">Tel: +41 79 770 39 25</p>
-                <p className="text-foreground break-all">E-Mail: info@paarweg.com</p>
+                <p className="text-foreground break-all">
+                  E-Mail: info@paarweg.com
+                </p>
                 <p className="text-foreground">
                   <a
                     href="https://wa.me/+41797703925"
@@ -149,9 +156,14 @@ export default function Layout() {
               </div>
             </div>
             <div>
-              <h3 className="mb-4 text-lg font-semibold text-left">Rechtliches</h3>
+              <h3 className="mb-4 text-lg font-semibold text-left">
+                Rechtliches
+              </h3>
               <nav className="flex flex-col space-y-2 text-sm text-left">
-                <Link to="/impressum" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/impressum"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Impressum & Datenschutz
                 </Link>
               </nav>
@@ -159,7 +171,8 @@ export default function Layout() {
           </div>
           <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
             <p className="flex items-center justify-center gap-1">
-              © {new Date().getFullYear()}. Built with <Heart className="h-4 w-4 fill-primary text-primary" /> using{' '}
+              © {new Date().getFullYear()}. Built with{" "}
+              <Heart className="h-4 w-4 fill-primary text-primary" /> using{" "}
               <a
                 href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
                 target="_blank"

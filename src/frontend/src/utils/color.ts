@@ -13,7 +13,7 @@
 function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) => {
     const hex = Math.round(n).toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
+    return hex.length === 1 ? `0${hex}` : hex;
   };
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 }
@@ -50,7 +50,7 @@ function oklchToRgb(l: number, c: number, h: number): [number, number, number] {
     if (abs <= 0.0031308) {
       return c * 12.92;
     }
-    return (Math.sign(c) * 1.055 * Math.pow(abs, 1 / 2.4) - 0.055);
+    return Math.sign(c) * 1.055 * abs ** (1 / 2.4) - 0.055;
   };
 
   const r = toSrgb(r_linear);
@@ -74,26 +74,30 @@ export function normalizeColorToHex(colorString: string): string | null {
   const trimmed = colorString.trim();
 
   // Handle rgb() and rgba()
-  const rgbMatch = trimmed.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/);
+  const rgbMatch = trimmed.match(
+    /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/,
+  );
   if (rgbMatch) {
-    const r = parseInt(rgbMatch[1], 10);
-    const g = parseInt(rgbMatch[2], 10);
-    const b = parseInt(rgbMatch[3], 10);
+    const r = Number.parseInt(rgbMatch[1], 10);
+    const g = Number.parseInt(rgbMatch[2], 10);
+    const b = Number.parseInt(rgbMatch[3], 10);
     return rgbToHex(r, g, b);
   }
 
   // Handle oklch()
-  const oklchMatch = trimmed.match(/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*[\d.]+)?\)/);
+  const oklchMatch = trimmed.match(
+    /oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*[\d.]+)?\)/,
+  );
   if (oklchMatch) {
-    const l = parseFloat(oklchMatch[1]);
-    const c = parseFloat(oklchMatch[2]);
-    const h = parseFloat(oklchMatch[3]);
+    const l = Number.parseFloat(oklchMatch[1]);
+    const c = Number.parseFloat(oklchMatch[2]);
+    const h = Number.parseFloat(oklchMatch[3]);
     const [r, g, b] = oklchToRgb(l, c, h);
     return rgbToHex(r, g, b);
   }
 
   // Handle hex colors (already in correct format)
-  if (trimmed.startsWith('#')) {
+  if (trimmed.startsWith("#")) {
     return trimmed.toUpperCase();
   }
 
