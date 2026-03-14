@@ -2,18 +2,45 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
+  Brain,
   Calendar,
   CheckCircle,
   Heart,
+  Home,
   MessageCircle,
   Pause,
   Play,
+  Quote,
+  ShieldCheck,
   Users,
   Volume2,
   VolumeX,
-  Wifi,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
+const ONLINE_TESTIMONIALS = [
+  {
+    quote:
+      "Wir wohnen auf dem Land und hätten sonst stundenlang fahren müssen. Online war die perfekte Lösung – und die Qualität der Gespräche hat uns wirklich überrascht.",
+    name: "Petra & Daniel",
+    location: "Thun",
+    ocid: "schweiz.testimonials.item.1",
+  },
+  {
+    quote:
+      "Ich war sehr skeptisch gegenüber Online-Beratung. Heute würde ich sagen: Die Hemmschwelle war unbegründet. Es ist persönlich, strukturiert und sehr wirkungsvoll.",
+    name: "Beat",
+    location: "Luzern",
+    ocid: "schweiz.testimonials.item.2",
+  },
+  {
+    quote:
+      "Wir haben von Beginn an online beraten – und haben das nie bereut. Die Möglichkeit, abends von zu Hause aus zu sprechen, hat den Prozess für uns überhaupt erst möglich gemacht.",
+    name: "Claudia & Stefan",
+    location: "St. Gallen",
+    ocid: "schweiz.testimonials.item.3",
+  },
+];
 
 export default function SwissOnlineCouplesLandingPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -23,7 +50,7 @@ export default function SwissOnlineCouplesLandingPage() {
   // SEO meta tags + JSON-LD
   useEffect(() => {
     document.title =
-      "Online Paarberatung Schweiz – Professionelle Paartherapie | PaarWeg";
+      "Online Paarberatung Schweiz – persönlich & flexibel | PaarWeg";
 
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
@@ -33,7 +60,7 @@ export default function SwissOnlineCouplesLandingPage() {
     }
     metaDescription.setAttribute(
       "content",
-      "Online Paarberatung für die ganze Schweiz: Professionelle Unterstützung für Paare in Krisen, bei Kommunikationsproblemen und Konflikten – bequem von zu Hause. Jetzt kostenloses Kennenlerngespräch buchen.",
+      "Online Paarberatung für Paare in der ganzen Schweiz. Professionell, strukturiert und flexibel von zu Hause. Kostenloses Kennenlerngespräch – unverbindlich.",
     );
 
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -50,12 +77,13 @@ export default function SwissOnlineCouplesLandingPage() {
     const ogTags = [
       {
         property: "og:title",
-        content: "Online Paarberatung Schweiz – PaarWeg",
+        content:
+          "Online Paarberatung Schweiz – persönlich & flexibel | PaarWeg",
       },
       {
         property: "og:description",
         content:
-          "Professionelle Online-Paarberatung für die ganze Schweiz. Kostenloses Kennenlerngespräch buchen.",
+          "Online Paarberatung für Paare in der ganzen Schweiz. Professionell, strukturiert und flexibel.",
       },
       {
         property: "og:url",
@@ -64,7 +92,7 @@ export default function SwissOnlineCouplesLandingPage() {
       { property: "og:type", content: "website" },
       {
         property: "og:image",
-        content: "https://www.paarweg.com/assets/Videocall.png",
+        content: "https://www.paarweg.com/assets/paar_an_notebook-1.png",
       },
       { property: "og:locale", content: "de_CH" },
     ];
@@ -143,7 +171,7 @@ export default function SwissOnlineCouplesLandingPage() {
 
   return (
     <div className="w-full">
-      {/* Hero Section */}
+      {/* 1. Hero Section */}
       <section className="relative bg-primary/5 py-12 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-2xl mx-auto text-center">
@@ -151,23 +179,26 @@ export default function SwissOnlineCouplesLandingPage() {
               Online Paarberatung Schweiz
             </p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-5">
-              Paarberatung online – für die ganze Schweiz
+              Online-Paarberatung Schweiz – wenn Gespräche nicht mehr verbinden
             </h1>
             <p className="text-lg text-muted-foreground mb-4">
-              Egal ob Zürich, Bern, Luzern oder Genf – professionelle
-              Paarberatung ist jetzt bequem von zu Hause aus möglich. Kein
-              Anfahrtsweg, keine Wartezeit.
+              Kommunikationsprobleme in der Partnerschaft und ständig Streit in
+              der Beziehung belasten viele Paare – quer durch die ganze Schweiz.
             </p>
-            <p className="text-lg text-muted-foreground mb-8">
-              Als erfahrener Paarberatungscoach begleite ich Sie per Videocall
-              dabei, wieder eine tragfähige Verbindung aufzubauen – respektvoll,
-              lösungsorientiert und auf Augenhöhe.
+            <p className="text-sm text-muted-foreground italic mb-8">
+              Online Paarcoaching bietet einen strukturierten Rahmen für Klärung
+              und Veränderung – schweizweit, flexibel und ohne Anfahrtsweg.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button size="lg" className="text-base px-8" asChild>
+              <Button
+                size="lg"
+                className="text-base px-8"
+                asChild
+                data-ocid="schweiz.primary_button"
+              >
                 <Link to="/kennenlerngespräch">
                   <Calendar className="mr-2 h-5 w-5" />
-                  Kostenloses Kennenlerngespräch buchen
+                  Unverb. Kennenlerngespräch vereinbaren
                 </Link>
               </Button>
               <Button
@@ -175,10 +206,11 @@ export default function SwissOnlineCouplesLandingPage() {
                 variant="outline"
                 className="text-base px-8"
                 asChild
+                data-ocid="schweiz.secondary_button"
               >
                 <a href="/">
                   <ArrowRight className="mr-2 h-5 w-5" />
-                  Mehr über PaarWeg
+                  Mehr über die Online-Paarberatung erfahren
                 </a>
               </Button>
             </div>
@@ -186,7 +218,7 @@ export default function SwissOnlineCouplesLandingPage() {
         </div>
       </section>
 
-      {/* Video Section – directly below hero */}
+      {/* 2. Video Section */}
       <section className="py-10 md:py-14 bg-primary/5">
         <div className="container mx-auto px-4 max-w-lg">
           <div className="relative w-full" style={{ aspectRatio: "4/5" }}>
@@ -229,171 +261,294 @@ export default function SwissOnlineCouplesLandingPage() {
         </div>
       </section>
 
-      {/* Vorteile Online Section */}
-      <section className="py-14 md:py-20 bg-background">
+      {/* 3. Trust Block */}
+      <section className="py-10 md:py-14 bg-primary/5">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-            Warum Online-Paarberatung?
-          </h2>
-          <p className="text-muted-foreground text-center mb-10 text-lg">
-            Online-Beratung ist genauso wirksam wie Präsenz – und bietet
-            zusätzliche Vorteile.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              {
-                icon: Wifi,
-                text: "Bequem von zu Hause – kein Anfahrtsweg, keine Parkplatzsuche",
-              },
-              {
-                icon: Heart,
-                text: "Vertraute Umgebung fördert Offenheit und Entspannung",
-              },
-              {
-                icon: Users,
-                text: "Für Paare in der ganzen Schweiz zugänglich",
-              },
-              {
-                icon: MessageCircle,
-                text: "Flexible Terminwahl – auch abends oder am Wochenende",
-              },
-            ].map(({ icon: Icon, text }) => (
-              <div
-                key={text}
-                className="flex items-start gap-4 p-5 rounded-xl bg-primary/5 border border-primary/10"
-              >
-                <Icon className="h-6 w-6 text-primary mt-0.5 shrink-0" />
-                <p className="text-foreground">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Probleme Section */}
-      <section className="py-14 md:py-20 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-            Kennen Sie das?
-          </h2>
-          <p className="text-muted-foreground text-center mb-10 text-lg">
-            Diese Situationen erleben viele Paare – Sie sind damit nicht allein.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                icon: MessageCircle,
-                text: "Gespräche enden immer wieder im Streit oder im Schweigen",
-              },
-              {
-                icon: Heart,
-                text: "Die emotionale Nähe und Verbindung fehlt zunehmend",
-              },
-              {
-                icon: Users,
-                text: "Sie reden aneinander vorbei, obwohl Sie es besser wollen",
-              },
-              {
-                icon: Wifi,
-                text: "Geografische Distanz oder Zeitmangel erschwert Präsenztermine",
-              },
-            ].map(({ icon: Icon, text }) => (
-              <div
-                key={text}
-                className="flex items-start gap-4 p-5 rounded-xl bg-background border border-border"
-              >
-                <Icon className="h-6 w-6 text-primary mt-0.5 shrink-0" />
-                <p className="text-foreground">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Wie ich helfe */}
-      <section className="py-14 md:py-20 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-            Wie Online-Paarberatung bei mir funktioniert
-          </h2>
-          <p className="text-muted-foreground text-center mb-10 text-lg">
-            Kein Schuldzuweisen, kein Urteil – sondern ein strukturierter Weg zu
-            mehr Verständnis.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                step: "1",
-                title: "Kostenloses Kennenlerngespräch",
-                desc: "In einem ersten, unverbindlichen Videocall lernen wir uns kennen. Sie schildern Ihre Situation, ich erkläre meinen Ansatz.",
-              },
-              {
-                step: "2",
-                title: "Gemeinsame Zielsetzung",
-                desc: "Wir definieren gemeinsam, was Sie sich für Ihre Beziehung wünschen und welche Themen wir angehen.",
-              },
-              {
-                step: "3",
-                title: "Begleitung & Umsetzung",
-                desc: "In regelmässigen Online-Sitzungen arbeiten wir an konkreten Mustern, Kommunikation und neuen Wegen füreinander.",
-              },
-            ].map(({ step, title, desc }) => (
-              <div
-                key={step}
-                className="flex flex-col items-center text-center p-6 rounded-2xl bg-primary/5 border border-primary/10 shadow-sm"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg mb-4">
-                  {step}
-                </div>
-                <h3 className="font-semibold text-foreground mb-2">{title}</h3>
-                <p className="text-muted-foreground text-sm">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Warum PaarWeg */}
-      <section className="py-14 md:py-20 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
-            Warum Paare PaarWeg wählen
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {[
-              "Erfahrener Coach mit fundierter Ausbildung",
-              "Wertschätzender, neutraler Umgang mit beiden Partnern",
-              "Klare Struktur und lösungsorientiertes Vorgehen",
-              "Für die ganze Schweiz – bequem online",
-              "Kostenloses Kennenlerngespräch ohne Verpflichtung",
-              "Diskretion und professionelle Schweigepflicht",
-            ].map((item) => (
+              "Online-Paarberatung – schweizweit verfügbar",
+              "Einstieg auch mit nur einem Partner möglich",
+              "Kostenloses, unverbindliches Kennenlerngespräch",
+              "Keine Anreise – von überall in der Schweiz",
+            ].map((item, i) => (
               <div
                 key={item}
-                className="flex items-center gap-3 p-4 rounded-xl bg-background border border-border"
+                className="flex flex-col items-center text-center gap-2 p-4 rounded-xl bg-background border border-primary/10"
+                data-ocid={`schweiz.item.${i + 1}`}
               >
-                <CheckCircle className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground">{item}</span>
+                <CheckCircle className="h-6 w-6 text-primary shrink-0" />
+                <p className="text-sm text-foreground font-medium">{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* 4. Warum Online-Paarberatung funktioniert */}
+      <section className="py-14 md:py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+            Warum Online-Paarberatung in der Schweiz gut funktioniert
+          </h2>
+          <p className="text-muted-foreground text-center mb-8 text-lg">
+            Gerade in der Schweiz – mit langen Arbeitswegen und vollen
+            Terminkalendern – ist das Online-Setting ein echter Vorteil.
+          </p>
+          <div className="space-y-4 mb-8">
+            {[
+              {
+                icon: MessageCircle,
+                text: "Gespräche online können überraschend persönlich und wirksam sein",
+              },
+              {
+                icon: Home,
+                text: "In der eigenen Umgebung sprechen viele Menschen entspannter und offener",
+              },
+              {
+                icon: ShieldCheck,
+                text: "Kein Weg, keine Parkplatzsuche – für Paare überall in der Schweiz",
+              },
+              {
+                icon: Users,
+                text: "Abendtermine möglich – auch wenn der Alltag wenig Spielraum lässt",
+              },
+              {
+                icon: Heart,
+                text: "Entscheidend ist die Qualität des Prozesses – nicht der Ort",
+              },
+            ].map(({ icon: Icon, text }) => (
+              <div
+                key={text}
+                className="flex items-start gap-4 p-4 rounded-xl bg-primary/5 border border-primary/10"
+              >
+                <Icon className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <p className="text-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Button
+              size="lg"
+              className="text-base px-8"
+              asChild
+              data-ocid="schweiz.kennenlernen.primary_button"
+            >
+              <Link to="/kennenlerngespräch">
+                <Calendar className="mr-2 h-5 w-5" />
+                Jetzt Kennenlerngespräch buchen
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Alleine beginnen */}
+      <section className="py-14 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
+            Sie können auch alleine beginnen
+          </h2>
+          <p className="text-muted-foreground text-lg mb-3">
+            Nicht immer sind beide Partner bereit – oder beide überhaupt
+            anwesend. Ein Einstieg alleine ist möglich.
+          </p>
+          <p className="text-muted-foreground text-lg mb-6">
+            Viele Prozesse beginnen mit einem ersten Einzelgespräch.
+          </p>
+          <div className="space-y-3 mb-6">
+            {[
+              "Die eigene Situation und die eigenen Wünsche klarer sehen",
+              "Muster in der Beziehungsdynamik besser verstehen",
+              "Mögliche nächste Schritte erkennen und abwägen",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <p className="text-foreground">{item}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground italic">
+            Manchmal führt das zu dem Entschluss, gemeinsam weiterzumachen –
+            manchmal auch zu einem neuen Verständnis für sich selbst.
+          </p>
+        </div>
+      </section>
+
+      {/* 6. Erst kennenlernen, dann entscheiden */}
+      <section className="py-14 md:py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
+            Erst kennenlernen, dann entscheiden
+          </h2>
+          <p className="text-muted-foreground text-lg mb-4">
+            Im kostenlosen Kennenlerngespräch zeige ich Ihnen, wie der Prozess
+            abläuft und was Sie erwartet.
+          </p>
+          <p className="text-muted-foreground text-lg mb-4">
+            Viele Paare sind überrascht, wie direkt und strukturiert das
+            Gespräch ist – ohne Floskeln, ohne Umwege.
+          </p>
+          <p className="text-muted-foreground text-lg mb-8">
+            Danach entscheiden Sie selbst, ob Sie weitermachen möchten. Keine
+            Verpflichtung, kein Druck.
+          </p>
+          <div className="bg-primary/10 rounded-xl p-5 mb-8 text-center">
+            <p className="text-foreground font-medium">
+              Das Kennenlerngespräch ist kostenlos, dauert 30 Minuten und findet
+              online statt.
+            </p>
+          </div>
+          <div className="text-center">
+            <Button
+              size="lg"
+              className="text-base px-8"
+              asChild
+              data-ocid="schweiz.kennenlernen2.primary_button"
+            >
+              <Link to="/kennenlerngespräch">
+                <Calendar className="mr-2 h-5 w-5" />
+                Kennenlerngespräch vereinbaren
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. So funktioniert Online-Paarberatung bei PaarWeg */}
+      <section className="py-14 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
+            So funktioniert Online-Paarberatung bei PaarWeg
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 text-lg">
+            PaarWeg unterstützt dabei: Gemeinsam herausfinden, was möglich ist
+            und welcher Weg für beide stimmig ist.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+            {[
+              {
+                icon: Brain,
+                title: "Strukturiert & fundiert",
+                desc: "Wissenschaftlich gestützte Methoden, klar aufgebaut.",
+              },
+              {
+                icon: MessageCircle,
+                title: "Systemisch & lösungsorientiert",
+                desc: "Muster erkennen, Perspektiven erweitern, neue Wege gehen.",
+              },
+              {
+                icon: Heart,
+                title: "Raum für beide",
+                desc: "Beide Partner kommen zu Wort – gleichwertig und ohne Wertung.",
+              },
+              {
+                icon: Users,
+                title: "Individuell angepasst",
+                desc: "Kein Schema F. Der Prozess richtet sich nach Ihrer Situation.",
+              },
+            ].map(({ icon: Icon, title, desc }) => (
+              <div
+                key={title}
+                className="flex items-start gap-4 p-5 rounded-xl bg-background border border-border shadow-sm"
+              >
+                <Icon className="h-6 w-6 text-primary mt-0.5 shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-foreground mb-1">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              size="lg"
+              className="text-base px-8"
+              asChild
+              data-ocid="schweiz.ansatz.primary_button"
+            >
+              <Link to="/kennenlerngespräch">
+                <Calendar className="mr-2 h-5 w-5" />
+                Jetzt Kennenlerngespräch buchen
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-base px-8"
+              asChild
+              data-ocid="schweiz.ansatz.secondary_button"
+            >
+              <a href="/">
+                <ArrowRight className="mr-2 h-5 w-5" />
+                Mehr über PaarWeg
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Testimonials – Online-Setting */}
+      <section className="py-14 md:py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-3">
+            Was Paare über das Online-Setting sagen
+          </h2>
+          <p className="text-muted-foreground text-center mb-10 text-base">
+            Erfahrungen aus dem Online-Coaching – in den eigenen Worten der
+            Teilnehmenden.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ONLINE_TESTIMONIALS.map(({ quote, name, location, ocid }) => (
+              <div
+                key={ocid}
+                data-ocid={ocid}
+                className="flex flex-col justify-between bg-[#f9f7f4] border border-primary/10 rounded-2xl p-6 shadow-sm"
+              >
+                <div>
+                  <Quote
+                    className="h-7 w-7 text-primary/30 mb-4"
+                    aria-hidden="true"
+                  />
+                  <p className="text-foreground text-base italic leading-relaxed mb-6">
+                    &ldquo;{quote}&rdquo;
+                  </p>
+                </div>
+                <div className="border-t border-primary/10 pt-4">
+                  <p className="text-sm font-semibold text-foreground">
+                    {name}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {location}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Final CTA */}
       <section className="py-14 md:py-20 bg-primary/10">
         <div className="container mx-auto px-4 max-w-2xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Bereit für den ersten Schritt?
+            Den ersten Schritt machen
           </h2>
           <p className="text-muted-foreground text-lg mb-8">
-            Buchen Sie jetzt Ihr kostenloses Kennenlerngespräch – unverbindlich
-            und ohne Verpflichtung. Ich freue mich darauf, Sie kennenzulernen.
+            Das Kennenlerngespräch ist kostenlos und unverbindlich. Sie erleben,
+            wie Online-Paarberatung funktioniert – und entscheiden danach in
+            Ruhe.
           </p>
-          <Button size="lg" className="text-base px-10" asChild>
+          <Button
+            size="lg"
+            className="text-base px-10"
+            asChild
+            data-ocid="schweiz.final.primary_button"
+          >
             <Link to="/kennenlerngespräch">
               <Calendar className="mr-2 h-5 w-5" />
-              Kostenloses Kennenlerngespräch buchen
+              Unverb. Kennenlerngespräch vereinbaren
             </Link>
           </Button>
         </div>

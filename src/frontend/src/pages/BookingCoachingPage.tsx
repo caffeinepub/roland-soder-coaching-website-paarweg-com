@@ -1,5 +1,6 @@
 import { CheckCircle2, Sparkles } from "lucide-react";
 import { useEffect } from "react";
+import CalendlyInlineWidget from "../components/CalendlyInlineWidget";
 
 export default function BookingCoachingPage() {
   useEffect(() => {
@@ -16,20 +17,6 @@ export default function BookingCoachingPage() {
       "content",
       "Buchen Sie Ihre Coaching-Sitzung (90 Minuten, 190 CHF) mit Roland Soder. Professionelles Paarcoaching und Beziehungsbegleitung – online, flexibel und vertraulich.",
     );
-
-    // Calendly script
-    const scriptId = "calendly-widget-script";
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      // Clean up meta on unmount
-    };
   }, []);
 
   return (
@@ -53,19 +40,14 @@ export default function BookingCoachingPage() {
         </div>
       </section>
 
-      {/* Calendly Widget – full remaining viewport height */}
+      {/* Calendly Widget */}
       <section className="w-full">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-3xl">
-            <div
+            <CalendlyInlineWidget
               data-ocid="coaching.canvas_target"
-              className="calendly-inline-widget w-full"
-              data-url="https://calendly.com/paarweg-info/erstgesprach-60-min-klon?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f9f7f4&primary_color=d07c5c"
-              style={{
-                minWidth: "320px",
-                height: "calc(100vh - 160px)",
-                minHeight: "600px",
-              }}
+              url="https://calendly.com/paarweg-info/erstgesprach-60-min-klon?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f9f7f4&primary_color=d07c5c"
+              minHeight={600}
             />
           </div>
         </div>
